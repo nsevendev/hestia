@@ -1,0 +1,12 @@
+services:
+  hestia-go:
+    build:
+      context: .
+      dockerfile: Dockerfile
+      target: dev
+    image: hestia-go:latest
+    container_name: hestia-go
+    volumes:
+      - .:/app
+    stdin_open: true
+    tty: true
