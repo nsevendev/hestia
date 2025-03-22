@@ -23,7 +23,7 @@ FROM base AS dev
 WORKDIR /app
 #COPY --chown=$UID:$GID . .
 COPY . .
-EXPOSE 5000
+EXPOSE 4200
 CMD ["air", "-c", ".air.toml"]
 
 FROM base AS build
@@ -38,5 +38,5 @@ WORKDIR /app
 RUN apk add --no-cache ca-certificates
 # uniquement le binaire
 COPY --from=build /app/dist/hestia .
-EXPOSE 5000
+EXPOSE 4200
 CMD ["./hestia"]

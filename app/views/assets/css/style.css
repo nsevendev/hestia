@@ -1,8 +1,1018 @@
-body {
-    font-family: Arial, sans-serif;
-    background-color: #fff3f0;
-    color: #333;
-    padding: 2rem;
+/* Elements du DOM */
+
+* {
+    font-family: "Aleo", sans-serif;
+    box-sizing: border-box;
+    margin: 0;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+h1 {
+    padding-top: 40px;
+}
+
+.home picture {
     text-align: center;
-  }
-  
+}
+
+.information {
+    width: 100%;
+    text-align: center;
+    margin-top: 20px;
+    background-color: #88021f;
+    color: #fff;
+    padding: 16px;
+    font-size: 20px;
+    font-weight: bold;
+}
+
+.information a {
+    color: #ffffff;
+    text-decoration: underline;
+    font-weight: bold;
+}
+
+.horaires {
+    margin-top: 10px;
+    margin-bottom: 30px;
+    color: white;
+}
+
+.horaires h2 {
+    font-size: 20px;
+    text-align: center;
+}
+
+.horaires ul {
+    text-align: center;
+    list-style: none;
+    padding-left: 0;
+}
+
+.horaires ul li {
+    line-height: 24px;
+}
+
+
+/* Graisse & Couleurs  */
+
+.thin {
+    font-weight: 200;
+}
+
+.bold {
+    font-weight: bold;
+}
+
+.bg-dark {
+    background-color: #181818;
+}
+
+.bg-light {
+    background-color: #f5f5f5;
+}
+
+.red {
+    color: #9e0627;
+}
+
+.white {
+    color: #ffffff;
+}
+
+/* Alignements */
+
+.flex-center {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+}
+
+.center {
+    text-align: center;
+}
+
+.mx-2 {
+    margin: 20px 0;
+}
+
+.mb-3 {
+    margin-bottom: 30px;
+}
+
+.mt-1 {
+    margin-top: 10px;
+}
+
+/* Menu principal */
+
+nav {
+    position: fixed;
+    width: 100%;
+    padding: 15px 30px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background-color: #000000;
+    color: #ffffff;
+    z-index: 100;
+}
+
+.logo a {
+    color: #ffffff;
+    text-decoration: none;
+    font-weight: 800;
+    text-transform: uppercase;
+}
+
+.navbar ul {
+    display: flex;
+    gap: 15px;
+    list-style: none;
+}
+
+.navbar ul li {
+    display: inline;
+}
+
+.nav-link {
+    color: #989898;
+    text-decoration: none;
+}
+
+.nav-link.active {
+    color: #ffffff;
+    font-weight: bold;
+}
+
+.social {
+    display: flex;
+    gap: 10px;
+}
+
+.nav-burger {
+    display: none;
+}
+
+/* Container et cards */
+
+.container {
+    width: 100%;
+}
+
+.navbar-placeholder {
+    height: 120px;
+    /* Hauteur de la barre de navigation */
+    margin-top: -120px;
+    /* Compensation pour l'espace vide */
+}
+
+/* Ajoutez scroll-margin-top pour chaque section pour éviter que le contenu ne soit masqué sous la barre de navigation */
+.home,
+.story,
+.container {
+    scroll-margin-top: 20px;
+    /* Hauteur de la barre de navigation */
+}
+
+/* Titres */
+
+.subtitle {
+    text-align: center;
+    width: 90%;
+    font-weight: 400;
+}
+
+/* Accueil du site */
+
+.home {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    height: 100vh;
+    background-color: #181818 !important;
+    align-items: center;
+    border: none;
+}
+
+.home img {
+    width: 500px;
+}
+
+.home .btn-red {
+    background-color: #9e0627;
+    color: #ffffff;
+    text-decoration: none;
+    font-size: 18px;
+    padding: 16px;
+    font-weight: bold;
+}
+
+.btn-red {
+    background-color: #9e0627;
+    color: #ffffff;
+    text-decoration: none;
+    font-size: 14px;
+    padding: 15px;
+
+}
+
+.title-story {
+    padding-top: 5px;
+    font-size: 28px;
+}
+
+.story {
+    display: flex;
+}
+
+.leftside {
+    margin-top: 20px;
+    padding: 30px;
+    width: 50%;
+}
+
+.rightside {
+    width: 50%;
+    height: auto;
+    background: url(/assets/img/histoire-la-belfortaine.jpg);
+    background-position: right;
+    background-size: cover;
+    background-repeat: no-repeat;
+}
+
+.news-container {
+    display: flex;
+    flex-direction: column;
+}
+
+.news {
+    margin: 30px 0;
+    display: flex;
+    justify-content: center;
+    gap: 40px;
+}
+
+.news-preview {
+    background: url(/assets/img/actus/actu_lest_republicain.jpg);
+    background-position: center;
+    background-size: cover;
+    width: 350px;
+    height: 230px;
+}
+
+.news-preview2 {
+    background: url(/assets/img/actus/preview220524.jpg);
+    background-position: center;
+    background-size: cover;
+    width: 330px;
+    height: 230px;
+}
+
+.news-preview3 {
+    background: url(/assets/img/actus/preview110724.jpg);
+    background-position: center;
+    background-size: cover;
+    width: 330px;
+    height: 230px;
+}
+
+.news-preview4 {
+    background: url(/assets/img/actus/france_bleu_logo.svg);
+    background-position: center;
+    background-size: cover;
+    width: 330px;
+    height: 230px;
+}
+
+.news-content {
+    width: 500px;
+    text-align: left;
+}
+
+.card-title {
+    font-size: 16px;
+}
+
+.date {
+    padding-top: 20px;
+    font-size: 14px;
+    font-weight: normal;
+    line-height: 20px;
+}
+
+.card-text {
+    font-size: 14px;
+}
+
+.card-text a {
+    text-align: center;
+    display: block;
+    width: 130px;
+    margin-top: 25px;
+}
+
+.cards-container {
+    margin: 30px 0;
+    display: flex;
+    flex-wrap: wrap;
+    /* Ajout de flex-wrap pour passer à la ligne suivante */
+    justify-content: center;
+    /* Centrage horizontal des éléments */
+}
+
+.card {
+    position: relative;
+    width: 280px;
+    margin: 20px;
+    /* Marge entre les cartes */
+    box-sizing: border-box;
+    /* Inclure les marges dans le calcul de la largeur */
+    box-shadow: rgba(0, 0, 0, 0.25) 0px 54px 55px, rgba(0, 0, 0, 0.12) 0px -12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px, rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px;
+}
+
+.card .img-fluid {
+    border-radius: 10px;
+    width: 100%;
+    height: auto;
+}
+
+.card-name {
+    width: 100%;
+    position: absolute;
+    text-align: center;
+    background-color: rgba(0, 0, 0, 0.6);
+    color: white;
+    font-size: 14px;
+    bottom: 0;
+    padding: 10px;
+}
+
+.labels {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 13px;
+    padding-bottom: 40px;
+}
+
+/* Styles pour la galerie */
+.gallery {
+    width: 100%;
+    max-width: 900px;
+    /* Largeur maximum pour la galerie sur les écrans plus grands */
+    margin: 0 auto;
+    /* Centrage horizontal */
+    position: relative;
+    /* Positionnement relatif pour les flèches */
+    overflow: hidden;
+    /* Masquer les images débordantes */
+}
+
+.gallery-container {
+    margin-top: 40px;
+    margin-bottom: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+}
+
+.gallery-slides {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    /* S'étendre sur toute la largeur du conteneur */
+    height: 400px;
+    /* Fixer une hauteur constante pour le conteneur */
+    transition: transform 0.5s ease-in-out;
+    /* Transition pour le défilement */
+    overflow: hidden;
+    /* Assurer qu'il n'y a pas de débordement visible */
+    position: relative;
+    margin: 0 70px;
+    /* Espace entre les flèches et les images */
+}
+
+.gallery-pictures {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    /* Remplir le conteneur tout en conservant le ratio d'aspect */
+    display: none;
+    /* Masquer toutes les images sauf celle visible */
+    position: absolute;
+    /* Assurer que les images se chevauchent correctement */
+}
+
+.arrow {
+    position: absolute;
+    top: 50%;
+    /* Centre verticalement */
+    transform: translateY(-50%);
+    background-color: rgba(255, 255, 255, 0.7);
+    border: none;
+    color: black;
+    font-size: 2rem;
+    padding: 10px;
+    cursor: pointer;
+    z-index: 10;
+    /* Placer les flèches au-dessus des images */
+    transition: background-color 0.3s ease;
+    /* Ajout d'une transition pour le survol */
+    margin: 0 10px;
+    /* Espacement autour des flèches */
+}
+
+.arrow:hover {
+    background-color: rgba(255, 255, 255, 0.9);
+    /* Changement de couleur au survol */
+}
+
+.left-arrow {
+    left: 0;
+}
+
+.right-arrow {
+    right: 0;
+}
+
+
+/* Section traiteur */
+
+.traiteur {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 300px;
+    background: linear-gradient(180deg, rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.6) 100%), url('/assets/img/banner.jpg') top/cover no-repeat fixed;
+}
+
+.traiteur h1 {
+    padding: 0;
+    font-size: 22px;
+    font-weight: normal;
+    line-height: 65px;
+}
+
+.traiteur h6 {
+    width: 80%;
+    font-size: 16px;
+    font-weight: 400;
+}
+
+/* Avis des clients */
+
+.container-reviews {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 40px;
+    padding-top: 50px;
+    padding-bottom: 50px;
+
+}
+
+.card-review {
+    display: inline-block;
+    /* Permet à chaque carte de s'adapter à son contenu */
+    margin-top: 15px;
+    padding: 25px;
+    background-color: #fff;
+    min-width: 130px;
+    max-width: 330px;
+    border: 1px solid #cfcfcf;
+    box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+    border-radius: 10px;
+    vertical-align: top;
+    /* Aligne les cartes en haut */
+}
+
+.card-header {
+    display: flex;
+    gap: 20px;
+}
+
+.card-description {
+    display: flex;
+    flex-direction: column;
+}
+
+.name-user {
+    padding-left: 2px;
+}
+
+.name-user a,
+.name-user a:active {
+    color: #181818;
+    text-decoration: none;
+}
+
+.name-user a:hover {
+    text-decoration: underline;
+}
+
+.stars {
+    margin-top: 4px;
+    width: 120px;
+    height: 20px;
+    background-image: url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 23.44 19'><polygon fill='%23fbbc04' points='10,15.27 16.18,19 14.54,11.97 20,7.24 12.81,6.63 10,0 7.19,6.63 0,7.24 5.46,11.97 3.82,19'/></svg>");
+}
+
+.avatar {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+    transition: 300ms ease;
+}
+
+.avatar span {
+    padding-top: 5px;
+    font-size: 10px;
+}
+
+.review {
+    font-size: 16px;
+    padding-top: 20px;
+    height: auto;
+}
+
+.view-reviews {
+    width: 100%;
+}
+
+.view-reviews a {
+    display: flex;
+    gap: 10px;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+}
+
+.reviews-img {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 5px;
+}
+
+.footer {
+    width: 100%;
+    background-color: #000000;
+    padding: 20px;
+    font-size: 12px;
+    font-weight: normal;
+}
+
+.logos {
+    margin-top: 60px;
+    margin-bottom: 0;
+    width: 70%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 20px;
+}
+
+.container-contact {
+    margin: 50px 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 20px;
+}
+
+.leftside-contact {
+    padding-right: 50px;
+}
+
+.leftside-contact img {
+    width: 250px;
+}
+
+.rightside-contact {
+    padding-left: 50px;
+}
+
+.rightside-contact h5,
+.middle-contact h5 {
+    font-weight: bold;
+    padding-top: 7px;
+    text-align: left;
+    margin-bottom: 6px;
+}
+
+.rightside-contact ul,
+.middle-contact ul {
+    padding-left: 0;
+}
+
+.rightside-contact ul li,
+.middle-contact ul li {
+    font-weight: 400;
+    list-style: none;
+    font-size: 0.7rem;
+    line-height: 17px;
+    text-align: left;
+}
+
+.rightside-contact a,
+.middle-contact a {
+    color: #fff;
+    text-transform: none;
+    text-decoration: none;
+}
+
+.rightside-contact a:hover {
+    text-decoration: underline;
+}
+
+.social-footer {
+    margin-top: 10px;
+    text-align: left;
+}
+
+.social-footer a {
+    font-size: 25px;
+}
+
+/* Couleurs spécifiques pour chaque icône au survol */
+.link-social a[href*="facebook"]:hover {
+    color: #3b5998;
+    /* Couleur de Facebook */
+}
+
+.link-social a[href*="instagram"]:hover {
+    color: #e4405f;
+    /* Couleur d'Instagram */
+}
+
+.link-social a[href*="snapchat"]:hover {
+    color: #fffc00;
+    /* Couleur de Snapchat */
+}
+
+.footer a {
+    color: white;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+.footer a:hover a:active a:visited {
+    color: #ffffff;
+    text-decoration: underline;
+}
+
+/* On screens that are 1000px or less, set the background color to olive */
+@media screen and (max-width: 1000px) {
+
+    .social {
+        display: none;
+    }
+
+    .navbar ul {
+        gap: 10px;
+    }
+
+    .news-content {
+        width: 400px;
+    }
+
+    .navbar ul li a {
+        display: inline-block;
+        font-size: 14px;
+    }
+
+    .news-container {
+        width: 100%;
+        margin: 0;
+        align-items: center;
+        flex-direction: column;
+    }
+
+    .news-preview,
+    .news-preview2 .news-preview3 {
+        display: block;
+        width: 100%;
+        height: 300px;
+        margin-bottom: 20px;
+    }
+}
+
+/* On screens that are 600px or less, set the background color to olive */
+@media screen and (max-width: 810px) {
+
+    nav {
+        background-color: #000000;
+        padding: 20px 20px;
+    }
+
+    .information {
+        font-size: 16px;
+    }
+
+    .logo a {
+        font-size: 18px;
+        color: #000000;
+    }
+
+    .scrolled a {
+        color: #ffffff;
+    }
+
+    h1 {
+        font-size: 24px;
+    }
+
+    .subtitle {
+        width: 90%;
+        font-size: 15px;
+    }
+
+    .nav-burger {
+        display: block;
+    }
+
+    .nav-burger a {
+        font-size: 25px;
+    }
+
+    .navbar {
+        display: none;
+    }
+
+    .show-navbar {
+        background-color: #000000;
+        position: absolute;
+        left: 0;
+        padding-left: 20px;
+        margin-top: 300px;
+        width: 100%;
+        display: block;
+        animation: all;
+        transition: transform 0.3s ease-in-out;
+    }
+
+    .show-navbar ul li a {
+        font-size: 18px;
+        line-height: 20px;
+        margin-bottom: 18px;
+    }
+
+    .show-navbar a:hover {
+        font-weight: bold;
+        color: white;
+    }
+
+    .show-navbar ul {
+        margin-left: 0;
+        padding: 20px 0;
+        display: flex;
+        flex-direction: column;
+    }
+
+    @keyframes slideIn {
+        from {
+            transform: translateX(-100%);
+        }
+
+        to {
+            transform: translateX(0);
+        }
+    }
+
+    .social {
+        display: none;
+    }
+
+    .home img {
+        width: 430px;
+        max-width: 90%;
+    }
+
+    .horaires {
+        margin: 30px 0;
+    }
+
+    .story {
+        flex-direction: column;
+    }
+
+    .news {
+        width: 90%;
+        margin: 20px 0;
+        flex-wrap: wrap;
+        flex-direction: column;
+        gap: 0;
+    }
+
+    .news-container {
+        width: 100%;
+        margin: 0;
+        align-items: center;
+        flex-direction: column;
+    }
+
+    .news-preview {
+        display: block;
+        width: 100%;
+        margin-bottom: 20px;
+    }
+
+    .news-preview2 {
+        display: block;
+        width: 100%;
+        margin-bottom: 20px;
+    }
+
+    .news-preview3 {
+        display: block;
+        width: 100%;
+        margin-bottom: 20px;
+    }
+
+    .news-preview4 {
+        display: block;
+        width: 100%;
+        margin-bottom: 20px;
+    }
+
+    .btn-center {
+        margin: 0 auto
+    }
+
+
+    .news-content {
+        width: 100%;
+    }
+
+    .card {
+        position: relative;
+        width: 170px;
+        margin: 5px;
+        /* Marge entre les cartes */
+        box-sizing: border-box;
+        /* Inclure les marges dans le calcul de la largeur */
+    }
+
+    .card-name {
+        font-size: 12px;
+    }
+
+    .labels {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 13px;
+        padding-bottom: 40px;
+    }
+
+    .labels img {
+        width: 65px;
+    }
+
+    .logos {
+        width: 95%;
+        margin: 50px 0;
+        gap: 15px;
+    }
+
+    .container-contact {
+        margin: 50px 0;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        gap: 20px;
+    }
+
+    .leftside-contact {
+        order: 2;
+        border: none;
+        padding-right: 0;
+    }
+
+    .rightside-contact,
+    .middle-contact {
+        width: 100%;
+        padding-left: 0;
+        text-align: center;
+        justify-content: center;
+        order: 1;
+    }
+
+    .rightside-contact h5,
+    .middle-contact h5 {
+        text-align: center;
+    }
+
+    .rightside-contact ul li,
+    .middle-contact ul li {
+        text-align: center;
+    }
+
+    .leftside {
+        padding-top: 50px;
+        padding-left: 20px;
+        width: 100%;
+    }
+
+    .social-footer {
+        margin-top: 10px;
+        text-align: center;
+    }
+
+    .social-footer a {
+        font-size: 25px;
+    }
+
+    .gallery {
+        width: 100%;
+        /* La galerie occupe toute la largeur de l'écran */
+        max-width: 100%;
+        /* Pas de largeur maximale pour les appareils mobiles */
+        position: relative;
+        /* Pour positionner les flèches absolument */
+        overflow: hidden;
+        /* Pour masquer tout débordement */
+        padding: 0;
+        /* Retirer les marges internes */
+    }
+
+    .gallery-container {
+        position: relative;
+        /* Pour que les flèches se positionnent par rapport à ce conteneur */
+    }
+
+    .gallery-slides {
+        display: flex;
+        /* Flexbox pour aligner les images en ligne */
+        width: 100%;
+        /* Les images s'étendent sur toute la largeur du conteneur */
+        height: 250px;
+        /* Hauteur constante pour les images sur mobile */
+        overflow: hidden;
+        /* Pour éviter les débordements */
+        transition: transform 0.5s ease-in-out;
+        /* Transition pour le défilement fluide */
+        margin: 0;
+        /* Retirer les marges pour éviter les espaces non désirés */
+    }
+
+    .gallery-pictures {
+        flex-shrink: 0;
+        /* Les images ne se réduisent pas */
+        width: 100vw;
+        /* Chaque image occupe 100% de la largeur de la fenêtre */
+        height: 100%;
+        /* Les images remplissent la hauteur du conteneur */
+        object-fit: cover;
+        /* Remplir le conteneur tout en conservant le ratio d'aspect */
+    }
+
+    .arrow {
+        position: absolute;
+        /* Positionner les flèches absolument par rapport au conteneur de la galerie */
+        top: 50%;
+        /* Centrer verticalement */
+        transform: translateY(-50%);
+        /* Ajuster le centrage vertical */
+        background-color: rgba(255, 255, 255, 0.7);
+        /* Fond légèrement transparent */
+        border: none;
+        color: black;
+        font-size: 1.5rem;
+        /* Taille des flèches */
+        padding: 10px;
+        /* Espacement interne */
+        cursor: pointer;
+        z-index: 10;
+        /* Placer les flèches au-dessus des images */
+        transition: background-color 0.3s ease;
+        /* Transition de couleur au survol */
+    }
+
+    .arrow:hover {
+        background-color: rgba(255, 255, 255, 0.9);
+        /* Couleur de fond au survol */
+    }
+
+    .left-arrow {
+        left: 0;
+        /* Positionner la flèche gauche à 0 pixels du bord gauche */
+    }
+
+    .right-arrow {
+        right: 0;
+        /* Positionner la flèche droite à 0 pixels du bord droit */
+    }
+}
