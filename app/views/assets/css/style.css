@@ -238,7 +238,7 @@ nav {
 .rightside {
     width: 50%;
     height: auto;
-    background: url(../assets/img/histoire-la-belfortaine.jpg);
+    background: url(/assets/img/histoire-la-belfortaine.jpg);
     background-position: right;
     background-size: cover;
     background-repeat: no-repeat;
@@ -257,7 +257,7 @@ nav {
 }
 
 .news-preview {
-    background: url(../assets/img/actus/actu_lest_republicain.jpg);
+    background: url(/assets/img/actus/actu_lest_republicain.jpg);
     background-position: center;
     background-size: cover;
     width: 350px;
@@ -265,7 +265,7 @@ nav {
 }
 
 .news-preview2 {
-    background: url(../assets/img/actus/preview220524.jpg);
+    background: url(/assets/img/actus/preview220524.jpg);
     background-position: center;
     background-size: cover;
     width: 330px;
@@ -273,7 +273,7 @@ nav {
 }
 
 .news-preview3 {
-    background: url(../assets/img/actus/preview110724.jpg);
+    background: url(/assets/img/actus/preview110724.jpg);
     background-position: center;
     background-size: cover;
     width: 330px;
@@ -281,7 +281,7 @@ nav {
 }
 
 .news-preview4 {
-    background: url(../assets/img/actus/france_bleu_logo.svg);
+    background: url(/assets/img/actus/france_bleu_logo.svg);
     background-position: center;
     background-size: cover;
     width: 330px;
