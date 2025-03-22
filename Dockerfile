@@ -10,8 +10,8 @@ RUN apk add --no-cache git
 # add air
 RUN go install github.com/air-verse/air@latest
 # Préparer dossier de travail avec les bons droits
-RUN mkdir -p /app/.cache/go-mod && chown -R $UID:$GID /app
-ENV GOMODCACHE=/app/.cache/go-mod
+RUN mkdir -p /app/runtime/go-mod /app/runtime/air && chown -R ${UID}:${GID} /app
+ENV GOMODCACHE=/app/runtime/go-mod
 WORKDIR /app
 USER $USERNAME
 COPY --chown=$UID:$GID go.mod go.sum ./
