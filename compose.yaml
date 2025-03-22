@@ -3,10 +3,9 @@ services:
     build:
       context: .
       dockerfile: Dockerfile
-      target: dev
     image: hestia-go:latest
     container_name: hestia-go
     volumes:
       - .:/app
-    stdin_open: true
-    tty: true
+    ports:
+      - "5000:5000"

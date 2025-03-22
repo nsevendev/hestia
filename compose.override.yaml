@@ -1,0 +1,4 @@
+services:
+  hestia-go:
+    build:
+      target: dev
