@@ -16,5 +16,5 @@ func main() {
 
     router.Router(serv)
 
-    serv.Run("localhost:5000")
+    serv.Run("0.0.0.0:5000")
 }
