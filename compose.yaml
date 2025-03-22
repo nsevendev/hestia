@@ -1,6 +1,7 @@
 services:
   hestia-go:
     build:
+      target: dev
       context: .
       dockerfile: Dockerfile
     image: hestia-go:latest
@@ -8,4 +9,4 @@ services:
     volumes:
       - .:/app
     ports:
-      - "5000:5000"
+      - "4200:4200"
