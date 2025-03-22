@@ -1,16 +1,20 @@
 package main
 
 import (
-    "github.com/gin-gonic/gin"
-    "net/http"
+	"hestia/app/router"
+	"html/template"
+
+	"github.com/gin-gonic/gin"
 )
 
 func main() {
-    r := gin.Default()
+    serv := gin.Default()
 
-    r.GET("/", func(c *gin.Context) {
-        c.String(http.StatusOK, "Bienvenue chez la Boucherie Hestia 🥩")
-    })
+    serv.SetFuncMap(template.FuncMap{})
+    serv.LoadHTMLGlob("app/views/**/*.html")
+    serv.Static("/assets", "./app/views/assets")
 
-    r.Run(":5000")
+    router.Router(serv)
+
+    serv.Run("localhost:5000")
 }

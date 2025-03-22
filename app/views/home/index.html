@@ -1,0 +1,16 @@
+{{ define "home/index.html" }}
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <title>{{ .title }}</title>
+  <link rel="stylesheet" href="/assets/css/style.css">
+  <link rel="stylesheet" href="/assets/css/home/home.css">
+  <script src="/assets/js/script.js" defer></script>
+</head>
+<body>
+  <h1>{{ .title }}</h1>
+  <p class="test-p">Ceci est la page d’accueil de la boucherie Hestia.</p>
+</body>
+</html>
+{{ end }}
