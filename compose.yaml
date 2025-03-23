@@ -9,4 +9,33 @@ services:
     volumes:
       - .:/app
     ports:
-      - "4200:4200"
+      - ${PORT:-4200}:4200
+    env_file:
+      - .env
+    depends_on:
+      - hestia-db
+    networks:
+      - hestia-net
+
+  hestia-db:
+    image: postgres:16
+    container_name: hestia-db
+    restart: unless-stopped
+    environment:
+      POSTGRES_USER: ${DB_USER}
+      POSTGRES_PASSWORD: ${DB_PASSWORD}
+      POSTGRES_DB: ${DB_NAME}
+    volumes:
+      - hestia-db-data:/var/lib/postgresql/data
+    ports:
+      - "${DB_PORT:-5432}:5432"
+    networks:
+      - hestia-net
+
+networks:
+  hestia-net:
+    name: hestia-net
+    driver: bridge
+
+volumes:
+  hestia-db-data:
