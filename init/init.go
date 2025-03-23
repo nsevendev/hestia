@@ -10,4 +10,5 @@ func init() {
 	logger.InitFromEnv()
 	defer logger.Close()
 	database.Connect()
+	database.AutoMigrate()
 }
