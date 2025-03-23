@@ -2,12 +2,13 @@ package main
 
 import (
 	"hestia/app/router"
+	_ "hestia/init"
 	"html/template"
 
 	"github.com/gin-gonic/gin"
 )
 
-func main() {
+func main() {	
 	serv := gin.Default()
 
 	serv.SetFuncMap(template.FuncMap{})
@@ -18,3 +19,4 @@ func main() {
 
 	serv.Run("0.0.0.0:4200")
 }
+ 
