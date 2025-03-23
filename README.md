@@ -6,6 +6,7 @@ Site de labelfortaine
 
 - docker, docke compose
 - CLI nseven
+- copier le fichier `.env.dist` en `.env` et le compléter
 
 ## Installation
 
@@ -14,10 +15,8 @@ Site de labelfortaine
 ns bi
 
 # ensuite lancer les containers
-# l'image build deja une fois relancer cette commande suffit
-# pas besoin de  lancer ns bi
 ns up
-```
 
-**ATTENTION PAS ENCORE DE COMMANDE DOWN**  
-donc il faut faire docker compose down pour arreter les containers  
+# arrêter les containers
+ns down
+```
