@@ -1,0 +1,11 @@
+services:
+  hestia-go:
+    labels:
+      - "traefik.enable=true"
+      - "traefik.docker.network=traefik-nseven"
+      - "traefik.http.routers.todo-cda-php.rule=Host(`hestia.local`)"
+      - "traefik.http.routers.todo-cda-php.entrypoints=websecure"
+      - "traefik.http.routers.todo-cda-php.tls=true"
+      - "traefik.http.routers.todo-cda-php.tls.certresolver=default"
+      - "traefik.http.services.todo-cda-php.loadbalancer.server.port=4200"
+      - "traefik.http.services.todo-cda-php.loadbalancer.server.scheme=http"

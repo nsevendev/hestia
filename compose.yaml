@@ -16,6 +16,7 @@ services:
       - hestia-db
     networks:
       - hestia-net
+      - traefik-nseven
 
   hestia-db:
     image: postgres:16
@@ -31,11 +32,14 @@ services:
       - "${DB_PORT:-5432}:5432"
     networks:
       - hestia-net
+      - traefik-nseven
 
 networks:
   hestia-net:
     name: hestia-net
     driver: bridge
+  traefik-nseven:
+    external: true
 
 volumes:
   hestia-db-data:
