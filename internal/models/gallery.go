@@ -7,7 +7,7 @@ import (
 )
 
 type Gallery struct {
-	UUID    uuid.UUID `gorm:"type:uuid;primaryKey"`
+	UUID    uuid.UUID `gorm:"type:uuid;default:gen_random_uuid();primaryKey"`
 	Title   string    `gorm:"not null"`
 	CreatedAt time.Time
 	UpdatedAt time.Time

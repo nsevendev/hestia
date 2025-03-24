@@ -7,7 +7,7 @@ import (
 )
 
 type GalleryMediaURILink struct {
-	UUID          uuid.UUID `gorm:"type:uuid;primaryKey"`
+	UUID          uuid.UUID `gorm:"type:uuid;default:gen_random_uuid();primaryKey"`
 	UUIDGallery   uuid.UUID `gorm:"type:uuid;not null"`
 	UUIDMediaURI  uuid.UUID `gorm:"type:uuid;not null;unique"`
 	CreatedAt time.Time

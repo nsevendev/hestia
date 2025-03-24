@@ -7,7 +7,7 @@ import (
 )
 
 type MediaURI struct {
-	UUID       uuid.UUID `gorm:"type:uuid;primaryKey"`
+	UUID       uuid.UUID `gorm:"type:uuid;default:gen_random_uuid();primaryKey"`
 	Path       string    `gorm:"not null"`
 	MediaType  string    `gorm:"not null"`
 	CreatedAt time.Time
