@@ -3,7 +3,9 @@ package main
 import (
 	"hestia/app/router"
 	_ "hestia/init"
+	"hestia/internal/logger"
 	"html/template"
+	"os"
 
 	"github.com/gin-gonic/gin"
 )
@@ -17,6 +19,13 @@ func main() {
 
 	router.Router(serv)
 
-	serv.Run("0.0.0.0:4200")
+	port := os.Getenv("PORT")
+	host := "0.0.0.0"
+	hostTraefik := os.Getenv("HOST_TRAEFIK")
+
+	logger.Success("Server is running on " + host + ":" + port)
+	logger.Successf("Server is running on https://%v", hostTraefik)
+
+	serv.Run(host + ":" + port)
 }
  

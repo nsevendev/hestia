@@ -7,5 +7,9 @@ services:
       - "traefik.http.routers.todo-cda-php.entrypoints=websecure"
       - "traefik.http.routers.todo-cda-php.tls=true"
       - "traefik.http.routers.todo-cda-php.tls.certresolver=default"
-      - "traefik.http.services.todo-cda-php.loadbalancer.server.port=4200"
+      - "traefik.http.services.todo-cda-php.loadbalancer.server.port=${PORT}"
       - "traefik.http.services.todo-cda-php.loadbalancer.server.scheme=http"
+
+  hestia-db:
+    ports:
+      - "${DB_PORT}:5432"
