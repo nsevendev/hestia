@@ -6,9 +6,21 @@ import (
 	"hestia/internal/logger"
 	"html/template"
 	"os"
+	"strings"
 
 	"github.com/gin-gonic/gin"
 )
+
+func extractBacktickContent(s string) string {
+	start := strings.Index(s, "`")
+	end := strings.LastIndex(s, "`")
+
+	if start == -1 || end == -1 || start == end {
+		return "" // ou une erreur si tu préfères
+	}
+
+	return s[start+1 : end]
+}
 
 func main() {	
 	serv := gin.Default()
@@ -21,7 +33,7 @@ func main() {
 
 	port := os.Getenv("PORT")
 	host := "0.0.0.0"
-	hostTraefik := os.Getenv("HOST_TRAEFIK")
+	hostTraefik := extractBacktickContent(os.Getenv("HOST_TRAEFIK"))
 
 	logger.Success("Server is running on " + host + ":" + port)
 	logger.Successf("Server is running on https://%v", hostTraefik)

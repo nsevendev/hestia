@@ -3,7 +3,7 @@ services:
     labels:
       - "traefik.enable=true"
       - "traefik.docker.network=traefik-nseven"
-      - "traefik.http.routers.todo-cda-php.rule=Host(`hestia.local`)"
+      - "traefik.http.routers.todo-cda-php.rule=${HOST_TRAEFIK}"
       - "traefik.http.routers.todo-cda-php.entrypoints=websecure"
       - "traefik.http.routers.todo-cda-php.tls=true"
       - "traefik.http.routers.todo-cda-php.tls.certresolver=default"
