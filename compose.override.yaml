@@ -3,12 +3,12 @@ services:
     labels:
       - "traefik.enable=true"
       - "traefik.docker.network=traefik-nseven"
-      - "traefik.http.routers.todo-cda-php.rule=${HOST_TRAEFIK}"
-      - "traefik.http.routers.todo-cda-php.entrypoints=websecure"
-      - "traefik.http.routers.todo-cda-php.tls=true"
-      - "traefik.http.routers.todo-cda-php.tls.certresolver=default"
-      - "traefik.http.services.todo-cda-php.loadbalancer.server.port=${PORT}"
-      - "traefik.http.services.todo-cda-php.loadbalancer.server.scheme=http"
+      - "traefik.http.routers.hestia-go.rule=${HOST_TRAEFIK}"
+      - "traefik.http.routers.hestia-go.entrypoints=websecure"
+      - "traefik.http.routers.hestia-go.tls=true"
+      - "traefik.http.routers.hestia-go.tls.certresolver=default"
+      - "traefik.http.services.hestia-go.loadbalancer.server.port=${PORT}"
+      - "traefik.http.services.hestia-go.loadbalancer.server.scheme=http"
 
   hestia-db:
     ports:
