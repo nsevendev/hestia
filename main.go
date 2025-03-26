@@ -16,7 +16,7 @@ func extractBacktickContent(s string) string {
 	end := strings.LastIndex(s, "`")
 
 	if start == -1 || end == -1 || start == end {
-		return "" // ou une erreur si tu préfères
+		return ""
 	}
 
 	return s[start+1 : end]
