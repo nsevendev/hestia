@@ -10,10 +10,10 @@ import (
 	"github.com/pressly/goose/v3"
 )
 
-func initMigration() error {
+func initMigration() {
 	db, err := sql.Open("postgres", os.Getenv("NSC_MIGRATION_DB_URL"))
 	if err != nil {
-		return err
+		logger.Fatalf("Erreur à la préparation de la base de données: %v", err)
 	}
 	defer db.Close()
 
@@ -24,7 +24,7 @@ func initMigration() error {
 	if errGoose != nil && strings.Contains(errGoose.Error(), "no migration files found") {
 		logger.Infof("Error => %v", errGoose)
 		logger.Warn("Aucune migration trouvée. Rien à faire.")
-		return nil
+		return
 	}
 
 	if errGoose != nil {
@@ -36,6 +36,4 @@ func initMigration() error {
 	}
 
 	logger.Success("Migrations terminées.")
-	
-	return nil
 }
