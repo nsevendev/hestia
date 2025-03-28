@@ -7,8 +7,8 @@ import (
 
 func init() {
 	initEnv()
-	logger.InitFromEnv()
+	logger.Init()
 	defer logger.Close()
-	database.Connect()
-	database.AutoMigrate()
+	database.InitConnect()
+	initMigration()
 }
