@@ -61,7 +61,7 @@ func saveUploadedFile(file *multipart.FileHeader, fullPath string) error {
 	}
 	defer newFile.Close()
 
-	// ecris le contenu du fichier qu'on reçois dans la request dans le nouveau fichier
+	// copy le contenu du fichier qu'on reçois dans la request dans le nouveau fichier
 	_, err = io.Copy(newFile, src)
 	return err
 }
