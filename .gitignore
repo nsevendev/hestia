@@ -3,3 +3,5 @@
 runtime/*
 !runtime/.gitkeep
 .env
+app/views/assets/upload/*
+!app/views/assets/upload/.gitkeep
