@@ -25,7 +25,7 @@ func extractBacktickContent(s string) string {
 
 func loadTemplates() *template.Template {
 	var tmpl []string
-	
+
 	partials, _ := filepath.Glob("app/views/partials/*.html")
 	layout, _ := filepath.Glob("app/views/layouts/*.html")
 	pagesPublic, _ := filepath.Glob("app/views/public/*.html")
@@ -45,21 +45,21 @@ func loadTemplates() *template.Template {
 	return template.Must(template.ParseFiles(tmpl...))
 }
 
-func main() {	
+func main() {
 	serv := gin.Default()
-	
+
 	//serv.Delims("{[{", "}]}") // ajouter les délimiteurs pour le moteur de template utilisé pour des moldels (pipe) perso
-	
+
 	serv.SetFuncMap(template.FuncMap{}) // ajouter justement des models custom ici doc : https://gin-gonic.com/docs/examples/html-rendering/
-	
+
 	serv.SetHTMLTemplate(loadTemplates())
-	
+
 	serv.Static("/assets", "./app/views/assets")
 
 	router.Router(serv)
 
-	port := os.Getenv("PORT") // que pour du log
-	host := "0.0.0.0" // que pour du log
+	port := os.Getenv("PORT")                                        // que pour du log
+	host := "0.0.0.0"                                                // que pour du log
 	hostTraefik := extractBacktickContent(os.Getenv("HOST_TRAEFIK")) // que pour du log
 
 	logger.Success("Server is running on " + host + ":" + port)
@@ -67,4 +67,3 @@ func main() {
 
 	serv.Run(host + ":" + port)
 }
- 
