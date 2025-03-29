@@ -1,6 +1,7 @@
 {{ define "layoutPublic" }}
 <!DOCTYPE html>
 <html lang="fr">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -49,17 +50,18 @@
 
     <title>{{ .Title }}</title>
 </head>
+
 <body>
     {{ template "header" . }}
 
     <main>
         {{ if eq .Content "home" }}
-            {{ block "home" . }}
-            {{ end }}
+        {{ block "home" . }}
+        {{ end }}
         {{ end }}
     </main>
-
     {{ template "footer" . }}
 </body>
+
 </html>
 {{ end }}
