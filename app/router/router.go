@@ -20,5 +20,7 @@ func Router(serv *gin.Engine) {
 	//dashboard.PUT("/news/:id", controllers.UpdateNews)
 	//dashboard.DELETE("/news/:id", controllers.DeleteNews)
 
+	dashboard.GET("/gallery", controllers.GetGallery)
+
 	dashboard.GET("/terms", controllers.Terms)
 }
