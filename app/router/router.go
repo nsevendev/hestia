@@ -16,7 +16,7 @@ func Router(serv *gin.Engine) {
 	dashboard.GET("/", controllers.Dashboard)
 
 	dashboard.GET("/news", controllers.GetAllNews)
-	dashboard.POST("/news", controllers.CreateNews)
-	dashboard.PUT("/news/:id", controllers.UpdateNews)
-	dashboard.DELETE("/news/:id", controllers.DeleteNews)
+	//dashboard.POST("/news", controllers.CreateNews)
+	//dashboard.PUT("/news/:id", controllers.UpdateNews)
+	//dashboard.DELETE("/news/:id", controllers.DeleteNews)
 }

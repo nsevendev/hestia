@@ -1,15 +1,13 @@
-{{ define "private/news" }}
-{{ template "layoutPrivate" . }}
+{{ define "private/news" }} <!-- pour le controller -->
+    {{ template "layoutPrivate" . }} <!-- pour savoir où mettre le block en dessous -->
 {{ end }}
 
-{{ define "dashboard" }}
+{{ define "news" }} <!-- nom du block qu'on veux render -->
 <p style="padding-top: 70px;">
 <h2>Créer un nouvel article</h2>
-</p>
-<p>dashboard</p>
-<p>dashboard</p>
-<p>dashboard</p>
-<p>dashboard</p>
-<p>dashboard</p>
-<p>dashboard</p>
+
+<!-- liste news -->
+
+<!-- formulaire -->
+
 {{ end }}
