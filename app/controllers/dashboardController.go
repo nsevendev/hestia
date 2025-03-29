@@ -8,7 +8,7 @@ import (
 
 func Dashboard(c *gin.Context) {
 	c.HTML(http.StatusOK, "private/dashboard", gin.H{
-		"title": "Dashboard",
-		"content": "dashboard",
+		"Title": "Dashboard",
+		"Content": "dashboard",
 	})
 }

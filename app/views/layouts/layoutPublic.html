@@ -47,13 +47,13 @@
     </script>
     <script src="/assets/js/script.js" defer></script>
 
-    <title>{{ .title }}</title>
+    <title>{{ .Title }}</title>
 </head>
 <body>
     {{ template "header" . }}
 
     <main>
-        {{ if eq .content "home" }}
+        {{ if eq .Content "home" }}
             {{ block "home" . }}
             {{ end }}
         {{ end }}

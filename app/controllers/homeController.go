@@ -8,7 +8,7 @@ import (
 
 func Home(c *gin.Context) {
 	c.HTML(http.StatusOK, "public/home", gin.H{
-		"title": "La Belfortaine - Boucherie & Charcuterie traditionnelle à Belfort",
-		"content": "home",
+		"Title": "La Belfortaine - Boucherie & Charcuterie traditionnelle à Belfort",
+		"Content": "home",
 	})
 }
