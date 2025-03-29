@@ -8,4 +8,5 @@ import (
 
 func Router(serv *gin.Engine) {
 	serv.GET("/", controllers.Home)
+	serv.GET("/dashboard", controllers.Test)
 }
