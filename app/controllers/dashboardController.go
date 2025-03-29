@@ -6,7 +6,7 @@ import (
 	"github.com/gin-gonic/gin"
 )
 
-func Test(c *gin.Context) {
+func Dashboard(c *gin.Context) {
 	c.HTML(http.StatusOK, "private/dashboard", gin.H{
 		"title": "Dashboard",
 		"content": "dashboard",
