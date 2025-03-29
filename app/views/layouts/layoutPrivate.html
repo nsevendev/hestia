@@ -52,21 +52,24 @@
 </head>
 
 <body>
-    {{ template "header" . }}
-    
-    <main>
-        {{ if eq .Content "dashboard" }}
-            {{ block "dashboard" . }}
-            {{ end }}
-        {{ end }}
+    <div class="container-dashboard">
+        {{ template "sidebar" . }}
+        <div class="right-side">
+            <main>
+                {{ if eq .Content "dashboard" }}
+                {{ block "dashboard" . }}
+                {{ end }}
+                {{ end }}
 
-        {{ if eq .Content "news" }}
-            {{ block "news" . }}
-            {{ end }}
-        {{ end }}
-    </main>
-
-    {{ template "footer" . }}
+                {{ if eq .Content "news" }}
+                {{ block "news" . }}
+                {{ end }}
+                {{ end }}
+            </main>
+            {{ template "footer" . }}
+        </div>
+    </div>
 </body>
+
 </html>
 {{ end }}
