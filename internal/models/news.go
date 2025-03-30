@@ -12,7 +12,7 @@ type News struct {
 	Content         string    `gorm:"type:text"`
 	PublishedAt     time.Time
 	UUIDMediaImage  uuid.UUID `gorm:"type:uuid"`
-	UUIDMediaLink   uuid.UUID `gorm:"type:uuid"`
+	UUIDMediaLink   *uuid.UUID `gorm:"type:uuid"`
 	CreatedAt time.Time
 	UpdatedAt time.Time
 

@@ -12,11 +12,10 @@ func Router(serv *gin.Engine) {
 
 	// Groupe de routes sous /dashboard
 	dashboard := serv.Group("/dashboard")
-
 	dashboard.GET("/", controllers.Dashboard)
-
 	dashboard.GET("/news", controllers.GetAllNews)
-	//dashboard.POST("/news", controllers.CreateNews)
-	//dashboard.PUT("/news/:id", controllers.UpdateNews)
-	//dashboard.DELETE("/news/:id", controllers.DeleteNews)
+	dashboard.GET("/news/:uuid", controllers.GetOneNews)
+	dashboard.POST("/news", controllers.CreateNews)
+	dashboard.POST("/news/update/:uuid", controllers.UpdateNews)
+	dashboard.POST("/news/delete/:uuid", controllers.DeleteNews)
 }
