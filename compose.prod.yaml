@@ -18,6 +18,7 @@ services:
       - ./.env:/app/.env
       - ./migrations:/app/migrations
       - ./runtime:/app/runtime
+      - ./app/views:/app/app/views
     networks:
       - hestia-net
       - traefik-nseven
