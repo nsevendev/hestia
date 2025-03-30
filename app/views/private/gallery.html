@@ -4,5 +4,28 @@
 
 {{ define "gallery" }}
 
-<h1 class="title">Gestion de la galerie photos</h1>
+<h1>Gestion de la galerie</h1>
+
+<div class="alert alert-success">
+    <span>Photo correctement ajoutée dans la galerie.</span>
+</div>
+
+<h3>Ajouter une photo</h3>
+
+<form method="POST" action="/dashboard/gallery" enctype="multipart/form-data">
+    <label for="title">Titre de l'image :</label>
+    <input type="text" name="title" value="" class="title-img" required>
+
+    <div>
+        <label for="image">Sélectionner une photo :</label>
+        <input type="file" id="image" name="image" accept="image/*" required>
+    </div>
+
+    <button type="submit">Ajouter dans la galerie</button>
+</form>
+
+<hr>
+
+<h3>Votre galerie photo</h3>
+
 {{ end }}
