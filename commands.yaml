@@ -7,4 +7,4 @@ commands:
     command: docker exec -i *NSC_NAME_CONTAINER_APP* goose -dir ./migrations postgres *NSC_MIGRATION_DB_URL* up
   recette: # mise en recette (iso prod)
     description: demarre le projet comme la production mais avec un host different pour un environement de test
-    command: docker-compose -f compose.prod.yaml up -d --build
+    command: docker compose -f compose.prod.yaml up -d --build
