@@ -4,16 +4,25 @@
 
 {{ define "dashboard" }}
 
-<p class="welcome">
-<h1 class="title">Bienvenue Adeline</h1>
-<h3>Vos informations</h3>
-<ul>
-    <li>Votre nom : Waltz</li>
-    <li>Votre prénom : Adeline</li>
-    <li>Votre adresse mail : labelfortaine@gmail.com</li>
-</ul>
-<button>
-    Modifier mes informations
-</button>
-</p>
+
+<h1>Tableau de bord</h1>
+
+<div class="alert alert-success">
+    <span>Vos informations ont correctement été mises à jour.</span>
+</div>
+
+<div class="group-infos">
+    <div class="card-infos">
+        <h3>Vos informations</h3>
+        <ul>
+            <li>Votre nom : Doe</li>
+            <li>Votre prénom : John</li>
+            <li>Votre adresse mail : john.doe@gmail.com</li>
+        </ul>
+
+        <button>
+            Modifier les informations
+        </button>
+    </div>
+</div>
 {{ end }}

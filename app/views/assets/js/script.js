@@ -11,31 +11,31 @@ window.addEventListener('scroll', () => {
 })
 
 window.addEventListener('DOMContentLoaded', () => {
-    const navLinks = document.querySelectorAll('.nav-link');
+  const navLinks = document.querySelectorAll('.nav-link');
 
-    function updateActiveLink() {
-        let scrollPosition = window.scrollY;
+  function updateActiveLink() {
+    let scrollPosition = window.scrollY;
 
-        navLinks.forEach(link => {
-            const target = document.querySelector(link.getAttribute('href'));
-            if (target) {
-                const targetTop = target.offsetTop - document.querySelector('nav').offsetHeight;
-                const targetBottom = targetTop + target.offsetHeight;
-                if (scrollPosition >= targetTop && scrollPosition < targetBottom) {
-                    navLinks.forEach(link => {
-                        link.classList.remove('active');
-                    });
-                    link.classList.add('active');
-                } else {
-                    link.classList.remove('active');
-                }
-            }
-        });
-    }
+    navLinks.forEach(link => {
+      const target = document.querySelector(link.getAttribute('href'));
+      if (target) {
+        const targetTop = target.offsetTop - document.querySelector('nav').offsetHeight;
+        const targetBottom = targetTop + target.offsetHeight;
+        if (scrollPosition >= targetTop && scrollPosition < targetBottom) {
+          navLinks.forEach(link => {
+            link.classList.remove('active');
+          });
+          link.classList.add('active');
+        } else {
+          link.classList.remove('active');
+        }
+      }
+    });
+  }
 
-    window.addEventListener('scroll', updateActiveLink);
+  window.addEventListener('scroll', updateActiveLink);
 
-    updateActiveLink();
+  updateActiveLink();
 });
 
 // Sélection du bouton burger et de la barre de navigation
@@ -44,31 +44,31 @@ const navbar = document.getElementById('navbar');
 
 // Fonction pour afficher ou masquer la barre de navigation
 function toggleNavbar() {
-    navbar.classList.toggle('show-navbar');
-    burgerIcon.querySelector('i').classList.toggle('fa-bars');
-    burgerIcon.querySelector('i').classList.toggle('fa-times');
+  navbar.classList.toggle('show-navbar');
+  burgerIcon.querySelector('i').classList.toggle('fa-bars');
+  burgerIcon.querySelector('i').classList.toggle('fa-times');
 }
 
 // Ajouter un événement de clic au bouton burger
-burgerIcon.addEventListener('click', function(event) {
-    event.preventDefault(); // Empêche le comportement par défaut du lien
-    toggleNavbar();
+burgerIcon.addEventListener('click', function (event) {
+  event.preventDefault(); // Empêche le comportement par défaut du lien
+  toggleNavbar();
 });
 
 const navLinks = document.querySelectorAll('.nav-link');
 
 // Fonction pour fermer la barre de navigation
 function closeNavbar() {
-    navbar.classList.remove('show-navbar');
-    burgerIcon.querySelector('i').classList.remove('fa-times');
-    burgerIcon.querySelector('i').classList.add('fa-bars');
+  navbar.classList.remove('show-navbar');
+  burgerIcon.querySelector('i').classList.remove('fa-times');
+  burgerIcon.querySelector('i').classList.add('fa-bars');
 }
 
 // Ajouter un gestionnaire d'événement de clic à chaque lien de navigation
 navLinks.forEach(link => {
-    link.addEventListener('click', function() {
-        closeNavbar();
-    });
+  link.addEventListener('click', function () {
+    closeNavbar();
+  });
 });
 
 // GALLERY //
@@ -110,37 +110,37 @@ showSlide(currentIndex);
 
 // Caroussel des avis client 
 
-document.addEventListener('DOMContentLoaded', function() {
-    const prev = document.querySelector('.carousel-control.prev');
-    const next = document.querySelector('.carousel-control.next');
-    const carousel = document.querySelector('.carousel');
-    let scrollPosition = 0;
-    const cardWidth = document.querySelector('.card-review').offsetWidth;
-    const visibleCards = 3;
-    
-    prev.addEventListener('click', () => {
-        scrollPosition = Math.max(scrollPosition - cardWidth * visibleCards, 0);
-        carousel.style.transform = `translateX(-${scrollPosition}px)`;
-    });
-    
-    next.addEventListener('click', () => {
-        const maxScroll = (carousel.children.length - visibleCards) * cardWidth;
-        scrollPosition = Math.min(scrollPosition + cardWidth * visibleCards, maxScroll);
-        carousel.style.transform = `translateX(-${scrollPosition}px)`;
-    });
+document.addEventListener('DOMContentLoaded', function () {
+  const prev = document.querySelector('.carousel-control.prev');
+  const next = document.querySelector('.carousel-control.next');
+  const carousel = document.querySelector('.carousel');
+  let scrollPosition = 0;
+  const cardWidth = document.querySelector('.card-review').offsetWidth;
+  const visibleCards = 3;
+
+  prev.addEventListener('click', () => {
+    scrollPosition = Math.max(scrollPosition - cardWidth * visibleCards, 0);
+    carousel.style.transform = `translateX(-${scrollPosition}px)`;
+  });
+
+  next.addEventListener('click', () => {
+    const maxScroll = (carousel.children.length - visibleCards) * cardWidth;
+    scrollPosition = Math.min(scrollPosition + cardWidth * visibleCards, maxScroll);
+    carousel.style.transform = `translateX(-${scrollPosition}px)`;
+  });
 });
 
 // Bandeau temporaire 
 
-document.addEventListener("DOMContentLoaded", function() {
-  const startDate = new Date("2024-10-22T00:00:00+02:00"); 
+document.addEventListener("DOMContentLoaded", function () {
+  const startDate = new Date("2024-10-22T00:00:00+02:00");
   const endDate = new Date("2024-11-02T19:00:00+02:00");
   const now = new Date();
   const infoBanner = document.querySelector(".information");
   if (now >= startDate && now < endDate) {
-      infoBanner.style.display = "block";
+    infoBanner.style.display = "block";
   } else {
-      infoBanner.style.display = "none";
+    infoBanner.style.display = "none";
   }
 });
 
@@ -153,39 +153,50 @@ function handleLinkTypeChange() {
   if (container) {
     while (container.firstChild) {
       container.removeChild(container.firstChild)
-    } 
+    }
   }
 
   if (selected === "file") {
-      const label = document.createElement("label")
-      label.setAttribute("for", "link")
-      label.textContent = "Fichier à joindre :"
+    const label = document.createElement("label")
+    label.setAttribute("for", "link")
+    label.textContent = "Fichier à joindre :"
 
-      const input = document.createElement("input")
-      input.type = "file"
-      input.name = "link"
-      input.id = "link"
-      input.accept = "*/*"
+    const input = document.createElement("input")
+    input.type = "file"
+    input.name = "link"
+    input.id = "link"
+    input.accept = "*/*"
 
-      container.appendChild(label)
-      container.appendChild(input)
+    container.appendChild(label)
+    container.appendChild(input)
   }
 
   if (selected === "url") {
-      const label = document.createElement("label")
-      label.setAttribute("for", "link")
-      label.textContent = "URL du lien :"
+    const label = document.createElement("label")
+    label.setAttribute("for", "link")
+    label.textContent = "URL du lien :"
 
-      const input = document.createElement("input")
-      input.type = "text"
-      input.name = "link"
-      input.id = "link"
-      input.placeholder = "https://..."
+    const input = document.createElement("input")
+    input.type = "text"
+    input.name = "link"
+    input.id = "link"
+    input.placeholder = "https://..."
 
-      container.appendChild(label)
-      container.appendChild(input)
+    container.appendChild(label)
+    container.appendChild(input)
   }
 }
+
+document.addEventListener('DOMContentLoaded', function () {
+  const closeBtn = document.querySelector('.close-btn');
+
+  if (closeBtn) {
+    closeBtn.addEventListener('click', function () {
+      const alert = this.parentElement;
+      alert.style.display = 'none';
+    });
+  }
+});
 
 // au cas où il y aurait une valeur pré-sélectionnée à l'ouverture
 document.addEventListener("DOMContentLoaded", handleLinkTypeChange);
