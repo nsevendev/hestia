@@ -30,7 +30,8 @@ FROM base AS build
 WORKDIR /app
 #COPY --chown=$UID:$GID . .
 COPY . .
-RUN go build -o dist/hestia main.go
+RUN CGO_ENABLED=0 GOOS=linux GOARCH=amd64 go build -o dist/hestia main.go
+CMD ["ls", "-l", "/app/dist/hestia"]
 
 FROM alpine:3.21 AS prod
 WORKDIR /app
@@ -38,4 +39,5 @@ WORKDIR /app
 RUN apk add --no-cache ca-certificates
 # uniquement le binaire
 COPY --from=build /app/dist/hestia .
+RUN chmod +x /app/hestia
 CMD ["./hestia"]
