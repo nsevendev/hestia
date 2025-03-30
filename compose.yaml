@@ -4,18 +4,17 @@ services:
       target: dev
       context: .
       dockerfile: Dockerfile
-    image: hestia-go:latest
-    container_name: hestia-go
+    image: ${NSC_NAME_CONTAINER_APP}:latest
+    container_name: ${NSC_NAME_CONTAINER_APP}
     volumes:
       - .:/app
-    ports:
-      - ${PORT:-4200}:4200
     env_file:
       - .env
     depends_on:
       - hestia-db
     networks:
       - hestia-net
+      - traefik-nseven
 
   hestia-db:
     image: postgres:16
@@ -27,15 +26,16 @@ services:
       POSTGRES_DB: ${DB_NAME}
     volumes:
       - hestia-db-data:/var/lib/postgresql/data
-    ports:
-      - "${DB_PORT:-5432}:5432"
     networks:
       - hestia-net
+      - traefik-nseven
 
 networks:
   hestia-net:
     name: hestia-net
     driver: bridge
+  traefik-nseven:
+    external: true
 
 volumes:
   hestia-db-data:

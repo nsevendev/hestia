@@ -7,7 +7,8 @@ import (
 )
 
 func Home(c *gin.Context) {
-	c.HTML(http.StatusOK, "home/index.html", gin.H{
-		"title": "Bienvenue chez la Boucherie Hestia 🥩",
+	c.HTML(http.StatusOK, "public/home", gin.H{
+		"Title": "La Belfortaine - Boucherie & Charcuterie traditionnelle à Belfort",
+		"Content": "home",
 	})
 }

@@ -26,7 +26,7 @@ func buildDSN() string {
 	)
 }
 
-func Connect() {
+func InitConnect() {
 	dsn := buildDSN()
 	maxRetries := 10
 	var err error

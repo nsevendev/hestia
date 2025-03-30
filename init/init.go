@@ -1,13 +1,22 @@
 package init
 
 import (
+	"hestia/app/controllers"
+	depinject "hestia/app/depInject"
 	"hestia/internal/database"
 	"hestia/internal/logger"
 )
 
 func init() {
 	initEnv()
-	logger.InitFromEnv()
+	logger.Init()
 	defer logger.Close()
-	database.Connect()
+	database.InitConnect()
+	initMigration()
+
+	// service manager
+	container := depinject.NewContainer(database.DB)
+
+	// injection container dans les controllers
+	controllers.InitNewsController(container)
 }
