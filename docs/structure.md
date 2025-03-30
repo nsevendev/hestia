@@ -37,6 +37,8 @@ Contient la logique métier de l'application, privée au projet (non importable 
 Exemple possible :
 ```
 /internal/
+  database/
+  logger/
   domain/
     user/
       service.go
@@ -48,12 +50,25 @@ Exemple possible :
 
 Tout ce qui est temporaire, automatique ou généré par le build.
 
-| Dossier         | Rôle                                                                 |
+| Dossier         | Rôle                                                                  |
 |------------------|----------------------------------------------------------------------|
-| `go-mod/`        | Cache Go pour les dépendances (via `GOMODCACHE`)                    |
-| `air/`           | Binaire temporaire buildé par `air` pour le hot-reload              |
+| `go-mod/`        | Cache Go pour les dépendances (via `GOMODCACHE`)                     |
+| `air/`           | Binaire temporaire buildé par `air` pour le hot-reload               |
+| `log/dev`        | Tous log ecris avec logger en mode APP_ENV=dev                       |
+| `log/prod`        | Tous log ecris avec logger en mode APP_ENV=prod                     |
 
 > Ce dossier est ignoré dans `.gitignore`
+
+---
+
+## 📂 `/runtime/`
+
+Tout ce qui est temporaire, automatique ou généré par le build.
+
+| Dossier         | Rôle                                                                                              |
+|------------------|--------------------------------------------------------------------------------------------------|
+| `env.go`        | initialise les variable d'environement dans go                                                    |
+| `init.go`        | fichier principal d'initialisation (là où tous les autres sont implementer pour etre initier)    |
 
 ---
 

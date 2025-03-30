@@ -1,0 +1,15 @@
+services:
+  hestia-go:
+    labels:
+      - "traefik.enable=true"
+      - "traefik.docker.network=traefik-nseven"
+      - "traefik.http.routers.hestia-go.rule=${HOST_TRAEFIK}"
+      - "traefik.http.routers.hestia-go.entrypoints=websecure"
+      - "traefik.http.routers.hestia-go.tls=true"
+      - "traefik.http.routers.hestia-go.tls.certresolver=default"
+      - "traefik.http.services.hestia-go.loadbalancer.server.port=${PORT}"
+      - "traefik.http.services.hestia-go.loadbalancer.server.scheme=http"
+
+  hestia-db:
+    ports:
+      - "${DB_PORT_EX}:5432"

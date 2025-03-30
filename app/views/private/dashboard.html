@@ -1,0 +1,28 @@
+{{ define "private/dashboard" }}
+{{ template "layoutPrivate" . }}
+{{ end }}
+
+{{ define "dashboard" }}
+
+
+<h1>Tableau de bord</h1>
+
+<div class="alert alert-success">
+    <span>Vos informations ont correctement été mises à jour.</span>
+</div>
+
+<div class="group-infos">
+    <div class="card-infos">
+        <h3>Vos informations</h3>
+        <ul>
+            <li>Votre nom : Doe</li>
+            <li>Votre prénom : John</li>
+            <li>Votre adresse mail : john.doe@gmail.com</li>
+        </ul>
+
+        <button>
+            Modifier les informations
+        </button>
+    </div>
+</div>
+{{ end }}

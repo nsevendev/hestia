@@ -29,11 +29,11 @@ func Info(msg string) {
 }
 
 func Warn(msg string) {
-	log.Println("⚠️ [WARN] " + msg)
+	log.Println("⚠️  [WARN] " + msg)
 }
 
 func Error(msg string) {
-	log.Panic("❌ [ERROR] " + msg) 
+	log.Println("❌ [ERROR] " + msg) 
 }
 
 func Fatal(msg string) {
@@ -51,18 +51,18 @@ func Infof(format string, a ...any) {
 }
 
 func Warnf(format string, a ...any) {
-	log.Printf("⚠️ [WARN] "+format, a...)
+	log.Printf("⚠️  [WARN] "+format, a...)
 }
 
 func Errorf(format string, a ...any) {
-	log.Panicf("❌ [ERROR] "+format, a...)
+	log.Printf("❌ [ERROR] "+format, a...)
 }
 
 func Fatalf(format string, a ...any) {
 	log.Fatalf("💀 [FATAL] "+format, a...)
 } 
 
-func Init(env string) {
+func InitFromEnv(env string) {
 	logDir := filepath.Join("runtime", "logs", env)
 	logPath := filepath.Join(logDir, "hestia-"+time.Now().Format("2006-01-02")+".log")
 
@@ -87,14 +87,14 @@ func Init(env string) {
 	log.Printf("✅ [SUCCESS] Logger initialisé avec succès")
 }
 
-func InitFromEnv() {
+func Init() {
 	env := os.Getenv("APP_ENV")
 	
 	if env == "" { 
 		env = "dev"
 	}
 	
-	Init(env)
+	InitFromEnv(env)
 }
 
 func Close() {
