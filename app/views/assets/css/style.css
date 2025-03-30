@@ -772,6 +772,8 @@ nav {
 
 .right-side form {
     padding-top: 20px;
+    padding-bottom: 20px;
+    ;
 }
 
 .right-side label {
@@ -785,8 +787,16 @@ nav {
     flex-direction: row;
 }
 
-.right-side input[type="text"] {
+.right-side .title-news {
     width: 74%;
+    padding: 10px;
+    margin-bottom: 20px;
+    border: 1px solid #4b4b4b;
+    border-radius: 5px;
+}
+
+.right-side .title-img {
+    width: 30%;
     padding: 10px;
     margin-bottom: 20px;
     border: 1px solid #4b4b4b;
@@ -805,6 +815,7 @@ nav {
 .right-side button {
     background-color: #2a292a;
     color: #ffffff;
+    margin-top: 20px;
     padding: 10px 20px;
     border: none;
     font-size: 1.2rem;
@@ -818,8 +829,9 @@ nav {
 }
 
 .right-side hr {
-    border: 1px solid #ddd;
+    border: 2px solid #ddd;
     margin-top: 20px;
+    margin-bottom: 20px;
 }
 
 .right-side .group-infos {
