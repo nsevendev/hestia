@@ -30,7 +30,7 @@ FROM base AS build
 WORKDIR /app
 #COPY --chown=$UID:$GID . .
 COPY . .
-RUN go build -o dist/hestia main.go
+RUN CGO_ENABLED=0 GOOS=linux GOARCH=amd64 go build -o dist/hestia main.go
 
 FROM alpine:3.21 AS prod
 WORKDIR /app
