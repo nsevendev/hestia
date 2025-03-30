@@ -14,6 +14,10 @@ services:
       - "traefik.http.routers.hestia-go.tls=true"
       - "traefik.http.routers.hestia-go.tls.certresolver=le"
       - "traefik.http.services.hestia-go.loadbalancer.server.port=${PORT}"
+    volumes:
+      - ./.env:/app/.env
+      - ./migrations:/app/migrations
+      - ./runtime:/app/runtime
     networks:
       - hestia-net
       - traefik-nseven
