@@ -18,4 +18,6 @@ func Router(serv *gin.Engine) {
 	dashboard.POST("/news", controllers.CreateNews)
 	dashboard.POST("/news/update/:uuid", controllers.UpdateNews)
 	dashboard.POST("/news/delete/:uuid", controllers.DeleteNews)
+	dashboard.GET("/gallery", controllers.GetGallery)
+	dashboard.GET("/terms", controllers.Terms)
 }

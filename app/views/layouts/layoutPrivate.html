@@ -65,8 +65,18 @@
                 {{ block "news" . }}
                 {{ end }}
                 {{ end }}
+
+                {{ if eq .Content "gallery" }}
+                {{ block "gallery" . }}
+                {{ end }}
+                {{ end }}
+
+                {{ if eq .Content "terms" }}
+                {{ block "terms" . }}
+                {{ end }}
+                {{ end }}
             </main>
-            {{ template "footer" . }}
+            <!-- {{ template "footer" . }} -->
         </div>
     </div>
 </body>
