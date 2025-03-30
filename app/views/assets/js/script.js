@@ -143,3 +143,49 @@ document.addEventListener("DOMContentLoaded", function() {
       infoBanner.style.display = "none";
   }
 });
+
+/********************************* PARTIE ADMIN  ********************************/
+
+function handleLinkTypeChange() {
+  const container = document.getElementById("linkInputContainerNews");
+  const selected = document.getElementById("linkTypeNews") === null ? "" : document.getElementById("linkTypeNews").value;
+
+  if (container) {
+    while (container.firstChild) {
+      container.removeChild(container.firstChild)
+    } 
+  }
+
+  if (selected === "file") {
+      const label = document.createElement("label")
+      label.setAttribute("for", "link")
+      label.textContent = "Fichier à joindre :"
+
+      const input = document.createElement("input")
+      input.type = "file"
+      input.name = "link"
+      input.id = "link"
+      input.accept = "*/*"
+
+      container.appendChild(label)
+      container.appendChild(input)
+  }
+
+  if (selected === "url") {
+      const label = document.createElement("label")
+      label.setAttribute("for", "link")
+      label.textContent = "URL du lien :"
+
+      const input = document.createElement("input")
+      input.type = "text"
+      input.name = "link"
+      input.id = "link"
+      input.placeholder = "https://..."
+
+      container.appendChild(label)
+      container.appendChild(input)
+  }
+}
+
+// au cas où il y aurait une valeur pré-sélectionnée à l'ouverture
+document.addEventListener("DOMContentLoaded", handleLinkTypeChange);

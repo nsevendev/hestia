@@ -33,7 +33,7 @@ func Warn(msg string) {
 }
 
 func Error(msg string) {
-	log.Panic("❌ [ERROR] " + msg) 
+	log.Println("❌ [ERROR] " + msg) 
 }
 
 func Fatal(msg string) {
@@ -55,7 +55,7 @@ func Warnf(format string, a ...any) {
 }
 
 func Errorf(format string, a ...any) {
-	log.Panicf("❌ [ERROR] "+format, a...)
+	log.Printf("❌ [ERROR] "+format, a...)
 }
 
 func Fatalf(format string, a ...any) {

@@ -5,9 +5,11 @@ import (
 	_ "hestia/init"
 	"hestia/internal/logger"
 	"html/template"
+	"net/http"
 	"os"
 	"path/filepath"
 	"strings"
+	"time"
 
 	"github.com/gin-gonic/gin"
 )
@@ -23,9 +25,9 @@ func extractBacktickContent(s string) string {
 	return s[start+1 : end]
 }
 
-func loadTemplates() *template.Template {
+func loadTemplates(funcMap *template.FuncMap) *template.Template {
 	var tmpl []string
-	
+
 	partials, _ := filepath.Glob("app/views/partials/*.html")
 	layout, _ := filepath.Glob("app/views/layouts/*.html")
 	pagesPublic, _ := filepath.Glob("app/views/public/*.html")
@@ -42,24 +44,33 @@ func loadTemplates() *template.Template {
 
 	logger.Infof("Templates chargés: %v", tmpl)
 
-	return template.Must(template.ParseFiles(tmpl...))
+	return template.Must(template.New("").Funcs(*funcMap).ParseFiles(tmpl...))
 }
 
-func main() {	
+func main() {
 	serv := gin.Default()
-	
-	//serv.Delims("{[{", "}]}") // ajouter les délimiteurs pour le moteur de template utilisé pour des moldels (pipe) perso
-	
-	serv.SetFuncMap(template.FuncMap{}) // ajouter justement des models custom ici doc : https://gin-gonic.com/docs/examples/html-rendering/
-	
-	serv.SetHTMLTemplate(loadTemplates())
-	
+
+	funcMap := template.FuncMap{
+		"formatDate": func(t time.Time, layout string) string {
+			if t.IsZero() {
+				return "-- Aucune date --"
+			}
+			return t.Format(layout)
+		},
+	}
+	serv.SetHTMLTemplate(loadTemplates(&funcMap))
+
 	serv.Static("/assets", "./app/views/assets")
 
 	router.Router(serv)
 
-	port := os.Getenv("PORT") // que pour du log
-	host := "0.0.0.0" // que pour du log
+	serv.NoRoute(func(c *gin.Context) {
+		logger.Errorf("❌ Route inconnue : %s %s", c.Request.Method, c.Request.URL.Path)
+		c.String(http.StatusNotFound, "404 not found")
+	})
+
+	port := os.Getenv("PORT")                                        // que pour du log
+	host := "0.0.0.0"                                                // que pour du log
 	hostTraefik := extractBacktickContent(os.Getenv("HOST_TRAEFIK")) // que pour du log
 
 	logger.Success("Server is running on " + host + ":" + port)
@@ -67,4 +78,3 @@ func main() {
 
 	serv.Run(host + ":" + port)
 }
- 

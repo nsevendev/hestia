@@ -1,6 +1,7 @@
 {{ define "layoutPrivate" }}
 <!DOCTYPE html>
 <html lang="fr">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -49,17 +50,26 @@
 
     <title>{{ .Title }}</title>
 </head>
+
 <body>
-    {{ template "header" . }}
+    <div class="container-dashboard">
+        {{ template "sidebar" . }}
+        <div class="right-side">
+            <main>
+                {{ if eq .Content "dashboard" }}
+                {{ block "dashboard" . }}
+                {{ end }}
+                {{ end }}
 
-    <main>
-        {{ if eq .Content "dashboard" }}
-            {{ block "dashboard" . }}
-            {{ end }}
-        {{ end }}
-    </main>
-
-    {{ template "footer" . }}
+                {{ if eq .Content "news" }}
+                {{ block "news" . }}
+                {{ end }}
+                {{ end }}
+            </main>
+            {{ template "footer" . }}
+        </div>
+    </div>
 </body>
+
 </html>
 {{ end }}
