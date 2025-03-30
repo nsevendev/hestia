@@ -6,22 +6,12 @@
 
 <h1>Gestion des actualités</h1>
 
-<div class="alert alert-success">
-    <span>Actualité ajoutée avec succès !</span>
-</div>
-
-<div class="alert alert-warning">
-    <span>Le champs "Titre" n'est pas renseigné.</span>
-</div>
-
-<div class="alert alert-error">
-    <span>L'actualité n'a pu être ajoutée.</span>
-</div>
+{{ template "alert" . }}
 
 <h3>{{ if .News }}Modifier l'actualité{{ else }}Créer une actualité{{ end }}</h3>
 
 <form method="POST" action="{{ if .News }}/dashboard/news/update/{{ .News.UUID }}{{ else }}/dashboard/news{{ end }}"
-    enctype="multipart/form-data">
+    enctype="multipart/form-data" class="form-post">
 
     <div class="row-form">
         <label for="title">Titre :</label>
@@ -80,7 +70,7 @@
 
     <div id="linkInputContainerNews" style="margin-top: 10px;"></div>
 
-    <button type="submit">{{ if .News }}Modifier{{ else }}Créer{{ end }}</button>
+    <button type="submit">{{ if .News }}Modifier{{ else }}Ajouter l'actualité{{ end }}</button>
 
 </form>
 
@@ -89,15 +79,10 @@
 <h3>Liste des actualités</h3>
 {{ range .ListNews }}
 <div class="news">
+    <div class="news-image-container">
+        <img src="{{ .MediaImage.Path }}" alt="Illustration">
+    </div>
 
-    <form action="/dashboard/news/delete/{{ .UUID }}" method="POST">
-        <button type="submit">Supprimer</button>
-    </form>
-    <form action="/dashboard/news/{{ .UUID }}" method="GET">
-        <button type="submit">Modifier</button>
-    </form>
-
-    <img src="{{ .MediaImage.Path }}" alt="Illustration" style="max-width:200px;">
     <div class="news-content">
         <span class="date">Date publication - {{ formatDate .PublishedAt "02/01/2006 15:03"}}</span>
         <span class="date">Date de Modification - {{ formatDate .UpdatedAt "02/01/2006 15:03"}}</span>
@@ -128,6 +113,16 @@
         <div>Aucun lien</div>
         {{ end }}
     </div>
+
+    <div class="news-actions">
+        <form action="/dashboard/news/{{ .UUID }}" method="GET">
+            <button type="submit">Modifier</button>
+        </form>
+        <form action="/dashboard/news/delete/{{ .UUID }}" method="POST">
+            <button type="submit">Supprimer</button>
+        </form>
+    </div>
+
 </div>
 {{ else }}
 <div>Aucun Article</div>
