@@ -23,7 +23,28 @@ func FileInUploadFolderWithCustomPath(file *multipart.FileHeader, customPath *st
 		return "", err
 	}
 
-	return path, nil
+	publishPath := filepath.ToSlash(path)
+	preFix := "app/views"
+	cleanPath := removePrefix(&publishPath, &preFix)
+	return *cleanPath, nil
+}
+
+func DeleteFileInUploadFolder(path *string) error {
+	return os.Remove(*path)
+}
+
+func CheckFileExist(path *string) (bool, error) {
+	_, err := os.Stat(*path)
+
+	if os.IsNotExist(err) {
+		return false, nil
+	} 
+	
+	if err != nil {
+		return false, err
+	}
+
+	return true, nil
 }
 
 func definePath(basePath string, customPath *string, fileName *string) (string, error) {
@@ -64,4 +85,12 @@ func saveUploadedFile(file *multipart.FileHeader, fullPath string) error {
 	// copy le contenu du fichier qu'on reçois dans la request dans le nouveau fichier
 	_, err = io.Copy(newFile, src)
 	return err
+}
+
+func removePrefix(path *string, prefix *string) *string {
+	if len(*path) >= len(*prefix) && (*path)[:len(*prefix)] == *prefix {
+		trimmed := (*path)[len(*prefix):]
+		return &trimmed
+	}
+	return path
 }
