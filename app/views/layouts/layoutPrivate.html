@@ -56,6 +56,9 @@
         {{ template "sidebar" . }}
         <div class="right-side">
             <main>
+
+                {{ template "alert" . }}
+
                 {{ if eq .Content "dashboard" }}
                 {{ block "dashboard" . }}
                 {{ end }}
@@ -76,7 +79,6 @@
                 {{ end }}
                 {{ end }}
             </main>
-            <!-- {{ template "footer" . }} -->
         </div>
     </div>
 </body>

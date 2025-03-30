@@ -4,14 +4,36 @@
 
 {{ define "news" }}
 
-<h2>{{ if .News }}Modifier l'actualité{{ else }}Créer une actualité{{ end }}</h2>
+<h1>Gestion des actualités</h1>
 
-{{ if .News}}
-<a href="/dashboard/news" >Annuler</a>
-{{ end }}
+<div class="alert alert-success">
+    <span>Actualité ajoutée avec succès !</span>
+</div>
 
-<form method="POST" action="{{ if .News }}/dashboard/news/update/{{ .News.UUID }}{{ else }}/dashboard/news{{ end }}" enctype="multipart/form-data">
-    
+<div class="alert alert-warning">
+    <span>Le champs "Titre" n'est pas renseigné.</span>
+</div>
+
+<div class="alert alert-error">
+    <span>L'actualité n'a pu être ajoutée.</span>
+</div>
+
+<h3>{{ if .News }}Modifier l'actualité{{ else }}Créer une actualité{{ end }}</h3>
+
+<form method="POST" action="{{ if .News }}/dashboard/news/update/{{ .News.UUID }}{{ else }}/dashboard/news{{ end }}"
+    enctype="multipart/form-data">
+
+    <div class="row-form">
+        <label for="title">Titre :</label>
+        <input type="text" name="title" value="{{ if .News }}{{ .News.Title }}{{ end }}" required>
+    </div>
+
+    <label for="content">Contenu :</label>
+    <br>
+    <textarea name="content" required>{{ if .News }}{{ .News.Content }}{{ end }}</textarea>
+
+    <br>
+
     {{ if .News }}
     <p>Image actuelle</p>
     <img src="{{ .News.MediaImage.Path }}" alt="Illustration" style="max-width:200px;">
@@ -22,45 +44,39 @@
 
     <br>
 
-    <label for="title">Titre :</label>
-    <input type="text" name="title" value="{{ if .News }}{{ .News.Title }}{{ end }}" required>
-
-    <br>
-
-    <label for="content">Contenu :</label>
-    <textarea name="content" required>{{ if .News }}{{ .News.Content }}{{ end }}</textarea>
-
-    <br>
-
     <div>
-    {{ if .News }}
-    {{ if .News.MediaLink }}
+        {{ if .News }}
+        {{ if .News.MediaLink }}
         <br>
         <p>Lien actuel :</p>
         {{ if eq .News.MediaLink.MediaType "link" }}
-            <a href="{{ .News.MediaLink.Path }}" target="_blank">Voir le lien actuel</a>
+        <a href="{{ .News.MediaLink.Path }}" target="_blank">Voir le lien actuel</a>
         {{ else if eq .News.MediaLink.MediaType "audio" }}
-            <audio controls>
-                <source src="{{ .News.MediaLink.Path }}" type="audio/mpeg">
-                Votre navigateur ne supporte pas l'audio.
-            </audio>
+        <audio controls>
+            <source src="{{ .News.MediaLink.Path }}" type="audio/mpeg">
+            Votre navigateur ne supporte pas l'audio.
+        </audio>
         {{ else if eq .News.MediaLink.MediaType "pdf" }}
-            <a href="{{ .News.MediaLink.Path }}" target="_blank">Voir le PDF actuel</a>
+        <a href="{{ .News.MediaLink.Path }}" target="_blank">Voir le PDF actuel</a>
         {{ else }}
-            <a href="{{ .News.MediaLink.Path }}" target="_blank">Voir le fichier actuel</a>
+        <a href="{{ .News.MediaLink.Path }}" target="_blank">Voir le fichier actuel</a>
         {{ end }}
-    {{ end }}
-    {{ end }}
+        {{ end }}
+        {{ end }}
     </div>
 
     <br>
-    
+
     <label for="linkType">{{ if .News }}Modifier le lien{{ else }}Type de lien{{ end }} :</label>
     <select id="linkTypeNews" name="linkType" onchange="handleLinkTypeChange()">
         <option value="">Aucun lien</option>
         <option value="file">Fichier</option>
         <option value="url">Lien externe</option>
     </select>
+
+    {{ if .News}}
+    <a href="/dashboard/news">Annuler</a>
+    {{ end }}
 
     <div id="linkInputContainerNews" style="margin-top: 10px;"></div>
 
@@ -70,15 +86,17 @@
 
 <hr>
 
-<h2>Liste des actualités</h2>
+<h3>Liste des actualités</h3>
 {{ range .ListNews }}
 <div class="news">
+
     <form action="/dashboard/news/delete/{{ .UUID }}" method="POST">
         <button type="submit">Supprimer</button>
     </form>
     <form action="/dashboard/news/{{ .UUID }}" method="GET">
         <button type="submit">Modifier</button>
     </form>
+
     <img src="{{ .MediaImage.Path }}" alt="Illustration" style="max-width:200px;">
     <div class="news-content">
         <span class="date">Date publication - {{ formatDate .PublishedAt "02/01/2006 15:03"}}</span>
@@ -88,24 +106,24 @@
             {{ .Content }}
         </p>
         {{ if .MediaLink}}
-            {{ if eq .MediaLink.MediaType "link" }}
-            <a href="{{ .MediaLink.Path }}" target="_blank">Voir le lien</a>
-            {{ end }}
+        {{ if eq .MediaLink.MediaType "link" }}
+        <a href="{{ .MediaLink.Path }}" target="_blank">Voir le lien</a>
+        {{ end }}
 
-            {{ if eq .MediaLink.MediaType "audio" }}
-            <audio controls>
-                <source src="{{ .MediaLink.Path }}" type="audio/mpeg">
-                Votre navigateur ne supporte pas l'élément audio.
-            </audio>
-            {{ end }}
+        {{ if eq .MediaLink.MediaType "audio" }}
+        <audio controls>
+            <source src="{{ .MediaLink.Path }}" type="audio/mpeg">
+            Votre navigateur ne supporte pas l'élément audio.
+        </audio>
+        {{ end }}
 
-            {{ if eq .MediaLink.MediaType "pdf" }}
-            <a href="{{ .MediaLink.Path }}" target="_blank">Version pdf</a>
-            {{ end }}
+        {{ if eq .MediaLink.MediaType "pdf" }}
+        <a href="{{ .MediaLink.Path }}" target="_blank">Version pdf</a>
+        {{ end }}
 
-            {{ if eq .MediaLink.MediaType "images" }}
-            <a href="{{ .MediaLink.Path }}" target="_blank">Version numérique</a>
-            {{ end }}
+        {{ if eq .MediaLink.MediaType "images" }}
+        <a href="{{ .MediaLink.Path }}" target="_blank">Version numérique</a>
+        {{ end }}
         {{ else }}
         <div>Aucun lien</div>
         {{ end }}
