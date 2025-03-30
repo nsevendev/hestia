@@ -50,6 +50,8 @@ func loadTemplates(funcMap *template.FuncMap) *template.Template {
 func main() {
 	serv := gin.Default()
 
+	hostTraefik := extractBacktickContent(os.Getenv("HOST_TRAEFIK"))
+
 	funcMap := template.FuncMap{
 		"formatDate": func(t time.Time, layout string) string {
 			if t.IsZero() {
@@ -57,6 +59,9 @@ func main() {
 			}
 			return t.Format(layout)
 		},
+		"hostTraefik": func() string {
+        	return "https://" + hostTraefik
+   		},
 	}
 	serv.SetHTMLTemplate(loadTemplates(&funcMap))
 
@@ -71,7 +76,6 @@ func main() {
 
 	port := os.Getenv("PORT")                                        // que pour du log
 	host := "0.0.0.0"                                                // que pour du log
-	hostTraefik := extractBacktickContent(os.Getenv("HOST_TRAEFIK")) // que pour du log
 
 	logger.Success("Server is running on " + host + ":" + port)
 	logger.Successf("Server is running on https://%v", hostTraefik)
