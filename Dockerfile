@@ -38,4 +38,6 @@ WORKDIR /app
 RUN apk add --no-cache ca-certificates
 # uniquement le binaire
 COPY --from=build /app/dist/hestia .
+RUN ls -l /app 
+RUN chmod +x /app/hestia
 CMD ["./hestia"]
