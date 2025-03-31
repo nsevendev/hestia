@@ -8,71 +8,75 @@
 
 {{ template "alert" . }}
 
-<h3>{{ if .News }}Modifier l'actualité{{ else }}Créer une actualité{{ end }}</h3>
+<div class="dashboard-block">
+    <h3>{{ if .News }}Modifier l'actualité{{ else }}Créer une actualité{{ end }}</h3>
 
-<form method="POST" action="{{ if .News }}/dashboard/news/update/{{ .News.UUID }}{{ else }}/dashboard/news{{ end }}"
-    enctype="multipart/form-data" class="form-post">
+    <form method="POST" action="{{ if .News }}/dashboard/news/update/{{ .News.UUID }}{{ else }}/dashboard/news{{ end }}"
+        enctype="multipart/form-data" class="form-post">
 
-    <div class="row-form">
-        <label for="title">Titre :</label>
-        <input type="text" name="title" value="{{ if .News }}{{ .News.Title }}{{ end }}" class="title-news" required>
-    </div>
+        <div class="row-form">
+            <label for="title">Titre :</label>
+            <input type="text" name="title" value="{{ if .News }}{{ .News.Title }}{{ end }}" class="title-news"
+                required>
+        </div>
 
-    <label for="content">Contenu :</label>
-    <br>
-    <textarea name="content" required>{{ if .News }}{{ .News.Content }}{{ end }}</textarea>
-
-    <br>
-
-    {{ if .News }}
-    <p>Image actuelle</p>
-    <img src="{{ .News.MediaImage.Path }}" alt="Illustration" style="max-width:200px;">
-    {{ end }}
-
-    <label for="image">{{ if .News }}Modifier l'image{{ else }}Image d'illustration{{ end }} :</label>
-    <input type="file" id="image" name="image" accept="image/*">
-
-    <br>
-
-    <div>
-        {{ if .News }}
-        {{ if .News.MediaLink }}
+        <label for="content">Contenu :</label>
         <br>
-        <p>Lien actuel :</p>
-        {{ if eq .News.MediaLink.MediaType "link" }}
-        <a href="{{ .News.MediaLink.Path }}" target="_blank">Voir le lien actuel</a>
-        {{ else if eq .News.MediaLink.MediaType "audio" }}
-        <audio controls>
-            <source src="{{ .News.MediaLink.Path }}" type="audio/mpeg">
-            Votre navigateur ne supporte pas l'audio.
-        </audio>
-        {{ else if eq .News.MediaLink.MediaType "pdf" }}
-        <a href="{{ .News.MediaLink.Path }}" target="_blank">Voir le PDF actuel</a>
-        {{ else }}
-        <a href="{{ .News.MediaLink.Path }}" target="_blank">Voir le fichier actuel</a>
+        <textarea name="content" class=" form-content" required>{{ if .News }}{{ .News.Content }}{{ end }}</textarea>
+
+        <br>
+
+        {{ if .News }}
+        <p>Image actuelle</p>
+        <img src="{{ .News.MediaImage.Path }}" alt="Illustration" style="max-width:200px;">
         {{ end }}
+
+        <label for="image">{{ if .News }}Modifier l'image{{ else }}Image d'illustration{{ end }} :</label>
+        <input type="file" id="image" name="image" accept="image/*">
+
+        <br>
+
+        <div>
+            {{ if .News }}
+            {{ if .News.MediaLink }}
+            <br>
+            <p>Lien actuel :</p>
+            {{ if eq .News.MediaLink.MediaType "link" }}
+            <a href="{{ .News.MediaLink.Path }}" target="_blank">Voir le lien actuel</a>
+            {{ else if eq .News.MediaLink.MediaType "audio" }}
+            <audio controls>
+                <source src="{{ .News.MediaLink.Path }}" type="audio/mpeg">
+                Votre navigateur ne supporte pas l'audio.
+            </audio>
+            {{ else if eq .News.MediaLink.MediaType "pdf" }}
+            <a href="{{ .News.MediaLink.Path }}" target="_blank">Voir le PDF actuel</a>
+            {{ else }}
+            <a href="{{ .News.MediaLink.Path }}" target="_blank">Voir le fichier actuel</a>
+            {{ end }}
+            {{ end }}
+            {{ end }}
+        </div>
+
+        <br>
+
+        <label for="linkType">{{ if .News }}Modifier le lien{{ else }}Type de lien{{ end }} :</label>
+        <select id="linkTypeNews" name="linkType" onchange="handleLinkTypeChange()">
+            <option value="">Aucun lien</option>
+            <option value="file">Fichier</option>
+            <option value="url">Lien externe</option>
+        </select>
+
+        {{ if .News}}
+        <a href="/dashboard/news">Annuler</a>
         {{ end }}
-        {{ end }}
-    </div>
 
-    <br>
+        <div id="linkInputContainerNews" style="margin-top: 10px;"></div>
 
-    <label for="linkType">{{ if .News }}Modifier le lien{{ else }}Type de lien{{ end }} :</label>
-    <select id="linkTypeNews" name="linkType" onchange="handleLinkTypeChange()">
-        <option value="">Aucun lien</option>
-        <option value="file">Fichier</option>
-        <option value="url">Lien externe</option>
-    </select>
+        <button type="submit">{{ if .News }}Modifier{{ else }}<i class="fa-solid fa-plus"></i> Ajouter l'actualité{{ end
+            }}</button>
 
-    {{ if .News}}
-    <a href="/dashboard/news">Annuler</a>
-    {{ end }}
-
-    <div id="linkInputContainerNews" style="margin-top: 10px;"></div>
-
-    <button type="submit">{{ if .News }}Modifier{{ else }}Ajouter l'actualité{{ end }}</button>
-
-</form>
+    </form>
+</div>
 
 <hr>
 
@@ -84,10 +88,14 @@
     </div>
 
     <div class="news-content">
-        <span class="date">Date publication - {{ formatDate .PublishedAt "02/01/2006 15:03"}}</span>
-        <span class="date">Date de Modification - {{ formatDate .UpdatedAt "02/01/2006 15:03"}}</span>
-        <h5 class="card-title">{{ .Title }}</h5>
-        <p class="card-text mx-2">
+        <h3 class="news-title">{{ .Title }}</h3>
+
+        <div class="timestamp">
+            <span>Publié le {{ formatDate .PublishedAt "02/01/2006 15:03"}}</span> -
+            <span>Mise à jour le {{ formatDate .UpdatedAt "02/01/2006 15:03"}}</span>
+        </div>
+
+        <p class="news-description">
             {{ .Content }}
         </p>
         {{ if .MediaLink}}
@@ -110,17 +118,26 @@
         <a href="{{ .MediaLink.Path }}" target="_blank">Version numérique</a>
         {{ end }}
         {{ else }}
-        <div>Aucun lien</div>
+        <div></div>
         {{ end }}
-    </div>
 
-    <div class="news-actions">
-        <form action="/dashboard/news/{{ .UUID }}" method="GET">
-            <button type="submit">Modifier</button>
-        </form>
-        <form action="/dashboard/news/delete/{{ .UUID }}" method="POST">
-            <button type="submit">Supprimer</button>
-        </form>
+        <div>
+
+            <div class="news-actions">
+                <form action="/dashboard/news/{{ .UUID }}" method="GET">
+                    <button type="submit" class="edit-news">
+                        <i class="fa-solid fa-pen"></i> Modifier
+                    </button>
+                </form>
+                <form action="/dashboard/news/delete/{{ .UUID }}" method="POST">
+                    <button type="submit" class="delete-news">
+                        <i class="fa-solid fa-trash"></i> Supprimer
+                    </button>
+                </form>
+            </div>
+
+        </div>
+
     </div>
 
 </div>
