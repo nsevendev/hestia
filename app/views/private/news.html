@@ -6,8 +6,6 @@
 
 <h1>Gestion des actualités</h1>
 
-{{ template "alert" . }}
-
 <div class="dashboard-block">
     <h3>{{ if .News }}Modifier l'actualité{{ else }}Créer une actualité{{ end }}</h3>
 
@@ -66,6 +64,7 @@
             <option value="url">Lien externe</option>
         </select>
 
+        <!-- TODO : soucis de design, je pense que sa devrais etre un bouton à coté de l'autre je ne sais pas qi cela a été corrigé dans une autre branch -->
         {{ if .News}}
         <a href="/dashboard/news">Annuler</a>
         {{ end }}
