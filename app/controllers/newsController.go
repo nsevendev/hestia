@@ -4,7 +4,7 @@ import (
 	depinject "hestia/app/depInject"
 	"hestia/internal/logger"
 	"hestia/internal/models"
-	"hestia/internal/services"
+	"hestia/internal/news"
 	"mime/multipart"
 	"net/http"
 	"net/url"
@@ -13,7 +13,7 @@ import (
 	"github.com/gin-gonic/gin"
 )
 
-var newsService services.NewsService
+var newsService news.NewsService
 
 func InitNewsController(c *depinject.Container) {
 	newsService = c.NewsService
