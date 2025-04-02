@@ -1,20 +1,18 @@
 package depinject
 
 import (
-	"hestia/internal/repository"
-	"hestia/internal/services"
+	"hestia/internal/news"
 
 	"gorm.io/gorm"
 )
 
 type Container struct {
-	NewsService services.NewsService
+	NewsService news.NewsService
 }
 
 // NOTE : venir injecter ici les repositories et services
 func NewContainer(db *gorm.DB) *Container {
-	newsRepo := repository.NewNewsRepository(db)
-	newsService := services.NewNewsService(newsRepo)
+	newsService := news.NewNewsService(db)
 
 	return &Container{
 		NewsService: newsService,
