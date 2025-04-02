@@ -2,7 +2,7 @@ package main
 
 import (
 	"hestia/app/router"
-	_ "hestia/init"
+	initializer "hestia/init"
 	"hestia/internal/logger"
 	"html/template"
 	"net/http"
@@ -14,6 +14,14 @@ import (
 	"github.com/gin-gonic/gin"
 )
 
+/*
+extraire le contenu entre les backticks
+
+params:
+	- s : string
+return:
+	- string : contenu entre les backticks
+*/
 func extractBacktickContent(s string) string {
 	start := strings.Index(s, "`")
 	end := strings.LastIndex(s, "`")
@@ -25,6 +33,14 @@ func extractBacktickContent(s string) string {
 	return s[start+1 : end]
 }
 
+/*
+charge tout les templates html et les parse dans le moteur de template
+
+params:
+	- funcMap : FuncMap moteur de template
+return:
+	- template : template
+*/
 func loadTemplates(funcMap *template.FuncMap) *template.Template {
 	var tmpl []string
 
@@ -48,9 +64,18 @@ func loadTemplates(funcMap *template.FuncMap) *template.Template {
 }
 
 func main() {
-	serv := gin.Default()
 
+	// ╔═══════════════════════════════════════════════════════════╗
+	// ║                       INIT SERVER                         ║
+	// ╚═══════════════════════════════════════════════════════════╝
+
+	initializer.Bootstrap()
+	serv := gin.Default()
 	hostTraefik := extractBacktickContent(os.Getenv("HOST_TRAEFIK"))
+
+	// ╔═══════════════════════════════════════════════════════════╗
+	// ║                       INIT TEMPLATE                       ║
+	// ╚═══════════════════════════════════════════════════════════╝
 
 	funcMap := template.FuncMap{
 		"formatDate": func(t time.Time, layout string) string {
@@ -64,21 +89,26 @@ func main() {
    		},
 	}
 	serv.SetHTMLTemplate(loadTemplates(&funcMap))
-
 	serv.Static("/assets", "./app/views/assets")
 
-	router.Router(serv)
+	// ╔═══════════════════════════════════════════════════════════╗
+	// ║                       INIT ROUTER                         ║
+	// ╚═══════════════════════════════════════════════════════════╝
+
+	router.Router(serv, initializer.Container)
+
+	// ╔═══════════════════════════════════════════════════════════╗
+	// ║           LOGGER OUT SERVER INFOS AFTER START             ║
+	// ╚═══════════════════════════════════════════════════════════╝
 
 	serv.NoRoute(func(c *gin.Context) {
 		logger.Errorf("❌ Route inconnue : %s %s", c.Request.Method, c.Request.URL.Path)
 		c.String(http.StatusNotFound, "404 not found")
 	})
 
-	port := os.Getenv("PORT")                                        // que pour du log
-	host := "0.0.0.0"                                                // que pour du log
-
-	logger.Success("Server is running on " + host + ":" + port)
-	logger.Successf("Server is running on https://%v", hostTraefik)
-
+	port := os.Getenv("PORT")
+	host := "0.0.0.0"
+	logger.Success("Server is running on in container docker : " + host + ":" + port)
+	logger.Successf("Server is running on navigator on : https://%v", hostTraefik)
 	serv.Run(host + ":" + port)
 }

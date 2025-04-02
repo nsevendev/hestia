@@ -7,15 +7,6 @@ import (
 	"path"
 )
 
-/*
-Supprime une news et ses fichiers associés (image, pdf, fichier audio)
-
-params:
-	- ctx : context not null
-	- uuidNews : pointeur string not null
-return:
-	- error
-*/
 func (s *newsService) Delete(ctx context.Context, uuidNews *string) error {
 	news, errFindById := s.GetById(ctx, uuidNews)
 	if errFindById != nil {

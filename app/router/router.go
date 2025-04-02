@@ -1,23 +1,60 @@
 package router
 
 import (
-	"hestia/app/controllers"
+	"hestia/app/controllers/dashboardcontroller"
+	"hestia/app/controllers/gallerycontroller"
+	"hestia/app/controllers/homecontroller"
+	"hestia/app/controllers/newscontroller"
+	"hestia/app/controllers/termscontroller"
+	depinject "hestia/app/depInject"
 
 	"github.com/gin-gonic/gin"
 )
 
-func Router(serv *gin.Engine) {
-	// Routes de base
-	serv.GET("/", controllers.Home)
+func Router(r *gin.Engine, container *depinject.Container) {
 
-	// Groupe de routes sous /dashboard
-	dashboard := serv.Group("/dashboard")
-	dashboard.GET("/", controllers.Dashboard)
-	dashboard.GET("/news", controllers.GetAllNews)
-	dashboard.GET("/news/:uuid", controllers.GetOneNews)
-	dashboard.POST("/news", controllers.CreateNews)
-	dashboard.POST("/news/update/:uuid", controllers.UpdateNews)
-	dashboard.POST("/news/delete/:uuid", controllers.DeleteNews)
-	dashboard.GET("/gallery", controllers.GetGallery)
-	dashboard.GET("/terms", controllers.Terms)
+	// ╔═══════════════════════════════════════════════════════════╗
+	// ║                 DECLARATION CONTROLLER                    ║
+	// ╚═══════════════════════════════════════════════════════════╝
+
+	home := homecontroller.InitHomeController()
+	dash := dashboardcontroller.InitDashboardController()
+	news := newscontroller.InitNewsController(container)
+	gallery := gallerycontroller.InitGalleryController()
+	terms := termscontroller.InitTermsController()
+
+	// ╔═══════════════════════════════════════════════════════════╗
+	// ║                        PARTIE SITE                        ║
+	// ╚═══════════════════════════════════════════════════════════╝
+
+	r.GET("/", home.Home)
+
+	// ╔═══════════════════════════════════════════════════════════╗
+	// ║                 PARTIE ADMIN DASHBOARD                    ║
+	// ╚═══════════════════════════════════════════════════════════╝
+	
+	routeDashboard := r.Group("/dashboard")
+	routeDashboard.GET("/", dash.Dashboard)
+
+	// ╔═══════════════════════════════════════════════════════════╗
+	// ║                     PARTIE ADMIN NEWS                     ║
+	// ╚═══════════════════════════════════════════════════════════╝
+
+	routeDashboard.GET("/news", news.List)
+	routeDashboard.GET("/news/:uuid", news.OneById)
+	routeDashboard.POST("/news", news.Create)
+	routeDashboard.POST("/news/update/:uuid", news.UpdateById)
+	routeDashboard.POST("/news/delete/:uuid", news.DeleteById)
+
+	// ╔═══════════════════════════════════════════════════════════╗
+	// ║                   PARTIE ADMIN GALLERY                    ║
+	// ╚═══════════════════════════════════════════════════════════╝
+
+	routeDashboard.GET("/gallery", gallery.First)
+
+	// ╔═══════════════════════════════════════════════════════════╗
+	// ║                     PARTIE ADMIN TERM                     ║
+	// ╚═══════════════════════════════════════════════════════════╝
+
+	routeDashboard.GET("/terms", terms.List)
 }

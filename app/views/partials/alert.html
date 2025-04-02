@@ -1,8 +1,4 @@
-{{ define "alert" }}
-{{ if .Flash }}
 <div class="alert alert-{{.Flash.Type}}">
     <span>{{.Flash.Message}}</span>
     <span class="close-btn">&times;</span>
 </div>
-{{ end }}
-{{ end }}

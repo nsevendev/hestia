@@ -12,20 +12,6 @@ import (
 	"github.com/google/uuid"
 )
 
-/*
-Creation de la news
-
-params:
-	- ctx : context not null
-	- title : pointeur string not null
-	- content : pointeur string not null
-	- image : pointeur file not null
-	- link : pointeur file nullable
-	- url : pointeur string nullable
-	- linkType : pointeur string empty ("file", "url", "")
-return:
-	- error
-*/
 func (s *newsService) Create(
 	ctx context.Context, 
 	title *string, 

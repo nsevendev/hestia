@@ -13,21 +13,6 @@ import (
 	"github.com/google/uuid"
 )
 
-/*
-modifie une news et ses fichiers associés (image, pdf, fichier audio)
-
-params:
-	- ctx : context not null
-	- title : pointeur string not null
-	- content : pointeur string not null
-	- image : pointeur file nullable
-	- link : pointeur file nullable
-	- url : pointeur string nullable
-	- linkType : pointeur string empty ("file", "url", "")
-	- uuidNews : pointeur string not null
-return:
-	- error
-*/
 func (s *newsService) Update(
 	ctx context.Context, 
 	title *string, 
