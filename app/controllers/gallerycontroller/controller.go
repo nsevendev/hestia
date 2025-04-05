@@ -45,7 +45,8 @@ func validateDataStringEmpty(c *gin.Context , value *string, name string) string
 
 type GalleryController interface {
 	First(c *gin.Context)
-	Create(c *gin.Context)
+	AddImage(c *gin.Context)
+	DeleteImageById(c *gin.Context)
 }
 
 func InitGalleryController(c *depinject.Container) GalleryController {

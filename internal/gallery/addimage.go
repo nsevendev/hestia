@@ -10,7 +10,7 @@ import (
 	"github.com/google/uuid"
 )
 
-func (s *galleryService) Create(ctx context.Context, title string, image *multipart.FileHeader) error {
+func (s *galleryService) AddImage(ctx context.Context, title string, image *multipart.FileHeader) error {
 	galleryFirst, errGalleryFirst := s.GetFirst()
 	if errGalleryFirst != nil {
 		return errGalleryFirst

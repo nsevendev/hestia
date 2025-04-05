@@ -9,7 +9,7 @@ import (
 	"github.com/gin-gonic/gin"
 )
 
-func (gc *galleryController) Create(c *gin.Context) {
+func (gc *galleryController) AddImage(c *gin.Context) {
 	titleRequest := c.PostForm("title")
 	title := validateDataStringEmpty(c, &titleRequest, "titre")
 
@@ -23,7 +23,7 @@ func (gc *galleryController) Create(c *gin.Context) {
 		return
 	}
 
-	if err := gc.galleryService.Create(c.Request.Context(), title, image);err != nil {
+	if err := gc.galleryService.AddImage(c.Request.Context(), title, image);err != nil {
 		logger.Errorf("[newscontroller::Create] Erreur creation Service: %v", err)
 		c.Redirect(
 			http.StatusSeeOther, 

@@ -51,7 +51,8 @@ func Router(r *gin.Engine, container *depinject.Container) {
 	// ╚═══════════════════════════════════════════════════════════╝
 
 	routeDashboard.GET("/gallery", gallery.First)
-	routeDashboard.POST("/gallery", gallery.Create)
+	routeDashboard.POST("/gallery", gallery.AddImage)
+	routeDashboard.POST("/gallery/delete/:uuid", gallery.DeleteImageById)
 
 	// ╔═══════════════════════════════════════════════════════════╗
 	// ║                     PARTIE ADMIN TERM                     ║

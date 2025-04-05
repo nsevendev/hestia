@@ -25,7 +25,8 @@ type galleryService struct {
 
 type GalleryService interface {
 	GetFirst() (*models.Gallery, error)
-	Create(ctx context.Context, title string, image *multipart.FileHeader) error
+	AddImage(ctx context.Context, title string, image *multipart.FileHeader) error
+	DeleteImageById(ctx context.Context, uuid string) error
 }
 
 func NewGalleryService(db *gorm.DB) GalleryService {
