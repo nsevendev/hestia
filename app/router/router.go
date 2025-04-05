@@ -20,7 +20,7 @@ func Router(r *gin.Engine, container *depinject.Container) {
 	home := homecontroller.InitHomeController()
 	dash := dashboardcontroller.InitDashboardController()
 	news := newscontroller.InitNewsController(container)
-	gallery := gallerycontroller.InitGalleryController()
+	gallery := gallerycontroller.InitGalleryController(container)
 	terms := termscontroller.InitTermsController()
 
 	// ╔═══════════════════════════════════════════════════════════╗
@@ -51,6 +51,7 @@ func Router(r *gin.Engine, container *depinject.Container) {
 	// ╚═══════════════════════════════════════════════════════════╝
 
 	routeDashboard.GET("/gallery", gallery.First)
+	routeDashboard.POST("/gallery", gallery.Create)
 
 	// ╔═══════════════════════════════════════════════════════════╗
 	// ║                     PARTIE ADMIN TERM                     ║
