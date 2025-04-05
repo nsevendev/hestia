@@ -28,4 +28,18 @@
 
 <h3>Votre galerie photo</h3>
 
+{{ if .GalleryFirst }}
+    {{ range .GalleryFirst.Medias }}
+        <div class="news-image-container">
+            <img src="{{ .MediaURI.Path }}" alt="{{ .MediaURI.MediaType }}">
+            <h4>{{ .MediaURI.MediaType }}</h4>
+            <form method="POST" action="/dashboard/gallery/delete/{{ .MediaURI.UUID }}">
+                <button type="submit">Supprimer</button>
+            </form>
+        </div>
+    {{ end }}
+{{ else }}
+    <p>Aucune gallery</p>
+{{ end }}
+
 {{ end }}

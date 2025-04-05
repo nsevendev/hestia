@@ -1,0 +1,20 @@
+{{ define "public/login" }}
+{{ template "layoutPublic" . }}
+{{ end }}
+
+{{ define "login" }}
+<div class="container-home">
+    <form method="POST" action="/login" style="height: 500px; display: flex; justify-content: center; align-items: center;">
+        {{ if .Error }}
+            <p style="color: red;">{{ .Error }}</p>
+        {{ end }}
+        <div>
+            <label>Email</label><input type="email" name="email">
+        </div>
+        <div>
+            <label>Password</label><input type="password" name="password">
+        </div>
+        <button type="submit">Connexion</button>
+    </form>
+</div>
+{{ end }}
