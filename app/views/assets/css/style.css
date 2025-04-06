@@ -23,6 +23,17 @@ h1 {
     text-align: center;
 }
 
+.information-fermeture {
+    width: 100%;
+    text-align: center;
+    margin-top: 20px;
+    background-color: #88021f;
+    color: #fff;
+    padding: 16px;
+    font-size: 20px;
+    font-weight: bold;
+}
+
 .information {
     width: 100%;
     text-align: center;

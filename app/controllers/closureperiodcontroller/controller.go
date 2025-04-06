@@ -1,4 +1,4 @@
-package homecontroller
+package closureperiodcontroller
 
 import (
 	depinject "hestia/app/depInject"
@@ -12,16 +12,17 @@ import (
 // ║                            PRIVATE                        ║
 // ╚═══════════════════════════════════════════════════════════╝
 
-type responseHome struct {
+type responseClosurePeriod struct {
 	Title   string
 	Content string
-	PeriodClosed *models.ClosurePeriod
+	ListPeriod []models.ClosurePeriod
 	Error string
+	Success string
 }
 
-type homeController struct {
-	res *responseHome
-	closurePeriodService closedperiod.ClosedPeriodService
+type closurePeriodController struct {
+	res *responseClosurePeriod
+	closureService closedperiod.ClosedPeriodService
 }
 
 
@@ -29,15 +30,17 @@ type homeController struct {
 // ║                            PUBLIC                         ║
 // ╚═══════════════════════════════════════════════════════════╝
 
-type HomeController interface {
-	Home(c *gin.Context)
+type ClosurePeriodController interface {
+	List(c *gin.Context)
+	Create(c *gin.Context)
+	DeleteById(c *gin.Context)
 }
 
-func InitHomeController(c *depinject.Container) HomeController {
-	res := &responseHome{
-		Title:  "La Belfortaine - Boucherie & Charcuterie traditionnelle à Belfort",
-		Content: "home",
+func InitHomeController(c *depinject.Container) ClosurePeriodController {
+	res := &responseClosurePeriod{
+		Title:  "Periodes de fermeture",
+		Content: "closure",
 	}
 
-	return &homeController{res, c.ClosedPeriodService}
+	return &closurePeriodController{res, c.ClosedPeriodService}
 }
