@@ -1,43 +1,33 @@
-package homecontroller
+package closedperiod
 
 import (
-	depinject "hestia/app/depInject"
-	"hestia/internal/closedperiod"
+	"context"
 	"hestia/internal/models"
 
-	"github.com/gin-gonic/gin"
+	"gorm.io/gorm"
 )
 
 // ╔═══════════════════════════════════════════════════════════╗
 // ║                            PRIVATE                        ║
 // ╚═══════════════════════════════════════════════════════════╝
 
-type responseHome struct {
-	Title   string
-	Content string
-	PeriodClosed *models.ClosurePeriod
-	Error string
-}
-
-type homeController struct {
-	res *responseHome
-	closurePeriodService closedperiod.ClosedPeriodService
-}
-
+type closedPeriodService struct {
+	db *gorm.DB
+}	
 
 // ╔═══════════════════════════════════════════════════════════╗
 // ║                            PUBLIC                         ║
 // ╚═══════════════════════════════════════════════════════════╝
 
-type HomeController interface {
-	Home(c *gin.Context)
+type ClosedPeriodService interface {
+	Create(ctx context.Context, title string, startDate string, endDate string) error
+	Delete(ctx context.Context, uuidClosurePeriod string) error
+	Active(ctx context.Context) (*models.ClosurePeriod, error)
+	List(ctx context.Context) ([]models.ClosurePeriod, error)
 }
 
-func InitHomeController(c *depinject.Container) HomeController {
-	res := &responseHome{
-		Title:  "La Belfortaine - Boucherie & Charcuterie traditionnelle à Belfort",
-		Content: "home",
+func NewClosedPeriodService(db *gorm.DB) ClosedPeriodService {
+	return &closedPeriodService{
+		db,
 	}
-
-	return &homeController{res, c.ClosedPeriodService}
 }

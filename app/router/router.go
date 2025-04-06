@@ -2,6 +2,7 @@ package router
 
 import (
 	"hestia/app/controllers/authcontroller"
+	"hestia/app/controllers/closureperiodcontroller"
 	"hestia/app/controllers/dashboardcontroller"
 	"hestia/app/controllers/gallerycontroller"
 	"hestia/app/controllers/homecontroller"
@@ -22,11 +23,12 @@ func Router(r *gin.Engine, container *depinject.Container) {
 	// ╚═══════════════════════════════════════════════════════════╝
 
 	authen := authcontroller.InitHomeController(container)
-	home := homecontroller.InitHomeController()
+	home := homecontroller.InitHomeController(container)
 	dash := dashboardcontroller.InitDashboardController()
 	news := newscontroller.InitNewsController(container)
 	gallery := gallerycontroller.InitGalleryController(container)
 	terms := termscontroller.InitTermsController()
+	closureperiod := closureperiodcontroller.InitHomeController(container)
 
 	// ╔═══════════════════════════════════════════════════════════╗
 	// ║                        PARTIE SITE                        ║
@@ -68,6 +70,14 @@ func Router(r *gin.Engine, container *depinject.Container) {
 	routeDashboard.GET("/gallery", gallery.First)
 	routeDashboard.POST("/gallery", gallery.AddImage)
 	routeDashboard.POST("/gallery/delete/:uuid", gallery.DeleteImageById)
+
+	// ╔═══════════════════════════════════════════════════════════╗
+	// ║                   PARTIE ADMIN GALLERY                    ║
+	// ╚═══════════════════════════════════════════════════════════╝
+
+	routeDashboard.GET("/closure-period", closureperiod.List)
+	routeDashboard.POST("/closure-period", closureperiod.Create)
+	routeDashboard.POST("/closure-period/delete/:uuid", closureperiod.DeleteById)
 
 	// ╔═══════════════════════════════════════════════════════════╗
 	// ║                     PARTIE ADMIN TERM                     ║

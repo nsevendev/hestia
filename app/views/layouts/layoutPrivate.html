@@ -78,6 +78,11 @@
                 {{ block "terms" . }}
                 {{ end }}
                 {{ end }}
+
+                {{ if eq .Content "closure" }}
+                {{ block "closure" . }}
+                {{ end }}
+                {{ end }}
             </main>
         </div>
     </div>
