@@ -6,9 +6,9 @@
 
 <h1>Gestion de la galerie</h1>
 
-<div class="alert alert-success">
+<!-- <div class="alert alert-success">
     <span>Photo correctement ajoutée dans la galerie.</span>
-</div>
+</div> -->
 
 <h3>Ajouter une photo</h3>
 
@@ -29,17 +29,23 @@
 <h3>Votre galerie photo</h3>
 
 {{ if .GalleryFirst }}
+<div class="gallery-grid">
     {{ range .GalleryFirst.Medias }}
-        <div class="news-image-container">
-            <img src="{{ .MediaURI.Path }}" alt="{{ .MediaURI.MediaType }}">
+    <div class="news-image-container">
+        <div style="display: flex; gap: 17px;">
             <h4>{{ .MediaURI.MediaType }}</h4>
             <form method="POST" action="/dashboard/gallery/delete/{{ .MediaURI.UUID }}">
                 <button type="submit">Supprimer</button>
             </form>
         </div>
+        <div>
+            <img src="{{ .MediaURI.Path }}" alt="{{ .MediaURI.MediaType }}">
+        </div>
+    </div>
     {{ end }}
+</div>
 {{ else }}
-    <p>Aucune gallery</p>
+<p>Aucune gallery</p>
 {{ end }}
 
 {{ end }}

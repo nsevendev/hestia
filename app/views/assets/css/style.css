@@ -731,6 +731,11 @@ nav {
     background-color: #9e0627;
 }
 
+.sidebar-links a.active {
+    background-color: #9e0627;
+    color: #ffffff;
+}
+
 .sidebar ul,
 .sidebar-links ul {
     margin-left: 0;
@@ -816,9 +821,9 @@ nav {
 .right-side button {
     background-color: #000000;
     color: #ffffff;
-    padding: 18px;
+    padding: 10px;
     border: none;
-    font-size: 1rem;
+    font-size: 0.8rem;
     cursor: pointer;
     border-radius: 12px;
 }
@@ -854,6 +859,15 @@ nav {
     border: 1px solid #4b4b4b;
     border-radius: 5px;
 }
+
+.right-side .title-input {
+    width: 300px;
+    padding: 10px;
+    margin-bottom: 20px;
+    border: 1px solid #4b4b4b;
+    border-radius: 5px;
+}
+
 
 .right-side .news {
     position: relative;
@@ -943,7 +957,82 @@ nav {
     border-radius: 20px;
 }
 
-/* Alertes (bandeau d'information) */
+.right-side .alert-date {
+    width: 100%;
+    display: flex;
+    gap: 20px;
+    align-items: center;
+}
+
+.right-side .alert-content {
+    padding-top: 30px;
+}
+
+.right-side .alert-content input[textarea] {
+    width: 100%;
+    height: 200px;
+    padding: 10px;
+    margin-top: 15px;
+    margin-bottom: 20px;
+    border: 1px solid #4b4b4b;
+    border-radius: 5px;
+}
+
+.right-side input[type="date"] {
+    /* Apparence générale */
+    background-color: #fff;
+    /* Couleur de fond */
+    border: 1px solid #4a4949;
+    /* Bordure fine et grise */
+    border-radius: 4px;
+    /* Coins arrondis */
+    padding: 10px;
+    /* Espacement interne */
+    font-size: 16px;
+    /* Taille de police */
+    color: #333;
+    /* Couleur du texte */
+
+    /* Retirer le style natif (selon le navigateur) */
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+
+    /* Largeur si nécessaire (vous pouvez l’ajuster) */
+    width: 160px;
+}
+
+.right-side .list-period {
+    display: flex;
+    align-items: center;
+    justify-content: start;
+    padding: 0.5rem 0;
+    gap: 30px;
+}
+
+.right-side .period-container {
+    display: flex;
+    align-items: center;
+    justify-content: start;
+    font-size: 1rem;
+}
+
+.right-side .period-title {
+    display: flex;
+    font-size: 1.2rem;
+    font-weight: bold;
+    margin-right: 20px;
+    align-items: center;
+    gap: 20px;
+}
+
+.right-side .gallery-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    /* 4 colonnes de largeur égale */
+    gap: 10px;
+    /* Espacement entre les éléments, ajustez selon vos besoins */
+}
 
 .alert {
     position: relative;

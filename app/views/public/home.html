@@ -12,7 +12,12 @@
         <div class="horaires">
             <!--<div class="information">Fermeture exceptionnelle le 1er et 2 novembre 2024</div>-->
             {{ if .PeriodClosed }}
-                <div class="information-fermeture">{{ .PeriodClosed.Title }} entre le {{ formatDate .PeriodClosed.StartDate "02/01/2006" }} et le {{ formatDate .PeriodClosed.EndDate "02/01/2006" }} inclus</div>
+            <div class="information-fermeture">
+                Fermeture exceptionnelle <br>
+                <!-- {{ .PeriodClosed.Title }} -->
+                du {{ formatDate .PeriodClosed.StartDate
+                "02/01/2006" }} au {{ formatDate .PeriodClosed.EndDate "02/01/2006" }} inclus
+            </div>
             {{ end }}
             <h2 class="mx-2">Nos horaires d'ouverture</h2>
             <ul>

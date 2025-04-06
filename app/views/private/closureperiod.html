@@ -4,44 +4,56 @@
 
 {{ define "closure" }}
 
-<h1>Gestion fermeture de l'établissement</h1>
+<h1>Gestion des alertes</h1>
 
-<h3>Ajouter une period</h3>
+<h3>Ajouter une nouvelle alerte</h3>
 
 <form method="POST" action="/dashboard/closure-period" enctype="multipart/form-data">
-    <label for="title">Titre :</label>
-    <input type="text" name="title" value="" class="title-img" required>
 
-    <div>
-        <label for="startDate">Sélectionner une date de debut :</label>
-        <input type="date" id="startDate" name="startDate"required>
+    <div class="alert-content">
+        <label for="title">Description courte : </label>
+        <input type="textarea" name="title" value="" placeholder="Exemple : Vacances de Noël" class="title-input"
+            required>
     </div>
 
-    <div>
-        <label for="endDate">Sélectionner une date de debut :</label>
-        <input type="date" id="endDate" name="endDate"required>
-    </div>
+    <div class="alert-date">
+        <div>
+            <label for="startDate">Date de debut :</label>
+            <input type="date" id="startDate" name="startDate" required>
+        </div>
 
-    <button type="submit">Ajouter une period</button>
+        <div>
+            <label for="endDate">Date de fin :</label>
+            <input type="date" id="endDate" name="endDate" required>
+        </div>
+        <button type="submit"><i class="fa-solid fa-plus"></i> Ajouter l'alerte</button>
+    </div>
 </form>
 
 <hr>
 
-<h3>Votre liste de periodes de fermeture</h3>
+<h3>Liste de periodes de fermetures exceptionnelles</h3>
 
 {{ if .ListPeriod }}
-    {{ range .ListPeriod }}
-        <div class="news-image-container">
+{{ range .ListPeriod }}
+<div class="list-period">
+    <div>
+        <div class="period-title">
             <h4>{{ .Title }}</h4>
-            <p>Début de fermeture {{ formatDate .StartDate "02/01/2006"}}</p>
-            <p>Fin de fermeture {{ formatDate .EndDate "02/01/2006"}}</p>
-            <form method="POST" action="/dashboard/closure-period/delete/{{ .UUID}}">
-                <button type="submit">Supprimer</button>
-            </form>
         </div>
-    {{ end }}
+        <div class="period-container">
+            <div>Du {{ formatDate .StartDate "02/01/2006"}}&nbsp;</div>
+            <div>au {{ formatDate .EndDate "02/01/2006"}}</div>
+        </div>
+    </div>
+    <form method="POST" action="/dashboard/closure-period/delete/{{ .UUID}}">
+        <button type="submit"><i class="fa-solid fa-trash"></i> Supprimer</button>
+    </form>
+</div>
+
+{{ end }}
 {{ else }}
-    <p>Aucune periode</p>
+<p>Aucune periode</p>
 {{ end }}
 
 {{ end }}
