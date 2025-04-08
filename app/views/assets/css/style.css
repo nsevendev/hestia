@@ -869,7 +869,7 @@ nav {
 }
 
 
-.right-side .news {
+.news {
     position: relative;
     max-width: 1000px;
     height: auto;
@@ -888,7 +888,7 @@ nav {
     /* espacement régulier */
 }
 
-.right-side .news-image-container {
+.news-image-container {
     width: 300px;
     display: flex;
     flex-direction: column;
@@ -896,7 +896,7 @@ nav {
     background-color: #f0f0f0;
 }
 
-.right-side .news-image-container img {
+.news-image-container img {
     width: 100%;
     height: 100%;
     object-fit: cover;
