@@ -1,23 +1,87 @@
 package router
 
 import (
-	"hestia/app/controllers"
+	"hestia/app/controllers/authcontroller"
+	"hestia/app/controllers/closureperiodcontroller"
+	"hestia/app/controllers/dashboardcontroller"
+	"hestia/app/controllers/gallerycontroller"
+	"hestia/app/controllers/homecontroller"
+	"hestia/app/controllers/newscontroller"
+	"hestia/app/controllers/termscontroller"
+	depinject "hestia/app/depInject"
+	"hestia/internal/auth"
+	"hestia/internal/session"
 
 	"github.com/gin-gonic/gin"
 )
 
-func Router(serv *gin.Engine) {
-	// Routes de base
-	serv.GET("/", controllers.Home)
+func Router(r *gin.Engine, container *depinject.Container) {
+	r.Use(session.Init("mykey"))
 
-	// Groupe de routes sous /dashboard
-	dashboard := serv.Group("/dashboard")
-	dashboard.GET("/", controllers.Dashboard)
-	dashboard.GET("/news", controllers.GetAllNews)
-	dashboard.GET("/news/:uuid", controllers.GetOneNews)
-	dashboard.POST("/news", controllers.CreateNews)
-	dashboard.POST("/news/update/:uuid", controllers.UpdateNews)
-	dashboard.POST("/news/delete/:uuid", controllers.DeleteNews)
-	dashboard.GET("/gallery", controllers.GetGallery)
-	dashboard.GET("/terms", controllers.Terms)
+	// ╔═══════════════════════════════════════════════════════════╗
+	// ║                 DECLARATION CONTROLLER                    ║
+	// ╚═══════════════════════════════════════════════════════════╝
+
+	authen := authcontroller.InitHomeController(container)
+	home := homecontroller.InitHomeController(container)
+	dash := dashboardcontroller.InitDashboardController()
+	news := newscontroller.InitNewsController(container)
+	gallery := gallerycontroller.InitGalleryController(container)
+	terms := termscontroller.InitTermsController()
+	closureperiod := closureperiodcontroller.InitHomeController(container)
+
+	// ╔═══════════════════════════════════════════════════════════╗
+	// ║                        PARTIE SITE                        ║
+	// ╚═══════════════════════════════════════════════════════════╝
+
+	r.GET("/", home.Home)
+
+	// ╔═══════════════════════════════════════════════════════════╗
+	// ║                        PARTIE AUTH                        ║
+	// ╚═══════════════════════════════════════════════════════════╝
+
+	r.GET("/login", authen.ShowLogin)
+	r.POST("/login", authen.Login)
+	r.GET("/logout", authen.Logout)
+
+	// ╔═══════════════════════════════════════════════════════════╗
+	// ║                 PARTIE ADMIN DASHBOARD                    ║
+	// ╚═══════════════════════════════════════════════════════════╝
+	
+	routeDashboard := r.Group("/dashboard")
+	routeDashboard.Use(auth.RequireAuth())
+
+	routeDashboard.GET("/", dash.Dashboard)
+
+	// ╔═══════════════════════════════════════════════════════════╗
+	// ║                     PARTIE ADMIN NEWS                     ║
+	// ╚═══════════════════════════════════════════════════════════╝
+
+	routeDashboard.GET("/news", news.List)
+	routeDashboard.GET("/news/:uuid", news.OneById)
+	routeDashboard.POST("/news", news.Create)
+	routeDashboard.POST("/news/update/:uuid", news.UpdateById)
+	routeDashboard.POST("/news/delete/:uuid", news.DeleteById)
+
+	// ╔═══════════════════════════════════════════════════════════╗
+	// ║                   PARTIE ADMIN GALLERY                    ║
+	// ╚═══════════════════════════════════════════════════════════╝
+
+	routeDashboard.GET("/gallery", gallery.First)
+	routeDashboard.POST("/gallery", gallery.AddImage)
+	routeDashboard.POST("/gallery/delete/:uuid", gallery.DeleteImageById)
+
+	// ╔═══════════════════════════════════════════════════════════╗
+	// ║                   PARTIE ADMIN GALLERY                    ║
+	// ╚═══════════════════════════════════════════════════════════╝
+
+	routeDashboard.GET("/closure-period", closureperiod.List)
+	routeDashboard.POST("/closure-period", closureperiod.Create)
+	routeDashboard.POST("/closure-period/delete/:uuid", closureperiod.DeleteById)
+
+	// ╔═══════════════════════════════════════════════════════════╗
+	// ║                     PARTIE ADMIN TERM                     ║
+	// ╚═══════════════════════════════════════════════════════════╝
+
+	routeDashboard.GET("/terms", terms.List)
 }
