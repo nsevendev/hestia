@@ -59,6 +59,11 @@
         {{ block "home" . }}
         {{ end }}
         {{ end }}
+
+        {{ if eq .Content "login" }}
+        {{ block "login" . }}
+        {{ end }}
+        {{ end }}
     </main>
     {{ template "footer" . }}
 </body>

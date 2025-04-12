@@ -1,43 +1,39 @@
-package homecontroller
+package gallery
 
 import (
-	depinject "hestia/app/depInject"
-	"hestia/internal/closedperiod"
+	"context"
 	"hestia/internal/models"
+	"mime/multipart"
 
-	"github.com/gin-gonic/gin"
+	"gorm.io/gorm"
 )
 
 // ╔═══════════════════════════════════════════════════════════╗
 // ║                            PRIVATE                        ║
 // ╚═══════════════════════════════════════════════════════════╝
 
-type responseHome struct {
-	Title   string
-	Content string
-	PeriodClosed *models.ClosurePeriod
-	Error string
-}
-
-type homeController struct {
-	res *responseHome
-	closurePeriodService closedperiod.ClosedPeriodService
-}
-
+type galleryService struct {
+	db *gorm.DB
+	pathBaseNews string
+	pathPrefix  string
+	folderForFile string
+}	
 
 // ╔═══════════════════════════════════════════════════════════╗
 // ║                            PUBLIC                         ║
 // ╚═══════════════════════════════════════════════════════════╝
 
-type HomeController interface {
-	Home(c *gin.Context)
+type GalleryService interface {
+	GetFirst() (*models.Gallery, error)
+	AddImage(ctx context.Context, title string, image *multipart.FileHeader) error
+	DeleteImageById(ctx context.Context, uuid string) error
 }
 
-func InitHomeController(c *depinject.Container) HomeController {
-	res := &responseHome{
-		Title:  "La Belfortaine - Boucherie & Charcuterie traditionnelle à Belfort",
-		Content: "home",
+func NewGalleryService(db *gorm.DB) GalleryService {
+	return &galleryService{
+		db,
+		"app/views/assets/upload/",
+		"app/views",
+		"gallery",
 	}
-
-	return &homeController{res, c.ClosedPeriodService}
 }

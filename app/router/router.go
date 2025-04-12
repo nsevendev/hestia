@@ -1,27 +1,34 @@
 package router
 
 import (
+	"hestia/app/controllers/authcontroller"
+	"hestia/app/controllers/closureperiodcontroller"
 	"hestia/app/controllers/dashboardcontroller"
 	"hestia/app/controllers/gallerycontroller"
 	"hestia/app/controllers/homecontroller"
 	"hestia/app/controllers/newscontroller"
 	"hestia/app/controllers/termscontroller"
 	depinject "hestia/app/depInject"
+	"hestia/internal/auth"
+	"hestia/internal/session"
 
 	"github.com/gin-gonic/gin"
 )
 
 func Router(r *gin.Engine, container *depinject.Container) {
+	r.Use(session.Init("mykey"))
 
 	// ╔═══════════════════════════════════════════════════════════╗
 	// ║                 DECLARATION CONTROLLER                    ║
 	// ╚═══════════════════════════════════════════════════════════╝
 
-	home := homecontroller.InitHomeController()
+	authen := authcontroller.InitHomeController(container)
+	home := homecontroller.InitHomeController(container)
 	dash := dashboardcontroller.InitDashboardController()
 	news := newscontroller.InitNewsController(container)
-	gallery := gallerycontroller.InitGalleryController()
+	gallery := gallerycontroller.InitGalleryController(container)
 	terms := termscontroller.InitTermsController()
+	closureperiod := closureperiodcontroller.InitHomeController(container)
 
 	// ╔═══════════════════════════════════════════════════════════╗
 	// ║                        PARTIE SITE                        ║
@@ -30,10 +37,20 @@ func Router(r *gin.Engine, container *depinject.Container) {
 	r.GET("/", home.Home)
 
 	// ╔═══════════════════════════════════════════════════════════╗
+	// ║                        PARTIE AUTH                        ║
+	// ╚═══════════════════════════════════════════════════════════╝
+
+	r.GET("/login", authen.ShowLogin)
+	r.POST("/login", authen.Login)
+	r.GET("/logout", authen.Logout)
+
+	// ╔═══════════════════════════════════════════════════════════╗
 	// ║                 PARTIE ADMIN DASHBOARD                    ║
 	// ╚═══════════════════════════════════════════════════════════╝
 	
 	routeDashboard := r.Group("/dashboard")
+	routeDashboard.Use(auth.RequireAuth())
+
 	routeDashboard.GET("/", dash.Dashboard)
 
 	// ╔═══════════════════════════════════════════════════════════╗
@@ -51,6 +68,16 @@ func Router(r *gin.Engine, container *depinject.Container) {
 	// ╚═══════════════════════════════════════════════════════════╝
 
 	routeDashboard.GET("/gallery", gallery.First)
+	routeDashboard.POST("/gallery", gallery.AddImage)
+	routeDashboard.POST("/gallery/delete/:uuid", gallery.DeleteImageById)
+
+	// ╔═══════════════════════════════════════════════════════════╗
+	// ║                   PARTIE ADMIN GALLERY                    ║
+	// ╚═══════════════════════════════════════════════════════════╝
+
+	routeDashboard.GET("/closure-period", closureperiod.List)
+	routeDashboard.POST("/closure-period", closureperiod.Create)
+	routeDashboard.POST("/closure-period/delete/:uuid", closureperiod.DeleteById)
 
 	// ╔═══════════════════════════════════════════════════════════╗
 	// ║                     PARTIE ADMIN TERM                     ║

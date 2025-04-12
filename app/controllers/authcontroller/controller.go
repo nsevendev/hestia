@@ -1,9 +1,8 @@
-package homecontroller
+package authcontroller
 
 import (
 	depinject "hestia/app/depInject"
-	"hestia/internal/closedperiod"
-	"hestia/internal/models"
+	"hestia/internal/auth"
 
 	"github.com/gin-gonic/gin"
 )
@@ -12,32 +11,32 @@ import (
 // ║                            PRIVATE                        ║
 // ╚═══════════════════════════════════════════════════════════╝
 
-type responseHome struct {
+type responseAuth struct {
 	Title   string
 	Content string
-	PeriodClosed *models.ClosurePeriod
 	Error string
 }
 
-type homeController struct {
-	res *responseHome
-	closurePeriodService closedperiod.ClosedPeriodService
+type authController struct {
+	res *responseAuth
+	serviceAuth auth.AuthService
 }
-
 
 // ╔═══════════════════════════════════════════════════════════╗
 // ║                            PUBLIC                         ║
 // ╚═══════════════════════════════════════════════════════════╝
 
 type HomeController interface {
-	Home(c *gin.Context)
+	ShowLogin(c *gin.Context)
+	Login(c *gin.Context)
+	Logout(c *gin.Context)
 }
 
 func InitHomeController(c *depinject.Container) HomeController {
-	res := &responseHome{
-		Title:  "La Belfortaine - Boucherie & Charcuterie traditionnelle à Belfort",
-		Content: "home",
+	res := &responseAuth{
+		Title:  "Login user",
+		Content: "login",
 	}
 
-	return &homeController{res, c.ClosedPeriodService}
+	return &authController{res, c.AuthService}
 }
