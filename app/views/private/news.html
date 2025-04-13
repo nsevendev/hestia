@@ -25,7 +25,7 @@
         enctype="multipart/form-data" class="form-post">
 
         <div class="row-form">
-            <label for="title">Titre :</label>
+            <label for="title">Titre : </label>
             <input type="text" name="title" value="{{ if .News }}{{ .News.Title }}{{ end }}" class="title-news"
                 required>
         </div>
@@ -38,11 +38,11 @@
 
         {{ if .News }}
         <p>Image actuelle</p>
-        <img src="{{ .News.MediaImage.Path }}" alt="Illustration" style="max-width:200px;">
+        <img src="{{ .News.MediaImage.Path }}" alt="Illustration" style="max-width:400px;">
         {{ end }}
 
         <label for="image">{{ if .News }}Modifier l'image{{ else }}Image d'illustration{{ end }} :</label>
-        <input type="file" id="image" name="image" accept="image/*">
+        <input type="file" id="image" class="btn-file" name="image" accept="image/*">
 
         <br>
 
@@ -119,6 +119,7 @@
             <source src="{{ .MediaLink.Path }}" type="audio/mpeg">
             Votre navigateur ne supporte pas l'élément audio.
         </audio>
+        <br>
         {{ end }}
 
         {{ if eq .MediaLink.MediaType "pdf" }}

@@ -25,7 +25,7 @@ type DashboardController interface {
 
 func InitDashboardController() DashboardController {
 	res := &responseDashboard{
-		Title:   "Dashboard",
+		Title:   "La Belfortaine - Tableau de bord",
 		Content: "dashboard",
 	}
 

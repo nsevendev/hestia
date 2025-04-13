@@ -6,6 +6,18 @@
 
 <h1>Gestion des alertes</h1>
 
+{{ if .Success }}
+<div class="alert alert-success">
+    {{ .Success }}
+</div>
+{{ end }}
+
+{{ if .Error }}
+<div class="alert alert-error">
+    {{ .Error }}
+</div>
+{{ end }}
+
 <h3>Ajouter une nouvelle alerte</h3>
 
 <form method="POST" action="/dashboard/closure-period" enctype="multipart/form-data">

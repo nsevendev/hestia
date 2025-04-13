@@ -51,7 +51,7 @@ type GalleryController interface {
 
 func InitGalleryController(c *depinject.Container) GalleryController {
 	res := &responseGallery{
-		Title:   "gallery",
+		Title:   "Tableau de bord - Galerie photo",
 		Content: "gallery",
 	}
 
