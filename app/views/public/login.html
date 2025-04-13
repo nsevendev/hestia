@@ -73,15 +73,6 @@
         background-color: #9e0627;
     }
 
-    .login-form .error-msg {
-        color: #e74c3c;
-        margin-bottom: 15px;
-        text-align: center;
-        font-size: 1.2rem;
-        padding: 10px 0;
-        font-weight: bold;
-    }
-
     .login-form .footer {
         margin-top: 25px;
         text-align: center;
@@ -101,7 +92,7 @@
     <form class="login-form" method="POST" action="/login">
         <h2>Espace de gestion</h2>
         {{ if .Error }}
-        <div class="error-msg">{{ .Error }}</div>
+        <div class="alert alert-error">{{ .Error }}</div>
         {{ end }}
 
         <div class="form-group">

@@ -172,22 +172,13 @@
             <div class="gallery-container">
                 <button class="arrow left-arrow" onclick="prevSlide()">&#10094;</button>
                 <div class="gallery-slides">
-                    <img src="/assets/img/gallery/vitrine-la-belfortaine-1.jpeg" class="gallery-pictures"
-                        alt="Photo de charcuterie proposée à la Belfortaine" />
-                    <img src="/assets/img/gallery/vitrine-la-belfortaine-2.jpeg" class="gallery-pictures"
-                        alt="Photo de charcuterie proposée à la Belfortaine" />
-                    <img src="/assets/img/gallery/vitrine-la-belfortaine-3.jpeg" class="gallery-pictures"
-                        alt="Photo de charcuterie proposée à la Belfortaine" />
-                    <img src="/assets/img/gallery/vitrine-la-belfortaine-4.jpeg" class="gallery-pictures"
-                        alt="Photo de charcuterie proposée à la Belfortaine" />
-                    <img src="/assets/img/gallery/vitrine-la-belfortaine-5.jpeg" class="gallery-pictures"
-                        alt="Photo de charcuterie proposée à la Belfortaine" />
-                    <img src="/assets/img/gallery/vitrine-la-belfortaine-6.jpeg" class="gallery-pictures"
-                        alt="Photo de charcuterie proposée à la Belfortaine" />
-                    <img src="/assets/img/gallery/vitrine-la-belfortaine-7.jpeg" class="gallery-pictures"
-                        alt="Photo de charcuterie proposée à la Belfortaine" />
-                    <img src="/assets/img/gallery/retour-client-barbecue.jpeg" class="gallery-pictures"
-                        alt="Retour client après un barbecue avec des produits de la Belfortaine" />
+                    {{ if and .Gallery .Gallery.Medias }}
+                    {{ range .Gallery.Medias }}
+                    <img src="{{ .MediaURI.Path }}" ...>
+                    {{ end }}
+                    {{ else }}
+                    <p>Aucune image disponible</p>
+                    {{ end }}
                 </div>
                 <button class="arrow right-arrow" onclick="nextSlide()">&#10095;</button>
             </div>

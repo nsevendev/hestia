@@ -1,32 +1,39 @@
 package homecontroller
 
 import (
+	"hestia/internal/logger"
 	"net/http"
-
-	"hestia/internal/models"
 
 	"github.com/gin-gonic/gin"
 )
 
 func (h *homeController) Home(c *gin.Context) {
+
+	// Période de fermeture
 	period, err := h.closurePeriodService.Active(c)
 	if err != nil {
-		h.res.PeriodClosed = nil
-		h.res.Error = "Erreur lors de la récupération de la période de fermeture active"
-		c.HTML(http.StatusInternalServerError, "public/home", h.res)
-		return
+		logger.Warnf("[home] Erreur récupération période de fermeture : %v", err)
 	}
-
 	h.res.PeriodClosed = period
 
-	// Appeler GetAll en transmettant le contexte de la requête
+	// Actualités
 	newsList, err := h.newsService.GetAll(c.Request.Context())
 	if err != nil {
-		h.res.ListNews = []models.News{} // On affecte une tranche vide en cas d'erreur
-		h.res.Error = "Erreur lors de la récupération des actualités"
+		logger.Warnf("[home] Erreur récupération des news : %v", err)
+		h.res.ListNews = nil
 	} else {
 		h.res.ListNews = newsList
 	}
 
+	// Galerie (images)
+	gallery, err := h.galleryService.GetFirst()
+	if err != nil {
+		logger.Warnf("[home] Erreur récupération galerie : %v", err)
+		h.res.Gallery = nil
+	} else {
+		h.res.Gallery = gallery
+	}
+
+	// Render
 	c.HTML(http.StatusOK, "public/home", h.res)
 }

@@ -1,35 +1,31 @@
 services:
   hestia-go:
     build:
-      target: prod
+      target: dev
       context: .
       dockerfile: Dockerfile
-    image: ${NSC_NAME_CONTAINER_APP}:prod
+    image: ${NSC_NAME_CONTAINER_APP}:latest
     container_name: ${NSC_NAME_CONTAINER_APP}
-    labels:
-      - "traefik.enable=true"
-      - "traefik.docker.network=traefik-nseven"
-      - "traefik.http.routers.hestia-go.rule=${HOST_TRAEFIK}"
-      - "traefik.http.routers.hestia-go.entrypoints=websecure"
-      - "traefik.http.routers.hestia-go.tls=true"
-      - "traefik.http.routers.hestia-go.tls.certresolver=le"
-      - "traefik.http.services.hestia-go.loadbalancer.server.port=${PORT}"
     volumes:
-      - ./.env:/app/.env
-      - ./migrations:/app/migrations
-      - ./runtime:/app/runtime
-      - ./app/views:/app/app/views
-    networks:
-      - hestia-net
-      - traefik-nseven
+      - .:/app
     env_file:
       - .env
     depends_on:
       - hestia-db
+    networks:
+      - hestia-net
+      - traefik-nseven
+    labels:
+      - "traefik.enable=true"
+      - "traefik.http.routers.hestia.rule=Host(`labelfortaine.com`)"
+      - "traefik.http.routers.hestia.entrypoints=websecure"
+      - "traefik.http.routers.hestia.tls=true"
+      - "traefik.http.routers.hestia.tls.certresolver=le"
+      - "traefik.http.services.hestia.loadbalancer.server.port=3000"
 
   hestia-db:
     image: postgres:16
-    container_name: hestia-db-prod
+    container_name: hestia-db
     restart: unless-stopped
     environment:
       POSTGRES_USER: ${DB_USER}
