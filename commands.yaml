@@ -5,6 +5,27 @@ commands:
   gup: # goose up (applique les migrations) 
     description: applique les migrations -- env-NSC_NAME_CONTAINER_APP(obligatoire) env-NSC_MIGRATION_DB_URL(obligatoire)
     command: docker exec -i *NSC_NAME_CONTAINER_APP* goose -dir ./migrations postgres *NSC_MIGRATION_DB_URL* up
-  recette: # mise en recette (iso prod)
-    description: demarre le projet comme la production mais avec un host different pour un environement de test
-    command: docker compose -f compose.prod.yaml up -d --build
+  dev: # mode dev
+    description: demarre le projet en mode dev (se base sur le .env)
+    command: docker compose --env-file .env -f compose.yaml -f compose.override.yaml up -d
+  devb: # mode dev avec build
+    description: demarre le projet en mode dev avec build (se base sur le .env)
+    command: docker compose --env-file .env -f compose.yaml -f compose.override.yaml up -d --build
+  devbnod: # mode dev avec build mode detach
+    description: demarre le projet en mode dev avec build + le mode no detach (se base sur le .env)
+    command: docker compose --env-file .env -f compose.yaml -f compose.override.yaml up --build
+  ddev: # stop container dev
+    description: stop le projet en mode dev
+    command: docker compose --env-file .env -f compose.yaml -f compose.override.yaml down
+  prod: # mise en prod
+    description: demarre le projet pour la prod, changer les variables d'environement pour modifier le host (se base sur le .env)
+    command: docker compose --env-file .env -f compose.prod.yaml up -d --build
+  dprod: # stop le projet en mode prod
+    description: stop le projet en mode prod
+    command: docker compose -f compose.prod.yaml down
+  recette: # mise en test
+    description: demarre le projet pour la recette, changer les variables d'environement pour modifier le host (se base sur le .env)
+    command: docker compose --env-file .env -f compose.preprod.yaml up -d --build
+  drecette: # stop le projet en mode recette
+    description: stop le projet en mode recette
+    command: docker compose --env-file -f compose.preprod.yaml down

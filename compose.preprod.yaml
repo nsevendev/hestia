@@ -1,0 +1,52 @@
+services:
+  hestia-go-preprod:
+    build:
+      target: prod
+      context: .
+      dockerfile: Dockerfile
+    image: ${NSC_NAME_CONTAINER_APP}:latest
+    container_name: ${NSC_NAME_CONTAINER_APP}
+    labels:
+      - "traefik.enable=true"
+      - "traefik.docker.network=traefik-nseven"
+      - "traefik.http.routers.hestia-go-preprod.rule=${HOST_TRAEFIK}"
+      - "traefik.http.routers.hestia-go-preprod.entrypoints=websecure"
+      - "traefik.http.routers.hestia-go-preprod.tls=true"
+      - "traefik.http.routers.hestia-go-preprod.tls.certresolver=le"
+      - "traefik.http.services.hestia-go-preprod.loadbalancer.server.port=${PORT}"
+    volumes:
+      - ./.env:/app/.env
+      - ./migrations:/app/migrations
+      - ./runtime:/app/runtime
+      - ./app/views:/app/app/views
+    networks:
+      - hestia-net
+      - traefik-nseven
+    env_file:
+      - .env
+    depends_on:
+      - hestia-db-preprod
+
+  hestia-db-preprod:
+    image: postgres:16
+    container_name: ${DB_HOST}
+    restart: unless-stopped
+    environment:
+      POSTGRES_USER: ${DB_USER}
+      POSTGRES_PASSWORD: ${DB_PASSWORD}
+      POSTGRES_DB: ${DB_NAME}
+    volumes:
+      - hestia-db-preprod-data:/var/lib/postgresql/data
+    networks:
+      - hestia-net
+      - traefik-nseven
+
+networks:
+  hestia-net:
+    name: hestia-net
+    driver: bridge
+  traefik-nseven:
+    external: true
+
+volumes:
+  hestia-db-preprod-data:

@@ -17,6 +17,6 @@ func (ac *authController) Login(c *gin.Context) {
 		return
 	}
 
-	session.SetUserSession(c, user.UUID.String())
-	c.Redirect(http.StatusSeeOther, "/dashboard")
+    session.SetUserSession(c, user)
+    c.Redirect(http.StatusSeeOther, "/dashboard")
 }

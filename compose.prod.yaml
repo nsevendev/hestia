@@ -1,38 +1,36 @@
 services:
-  hestia-go:
+  hestia-go-prod:
     build:
       target: dev
       context: .
       dockerfile: Dockerfile
     image: ${NSC_NAME_CONTAINER_APP}:latest
     container_name: ${NSC_NAME_CONTAINER_APP}
+    labels:
+      - "traefik.enable=true"
+      - "traefik.docker.network=traefik-nseven"
+      - "traefik.http.routers.hestia-go-prod.rule=${HOST_TRAEFIK}"
+      - "traefik.http.routers.hestia-go-prod.entrypoints=websecure"
+      - "traefik.http.routers.hestia-go-prod.tls=true"
+      - "traefik.http.routers.hestia-go-prod.tls.certresolver=le"
+      - "traefik.http.services.hestia-go-prod.loadbalancer.server.port=${PORT}"
     volumes:
       - .:/app
     env_file:
       - .env
     depends_on:
-      - hestia-db
-    networks:
-      - hestia-net
-      - traefik-nseven
-    labels:
-      - "traefik.enable=true"
-      - "traefik.http.routers.hestia.rule=Host(`labelfortaine.com`)"
-      - "traefik.http.routers.hestia.entrypoints=websecure"
-      - "traefik.http.routers.hestia.tls=true"
-      - "traefik.http.routers.hestia.tls.certresolver=le"
-      - "traefik.http.services.hestia.loadbalancer.server.port=3000"
+      - hestia-db-prod
 
-  hestia-db:
+  hestia-db-prod:
     image: postgres:16
-    container_name: hestia-db
+    container_name: ${DB_HOST}
     restart: unless-stopped
     environment:
       POSTGRES_USER: ${DB_USER}
       POSTGRES_PASSWORD: ${DB_PASSWORD}
       POSTGRES_DB: ${DB_NAME}
     volumes:
-      - hestia-db-data:/var/lib/postgresql/data
+      - hestia-db-prod-data:/var/lib/postgresql/data
     networks:
       - hestia-net
       - traefik-nseven
@@ -45,4 +43,4 @@ networks:
     external: true
 
 volumes:
-  hestia-db-data:
+  hestia-db-prod-data:
