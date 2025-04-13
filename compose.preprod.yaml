@@ -1,5 +1,5 @@
 services:
-  hestia-go-prod:
+  hestia-go-preprod:
     build:
       target: prod
       context: .
@@ -9,11 +9,11 @@ services:
     labels:
       - "traefik.enable=true"
       - "traefik.docker.network=traefik-nseven"
-      - "traefik.http.routers.hestia-go-prod.rule=${HOST_TRAEFIK}"
-      - "traefik.http.routers.hestia-go-prod.entrypoints=websecure"
-      - "traefik.http.routers.hestia-go-prod.tls=true"
-      - "traefik.http.routers.hestia-go-prod.tls.certresolver=le"
-      - "traefik.http.services.hestia-go-prod.loadbalancer.server.port=${PORT}"
+      - "traefik.http.routers.hestia-go-preprod.rule=${HOST_TRAEFIK}"
+      - "traefik.http.routers.hestia-go-preprod.entrypoints=websecure"
+      - "traefik.http.routers.hestia-go-preprod.tls=true"
+      - "traefik.http.routers.hestia-go-preprod.tls.certresolver=le"
+      - "traefik.http.services.hestia-go-preprod.loadbalancer.server.port=${PORT}"
     volumes:
       - ./.env:/app/.env
       - ./migrations:/app/migrations
@@ -25,9 +25,9 @@ services:
     env_file:
       - .env
     depends_on:
-      - hestia-db-prod
+      - hestia-db-preprod
 
-  hestia-db-prod:
+  hestia-db-preprod:
     image: postgres:16
     container_name: ${DB_HOST}
     restart: unless-stopped
@@ -36,7 +36,7 @@ services:
       POSTGRES_PASSWORD: ${DB_PASSWORD}
       POSTGRES_DB: ${DB_NAME}
     volumes:
-      - hestia-db-prod-data:/var/lib/postgresql/data
+      - hestia-db-preprod-data:/var/lib/postgresql/data
     networks:
       - hestia-net
       - traefik-nseven
@@ -49,4 +49,4 @@ networks:
     external: true
 
 volumes:
-  hestia-db-prod-data:
+  hestia-db-preprod-data:
