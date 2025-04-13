@@ -1,18 +1,44 @@
 {{ define "sidebar" }}
 <div class="sidebar">
     <a href="{{ hostTraefik }}/dashboard" class="logo">
-        <span>La Belfortaine</span></a>
+        <span>La Belfortaine</span>
+    </a>
     <ul class="sidebar-links">
-        <a href="/dashboard" class="{{- if eq .Content " dashboard" -}}active{{- end -}}">
-            Tableau de bord
-        </a>
-        <li><a href="/dashboard/news">Gestion des actualités</a></li>
-        <li><a href="/dashboard/gallery">Gestion de la galerie</a></li>
-        <li><a href="/dashboard/closure-period">Gestion des alertes</a></li>
-        <li><a href="{{ hostTraefik }}/" target="_blank">Aperçu du site</a></li>
-        <li><a href="/dashboard/terms">Conditions générales</a></li>
-        <li><a href="/logout">Se déconnecter</a></li>
+        <li>
+            <a href="/dashboard" class="{{- if eq .Content "dashboard" -}}active{{- end -}}">
+                Tableau de bord
+            </a>
+        </li>
+        <li>
+            <a href="/dashboard/news" class="{{- if eq .Content "news" -}}active{{- end -}}">
+                Gestion des actualités
+            </a>
+        </li>
+        <li>
+            <a href="/dashboard/gallery" class="{{- if eq .Content "gallery" -}}active{{- end -}}">
+                Gestion de la galerie
+            </a>
+        </li>
+        <li>
+            <a href="/dashboard/closure-period" class="{{- if eq .Content "closure" -}}active{{- end -}}">
+                Gestion des alertes
+            </a>
+        </li>
+        <li>
+            <a href="{{ hostTraefik }}/" target="_blank">
+                Aperçu du site
+            </a>
+        </li>
+        <li>
+            <a href="/dashboard/terms" class="{{- if eq .Content "terms" -}}active{{- end -}}">
+                Conditions générales
+            </a>
+        </li>
+        <li>
+            <a href="/logout">
+                Se déconnecter
+            </a>
+        </li>
     </ul>
-
 </div>
 {{ end }}

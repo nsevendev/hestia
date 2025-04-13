@@ -733,7 +733,7 @@ nav {
 
 .sidebar-links a.active {
     background-color: #9e0627;
-    color: #ffffff;
+    font-weight: bold;
 }
 
 .sidebar ul,
