@@ -15,9 +15,8 @@
     <div class="card-infos">
         <h3>Vos informations</h3>
         <ul>
-            <li>Votre nom : Doe</li>
-            <li>Votre prénom : John</li>
-            <li>Votre adresse mail : john.doe@gmail.com</li>
+            <li>Votre nom : {{ .UserCurrent.UserName }}</li>
+            <li>Votre adresse mail : {{ .UserCurrent.Email }}</li>
         </ul>
 
         <button>
