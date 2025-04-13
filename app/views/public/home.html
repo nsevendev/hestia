@@ -176,7 +176,7 @@
                 <div class="gallery-slides">
                     {{ if and .Gallery .Gallery.Medias }}
                     {{ range .Gallery.Medias }}
-                    <img src="{{ .MediaURI.Path }}" ...>
+                    <img src="{{ .MediaURI.Path }}" class="gallery-pictures" alt="Gallery image">
                     {{ end }}
                     {{ else }}
                     <p>Aucune image disponible</p>
@@ -501,7 +501,6 @@
                             style="color: #ffffff; margin-left: 10px;"></i></a>
                 </div>
             </div>
-
         </div>
     </div>
 </div>

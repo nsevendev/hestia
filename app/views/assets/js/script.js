@@ -1,3 +1,20 @@
+// Afficher masquer l'alerte
+
+window.addEventListener('DOMContentLoaded', () => {
+  const alert = document.querySelector('.alert');
+  if (!alert) return;
+
+  setTimeout(() => {
+    alert.classList.add('visible');
+    console.log("Alert element trouvé ?", alert);
+
+    setTimeout(() => {
+      alert.classList.add('invisible');
+      console.log("Alert disparaît", alert);
+    }, 5000); 
+  }, 1000); 
+})
+
 // Afficher / Masquer le logo dans la topbar selon la position du scroll (Hors rÃ©solution PC)
 
 const logo = document.querySelector('.logo')
@@ -105,30 +122,7 @@ function nextSlide() {
 // Afficher la première image au chargement initial
 showSlide(currentIndex);
 
-
 // FIN GALLERY //
-
-// Caroussel des avis client 
-
-document.addEventListener('DOMContentLoaded', function () {
-  const prev = document.querySelector('.arrow .left-arrow');
-  const next = document.querySelector('.arrow .right-arrow');
-  const carousel = document.querySelector('.carousel');
-  let scrollPosition = 0;
-  const cardWidth = document.querySelector('.card-review').offsetWidth;
-  const visibleCards = 3;
-
-  prev.addEventListener('click', () => {
-    scrollPosition = Math.max(scrollPosition - cardWidth * visibleCards, 0);
-    carousel.style.transform = `translateX(-${scrollPosition}px)`;
-  });
-
-  next.addEventListener('click', () => {
-    const maxScroll = (carousel.children.length - visibleCards) * cardWidth;
-    scrollPosition = Math.min(scrollPosition + cardWidth * visibleCards, maxScroll);
-    carousel.style.transform = `translateX(-${scrollPosition}px)`;
-  });
-});
 
 /********************************* PARTIE ADMIN  ********************************/
 
