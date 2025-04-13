@@ -6,6 +6,18 @@
 
 <h1>Gestion des actualités</h1>
 
+{{ if .Success }}
+<div class="alert alert-success">
+    {{ .Success }}
+</div>
+{{ end }}
+
+{{ if .Error }}
+<div class="alert alert-error">
+    {{ .Error }}
+</div>
+{{ end }}
+
 <div class="dashboard-block">
     <h3>{{ if .News }}Modifier l'actualité{{ else }}Créer une actualité{{ end }}</h3>
 

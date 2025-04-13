@@ -6,9 +6,17 @@
 
 <h1>Gestion de la galerie</h1>
 
-<!-- <div class="alert alert-success">
-    <span>Photo correctement ajoutée dans la galerie.</span>
-</div> -->
+{{ if .Success }}
+<div class="alert alert-success">
+    {{ .Success }}
+</div>
+{{ end }}
+
+{{ if .Error }}
+<div class="alert alert-error">
+    {{ .Error }}
+</div>
+{{ end }}
 
 <h3>Ajouter une photo</h3>
 
