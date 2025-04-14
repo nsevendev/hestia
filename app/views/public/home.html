@@ -12,7 +12,7 @@
         <div class="navbar" id="navbar">
             <ul>
                 <li><a href="#notre-histoire" class="nav-link">Notre histoire</a></li>
-                <li><a href="#actualites" class="nav-link">Actualités</a></li>
+                <li><a href="#home-actualites" class="nav-link">Actualités</a></li>
                 <li><a href="#boucherie-charcuterie" class="nav-link">Boucherie & Charcuterie</a></li>
                 <li><a href="#remerciements" class="nav-link">Remerciements</a></li>
                 <li><a href="#nous-contacter" class="nav-link">Contactez-nous</a></li>
@@ -96,10 +96,9 @@
         </div>
     </div>
 
-    <div class="container flex-center center" id="actualites">
+    <div class="container flex-center center" id="home-actualites">
         <h1 class="red center mx-2">Actualités</h1>
-        <h3 class="subtitle center thin">Retrouvez toute l'actualité de la boucherie sur notre site et nos réseaux
-            sociaux</h3>
+        <h3 class="subtitle center thin">Retrouvez toute l'actualité de la boucherie sur notre site et nos réseaux sociaux</h3>
         <div class="news-container">
             {{ if .ListNews }}
             {{ range .ListNews }}
@@ -108,8 +107,8 @@
                     <img src="{{ .MediaImage.Path }}" alt="Illustration">
                 </div>
                 <div class="news-content">
-                    <span class="date">{{ formatDate .PublishedAt "02/01/2006 15:03" }}</span>
                     <h5 class="card-title">{{ .Title }}</h5>
+                    <span class="date">{{ formatDate .PublishedAt "02/01/2006 15:03" }}</span>
                     <p class="card-text mx-2">{{ .Content }}</p>
                     {{ if .MediaLink }}
                     {{ if eq .MediaLink.MediaType "link" }}
@@ -132,6 +131,8 @@
             <div>Aucun article</div>
             {{ end }}
         </div>
+        <!-- Bouton Voir Plus -->
+        <button id="load-more" class="btn-load-more">Voir plus d'actualités</button>
     </div>
 
     <div class="container flex-center bg-dark white" id="boucherie-charcuterie">
@@ -176,7 +177,7 @@
                 <div class="gallery-slides">
                     {{ if and .Gallery .Gallery.Medias }}
                     {{ range .Gallery.Medias }}
-                    <img src="{{ .MediaURI.Path }}" ...>
+                    <img src="{{ .MediaURI.Path }}" class="gallery-pictures" alt="Gallery image">
                     {{ end }}
                     {{ else }}
                     <p>Aucune image disponible</p>
@@ -501,8 +502,50 @@
                             style="color: #ffffff; margin-left: 10px;"></i></a>
                 </div>
             </div>
-
         </div>
     </div>
+</div>
+</div>
+
+<div id="legal-modal" class="legal-modal">
+    <div class="legal-content">
+        <button class="close-legal" onclick="closeLegal()">×</button>
+        <h2>Mentions légales</h2>
+
+        <p><strong>Éditeur du site :</strong><br>
+        <ul>
+            <li>SARL La Belfortaine</li>
+            <li>Adresse : 53 avenue Jean Jaurès, 90000 Belfort</li>
+            <li>SIREN : 984 641 092 </li>
+            <li>SIRET du siège social : 984 641 092 00015 </li>
+        </ul>
+        </p>
+
+
+        <p><strong>Responsable de la publication :</strong> SARL La Belfortaine </p>
+
+        <p><strong>Hébergeur :</strong><br>
+            IONOS, 7 PLACE DE LA GARE, 57200 SARREGUEMINES<br>
+            <a href="https://www.ionos.fr" target="_blank">www.ionos.fr</a>
+        </p>
+
+        <p><strong>Contact :</strong><br>
+            Email : <a href="mailto:boucherielabelfortaine@gmail.com">boucherielabelfortaine@gmail.com</a><br>
+            Téléphone : <a href="tel:0384990853">03 84 99 08 53</a></p>
+
+        <p><strong>Données personnelles :</strong> Ce site ne collecte aucune donnée personnelle.</p>
+
+        <p><strong>Site développé par :</strong> Xavier Colombel, développeur fullstack.</p>
+
+        <p>Ce site a été réalisé dans le cadre de la conception d’un portfolio personnel afin de présenter des
+            réalisations web.</p>
+
+        <p>Portfolio : <a href="https://www.xaviercolombel.fr" target="_blank">www.xaviercolombel.fr</a><br>
+            LinkedIn : <a href="https://www.linkedin.com/in/xaviercolombel/" target="_blank">Xavier Colombel</a></p>
+        <div style="text-align: center; margin-top: 24px;">
+            <button onclick="closeLegal()" class="btn-close-site">Revenir sur le site</button>
+        </div>
+    </div>
+
 </div>
 {{ end }}

@@ -49,6 +49,10 @@
 {{ if .ListPeriod }}
 {{ range .ListPeriod }}
 <div class="list-period">
+    
+    <form method="POST" action="/dashboard/closure-period/delete/{{ .UUID}}">
+        <button type="submit"><i class="fa-solid fa-trash"></i> Supprimer</button>
+    </form>
     <div>
         <div class="period-title">
             <h4>{{ .Title }}</h4>
@@ -58,9 +62,6 @@
             <div>au {{ formatDate .EndDate "02/01/2006"}}</div>
         </div>
     </div>
-    <form method="POST" action="/dashboard/closure-period/delete/{{ .UUID}}">
-        <button type="submit"><i class="fa-solid fa-trash"></i> Supprimer</button>
-    </form>
 </div>
 
 {{ end }}

@@ -1,3 +1,47 @@
+// Afficher masquer l'alerte
+
+window.addEventListener('DOMContentLoaded', () => {
+  const alert = document.querySelector('.alert');
+  if (!alert) return;
+
+  setTimeout(() => {
+    alert.classList.add('visible');
+    console.log("Alert element trouvé ?", alert);
+
+    setTimeout(() => {
+      alert.classList.add('invisible');
+      console.log("Alert disparaît", alert);
+    }, 5000); 
+  }, 1000); 
+})
+
+// Afficher les actualités 
+
+let currentNewsCount = 4; // Nombre d'actualités affichées par défaut
+const newsPerPage = 4; // Nombre d'actualités à afficher à chaque clic sur "Voir plus"
+
+// Initialiser l'affichage des 4 premières actualités
+document.addEventListener("DOMContentLoaded", function() {
+    showNews(currentNewsCount);
+});
+
+// Fonction pour afficher les actualités
+function showNews(count) {
+    const allNews = document.querySelectorAll('.news');
+    for (let i = 0; i < count; i++) {
+        if (allNews[i]) {
+            allNews[i].style.display = 'flex'; // Afficher l'actualité
+        }
+    }
+}
+
+// Écouteur d'événements pour le bouton "Voir plus d'actualités"
+document.getElementById('load-more').addEventListener('click', function() {
+    currentNewsCount += newsPerPage; // Incrémenter le nombre d'actualités affichées
+    showNews(currentNewsCount); // Afficher plus d'actualités
+});
+
+
 // Afficher / Masquer le logo dans la topbar selon la position du scroll (Hors rÃ©solution PC)
 
 const logo = document.querySelector('.logo')
@@ -71,6 +115,27 @@ navLinks.forEach(link => {
   });
 });
 
+// Fonction pour afficher le modal des mentions légales
+function openLegal() {
+  document.getElementById("legal-modal").style.display = "flex";
+}
+
+// Fonction pour fermer le modal des mentions légales
+function closeLegal() {
+  document.getElementById("legal-modal").style.display = "none";
+}
+
+// Ajouter un événement pour ouvrir le modal lorsqu'un bouton est cliqué
+document.getElementById("open-legal-btn").addEventListener("click", function (event) {
+  event.preventDefault();
+  openLegal();
+});
+
+// Ajouter un événement pour fermer le modal lorsqu'on clique sur le bouton de fermeture
+document.getElementById("close-legal-btn").addEventListener("click", function () {
+  closeLegal();
+});
+
 // GALLERY //
 
 let currentIndex = 0; // Index de l'image actuellement affichée
@@ -105,32 +170,9 @@ function nextSlide() {
 // Afficher la première image au chargement initial
 showSlide(currentIndex);
 
-
 // FIN GALLERY //
 
-// Caroussel des avis client 
-
-document.addEventListener('DOMContentLoaded', function () {
-  const prev = document.querySelector('.arrow .left-arrow');
-  const next = document.querySelector('.arrow .right-arrow');
-  const carousel = document.querySelector('.carousel');
-  let scrollPosition = 0;
-  const cardWidth = document.querySelector('.card-review').offsetWidth;
-  const visibleCards = 3;
-
-  prev.addEventListener('click', () => {
-    scrollPosition = Math.max(scrollPosition - cardWidth * visibleCards, 0);
-    carousel.style.transform = `translateX(-${scrollPosition}px)`;
-  });
-
-  next.addEventListener('click', () => {
-    const maxScroll = (carousel.children.length - visibleCards) * cardWidth;
-    scrollPosition = Math.min(scrollPosition + cardWidth * visibleCards, maxScroll);
-    carousel.style.transform = `translateX(-${scrollPosition}px)`;
-  });
-});
-
-/********************************* PARTIE ADMIN  ********************************/
+//********************************* PARTIE ADMIN  ********************************/
 
 function handleLinkTypeChange() {
   const container = document.getElementById("linkInputContainerNews");
@@ -172,17 +214,6 @@ function handleLinkTypeChange() {
     container.appendChild(input)
   }
 }
-
-document.addEventListener('DOMContentLoaded', function () {
-  const closeBtn = document.querySelector('.close-btn');
-
-  if (closeBtn) {
-    closeBtn.addEventListener('click', function () {
-      const alert = this.parentElement;
-      alert.style.display = 'none';
-    });
-  }
-});
 
 // au cas où il y aurait une valeur pré-sélectionnée à l'ouverture
 document.addEventListener("DOMContentLoaded", handleLinkTypeChange);
