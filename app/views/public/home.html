@@ -3,6 +3,38 @@
 {{ end }}
 
 {{ define "home" }}
+<header>
+    <nav>
+        <div class="logo">
+            <a href="{{ hostTraefik }}">La Belfortaine</a>
+        </div>
+
+        <div class="navbar" id="navbar">
+            <ul>
+                <li><a href="#notre-histoire" class="nav-link">Notre histoire</a></li>
+                <li><a href="#actualites" class="nav-link">Actualités</a></li>
+                <li><a href="#boucherie-charcuterie" class="nav-link">Boucherie & Charcuterie</a></li>
+                <li><a href="#remerciements" class="nav-link">Remerciements</a></li>
+                <li><a href="#nous-contacter" class="nav-link">Contactez-nous</a></li>
+            </ul>
+        </div>
+
+        <div class="nav-burger">
+            <a href="#" id="burger-icon"><i class="fa-solid fa-bars" style="color: #ffffff;"></i></a>
+        </div>
+
+        <div class="social">
+            <a href="https://www.facebook.com/profile.php?id=61557030044286" class="social navbar-brand fs-6"
+                target="_blank"><i class="fa-brands fa-facebook" style="color: #ffffff;"></i></a>
+                <a href="https://www.instagram.com/labelfortaineboucherie" class="social navbar-brand fs-6"
+                target="_blank"><i class="fa-brands fa-instagram" style="color: #ffffff;"></i></a>
+                <a href="https://www.tiktok.com/@aure698?_t=ZN-8vUq1RT3aOU&_r=1" class="social navbar-brand fs-6"
+                target="_blank"><i class="fa-brands fa-tiktok" style="color: #ffffff;"></i></a>
+            <a href="https://www.snapchat.com/add/boucherielabelf?share_id=qgR0EG6ZhAA&locale=fr-FR"
+                class="social navbar-brand fs-6"><i class="fa-brands fa-snapchat" style="color: #ffffff;"></i></a>
+        </div>
+    </nav>
+</header>
 <div class="container-home">
     <div class="home" id="accueil">
         <picture>
@@ -12,7 +44,12 @@
         <div class="horaires">
             <!--<div class="information">Fermeture exceptionnelle le 1er et 2 novembre 2024</div>-->
             {{ if .PeriodClosed }}
-                <div class="information-fermeture">{{ .PeriodClosed.Title }} entre le {{ formatDate .PeriodClosed.StartDate "02/01/2006" }} et le {{ formatDate .PeriodClosed.EndDate "02/01/2006" }} inclus</div>
+            <div class="information-fermeture">
+                Fermeture exceptionnelle <br>
+                <!-- {{ .PeriodClosed.Title }} -->
+                du {{ formatDate .PeriodClosed.StartDate
+                "02/01/2006" }} au {{ formatDate .PeriodClosed.EndDate "02/01/2006" }} inclus
+            </div>
             {{ end }}
             <h2 class="mx-2">Nos horaires d'ouverture</h2>
             <ul>
@@ -64,111 +101,36 @@
         <h3 class="subtitle center thin">Retrouvez toute l'actualité de la boucherie sur notre site et nos réseaux
             sociaux</h3>
         <div class="news-container">
+            {{ if .ListNews }}
+            {{ range .ListNews }}
             <div class="news">
-                <div class="news-preview4">
-                    &nbsp;
+                <div class="news-image-container">
+                    <img src="{{ .MediaImage.Path }}" alt="Illustration">
                 </div>
                 <div class="news-content">
-                    <span class="date">Lundi 29 juillet 2024</span>
-                    <h5 class="card-title">Interview sur France Bleu - Emission "Bienvenue chez vous"</h5>
-                    <p class="card-text mx-2">
-                        À l'occasion des beaux jours et de la saison des barbecues, Jean-Christophe Waltz, gérant de la
-                        boucherie La Belfortaine, a eu le plaisir de se confier à la radio locale France Bleu et à ses
-                        auditeurs. Il a partagé son enthousiasme pour les produits authentiques et variés qu'il propose,
-                        ainsi que sa passion pour son métier et ses débuts depuis la reprise de la boucherie située au
-                        53 avenue Jean Jaurès à Belfort. Découvrez ci-dessous l'interview en totalité.
-                    </p>
+                    <span class="date">{{ formatDate .PublishedAt "02/01/2006 15:03" }}</span>
+                    <h5 class="card-title">{{ .Title }}</h5>
+                    <p class="card-text mx-2">{{ .Content }}</p>
+                    {{ if .MediaLink }}
+                    {{ if eq .MediaLink.MediaType "link" }}
+                    <a href="{{ .MediaLink.Path }}" target="_blank">Voir le lien</a>
+                    {{ else if eq .MediaLink.MediaType "audio" }}
                     <audio controls>
-                        <source src="/assets/mp3/290724_france_bleu_interview.mp3" type="audio/mpeg">
-                        Votre navigateur ne supporte pas l'élément audio.
+                        <source src="{{ .MediaLink.Path }}" type="audio/mpeg">
+                        Votre navigateur ne supporte pas l'audio.
                     </audio>
+                    {{ else if eq .MediaLink.MediaType "pdf" }}
+                    <a href="{{ .MediaLink.Path }}" target="_blank">Version PDF</a>
+                    {{ else if eq .MediaLink.MediaType "images" }}
+                    <a href="{{ .MediaLink.Path }}" target="_blank">Version numérique</a>
+                    {{ end }}
+                    {{ end }}
                 </div>
             </div>
-            <div class="news">
-                <div class="news-preview3">
-                    &nbsp;
-                </div>
-                <div class="news-content">
-                    <span class="date">Mercredi 10 juillet 2024</span>
-                    <h5 class="card-title">BelfortMag n°317 - Juillet / Aout 2024</h5>
-                    <p class="card-text mx-2">D’employé à patron… il n’y a pas qu’une marche,
-                        Jean‑Christophe Waltz peut l’affirmer, mais un long
-                        chemin. Après 26 années passées couteaux en
-                        main, il n’était pas question pour ce passionné de
-                        laisser l’établissement de ses anciens employeurs
-                        (La Bonne Renommée) péricliter. Il l’a finalement
-                        repris pour proposer viandes et charcuteries
-                        d’origine exclusivement française, et à 95 % de
-                        fabrication maison.
-                        L’occasion également de remettre au goût du
-                        jour la fameuse saucisse « La Belfortaine » que
-                        la clientèle pourra redécouvrir prochainement.
-                        Une offre de traiteur sur plateau à emporter est
-                        aussi disponible
-                    <div class="mb-3">
-                        <a href="/assets/pdf/MB-BelfortMag-317-BD.pdf" target="_blank">Version numérique de
-                            BelfortMag</a>
-                    </div>
-
-
-                    <a href="/assets/pdf/MB-BelfortMag-317-BD-110724.pdf" target="_blank"
-                        class="btn-center btn-red">Lire la
-                        page de l'article</a>
-                    </p>
-                </div>
-            </div>
-            <div class="news">
-                <div class="news-preview2">
-                    &nbsp;
-                </div>
-                <div class="news-content">
-                    <span class="date">Mercredi 22 mai 2024</span>
-                    <h5 class="card-title">La boucherie charcuterie traditionnelle "La Belfortaine" ouvre ce mercredi
-                        matin</h5>
-                    <p class="card-text mx-2">Bonne nouvelle pour les Belfortains, l’avenue Jean-Jaurès accueille un
-                        nouveau commerce. « La Belfortaine », c’est le nom de la boucherie charcuterie traditionnelle et
-                        traiteur qui s’installe dans les locaux d’une entreprise qui a fermé ses portes durant l’été.
-                        Ouverture ce mercredi, dès 8 h.
-
-
-                        <a href="/assets/img/actus/article_ouverture.jpg" target="_blank"
-                            class="btn-center btn-red">Lire
-                            l'article</a>
-                    </p>
-                </div>
-            </div>
-            <div class="news">
-                <div class="news-preview">
-                    &nbsp;
-                </div>
-                <div class="news-content">
-                    <span class="date">Mercredi 3 avril 2024</span>
-                    <h5 class="card-title">La cité du Lion retrouve une boucherie charcuterie traditionnelle</h5>
-                    <p class="card-text mx-2">Jean-Christophe Waltz, l’ancien élève du centre de formation des apprentis
-                        de Belfort, va bientôt ouvrir « La Belfortaine », une boucherie charcuterie avec service de
-                        traiteur au 53 avenue Jean Jaurès. Il vient d’achever les démarches nécessaires à la création de
-                        son entreprise et s’est fixé l’objectif de démarrer son activité avant la fin du mois d’avril.
-                        <a href="https://www.estrepublicain.fr/economie/2024/04/03/une-boucherie-charcuterie-traditionnelle-va-ouvrir-avenue-jean-jaures?utm_medium=social&utm_source=Facebook#Echobox=1712162604"
-                            target="_blank" class="btn-center btn-red">Lire l'article</a>
-                    </p>
-                </div>
-            </div>
-            <div class="news">
-                <div class="news-preview">
-                    &nbsp;
-                </div>
-                <div class="news-content">
-                    <span class="date">Dimanche 26 novembre 2023</span>
-                    <h5 class="card-title">Un projet de boucherie traditionnelle avenue Jean-Jaurès </h5>
-                    <p class="card-text mx-2">Un ancien élève du Centre municipal de formation des apprentis rêve de
-                        pallier le manque de boucherie traditionnelle dans la cité du Lion. Il s’est d’ores et déjà
-                        porté candidat à la reprise d’une entreprise artisanale de l’avenue Jean-Jaurès, qui est en
-                        liquidation judiciaire.
-                        <a href="https://www.estrepublicain.fr/economie/2023/11/26/un-projet-de-boucherie-traditionnelle-avenue-jean-jaures"
-                            target="_blank" class="btn-center btn-red">Lire l'article</a>
-                    </p>
-                </div>
-            </div>
+            {{ end }}
+            {{ else }}
+            <div>Aucun article</div>
+            {{ end }}
         </div>
     </div>
 
@@ -212,22 +174,13 @@
             <div class="gallery-container">
                 <button class="arrow left-arrow" onclick="prevSlide()">&#10094;</button>
                 <div class="gallery-slides">
-                    <img src="/assets/img/gallery/vitrine-la-belfortaine-1.jpeg" class="gallery-pictures"
-                        alt="Photo de charcuterie proposée à la Belfortaine" />
-                    <img src="/assets/img/gallery/vitrine-la-belfortaine-2.jpeg" class="gallery-pictures"
-                        alt="Photo de charcuterie proposée à la Belfortaine" />
-                    <img src="/assets/img/gallery/vitrine-la-belfortaine-3.jpeg" class="gallery-pictures"
-                        alt="Photo de charcuterie proposée à la Belfortaine" />
-                    <img src="/assets/img/gallery/vitrine-la-belfortaine-4.jpeg" class="gallery-pictures"
-                        alt="Photo de charcuterie proposée à la Belfortaine" />
-                    <img src="/assets/img/gallery/vitrine-la-belfortaine-5.jpeg" class="gallery-pictures"
-                        alt="Photo de charcuterie proposée à la Belfortaine" />
-                    <img src="/assets/img/gallery/vitrine-la-belfortaine-6.jpeg" class="gallery-pictures"
-                        alt="Photo de charcuterie proposée à la Belfortaine" />
-                    <img src="/assets/img/gallery/vitrine-la-belfortaine-7.jpeg" class="gallery-pictures"
-                        alt="Photo de charcuterie proposée à la Belfortaine" />
-                    <img src="/assets/img/gallery/retour-client-barbecue.jpeg" class="gallery-pictures"
-                        alt="Retour client après un barbecue avec des produits de la Belfortaine" />
+                    {{ if and .Gallery .Gallery.Medias }}
+                    {{ range .Gallery.Medias }}
+                    <img src="{{ .MediaURI.Path }}" ...>
+                    {{ end }}
+                    {{ else }}
+                    <p>Aucune image disponible</p>
+                    {{ end }}
                 </div>
                 <button class="arrow right-arrow" onclick="nextSlide()">&#10095;</button>
             </div>
@@ -537,12 +490,14 @@
 
                 <h5 class="mx-2">Réseaux sociaux</h5>
                 <div class="social-footer">
-                    <a href="https://www.facebook.com/profile.php?id=61557030044286" class="link-social"><i
+                    <a href="https://www.facebook.com/profile.php?id=61557030044286" target="_blank" class="link-social"><i
                             class="fa-brands fa-facebook" style="color: #ffffff;"></i></a>
-                    <a href="https://www.instagram.com/labelfortaineboucherie" class="link-social"><i
+                    <a href="https://www.instagram.com/labelfortaineboucherie" target="_blank" class="link-social"><i
                             class="fa-brands fa-instagram" style="color: #ffffff; margin-left: 10px;"></i></a>
+                    <a href="https://www.tiktok.com/@aure698?_t=ZN-8vUq1RT3aOU&_r=1" target="_blank" class="link-social"><i
+                            class="fa-brands fa-tiktok" style="color: #ffffff; margin-left: 10px;"></i></a>
                     <a href="https://www.snapchat.com/add/boucherielabelf?share_id=qgR0EG6ZhAA&locale=fr-FR"
-                        class="link-social"><i class="fa-brands fa-snapchat"
+                    target="_blank" class="link-social"><i class="fa-brands fa-snapchat"
                             style="color: #ffffff; margin-left: 10px;"></i></a>
                 </div>
             </div>

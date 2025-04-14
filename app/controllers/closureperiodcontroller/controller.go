@@ -13,18 +13,17 @@ import (
 // ╚═══════════════════════════════════════════════════════════╝
 
 type responseClosurePeriod struct {
-	Title   string
-	Content string
+	Title      string
+	Content    string
 	ListPeriod []models.ClosurePeriod
-	Error string
-	Success string
+	Error      string
+	Success    string
 }
 
 type closurePeriodController struct {
-	res *responseClosurePeriod
+	res            *responseClosurePeriod
 	closureService closedperiod.ClosedPeriodService
 }
-
 
 // ╔═══════════════════════════════════════════════════════════╗
 // ║                            PUBLIC                         ║
@@ -38,7 +37,7 @@ type ClosurePeriodController interface {
 
 func InitHomeController(c *depinject.Container) ClosurePeriodController {
 	res := &responseClosurePeriod{
-		Title:  "Periodes de fermeture",
+		Title:   "Tableau de bord - Alertes",
 		Content: "closure",
 	}
 

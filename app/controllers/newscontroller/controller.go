@@ -16,28 +16,28 @@ import (
 // ╚═══════════════════════════════════════════════════════════╝
 
 type responseNews struct {
-	Title   string
-	Content string
+	Title    string
+	Content  string
 	ListNews []models.News
-	News   *models.News
-	Error   string
-	Success string
+	News     *models.News
+	Error    string
+	Success  string
 }
 
 type newsController struct {
-	res *responseNews
+	res         *responseNews
 	newsService news.NewsService
 }
 
-func validateDataStringEmpty(c *gin.Context , value *string, name string) string {
+func validateDataStringEmpty(c *gin.Context, value *string, name string) string {
 	if *value == "" {
 		c.Redirect(
-			http.StatusSeeOther, 
-			"/dashboard/news?statusCode=" + strconv.Itoa(http.StatusBadRequest) + "&error=" + url.QueryEscape("Erreur de validation, " + name + " requis"),
+			http.StatusSeeOther,
+			"/dashboard/news?statusCode="+strconv.Itoa(http.StatusBadRequest)+"&error="+url.QueryEscape("Erreur de validation, "+name+" requis"),
 		)
 	}
 
-	return  *value
+	return *value
 }
 
 // ╔═══════════════════════════════════════════════════════════╗
@@ -54,13 +54,12 @@ type NewsController interface {
 
 func InitNewsController(c *depinject.Container) NewsController {
 	res := &responseNews{
-		Title:   "news",
+		Title:   "Tableau de bord - Actualités",
 		Content: "news",
 	}
 
 	return &newsController{
-		res, 
+		res,
 		c.NewsService,
 	}
 }
-
