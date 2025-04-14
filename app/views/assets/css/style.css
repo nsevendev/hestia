@@ -188,7 +188,6 @@ nav {
 
 /* Ajoutez scroll-margin-top pour chaque section pour éviter que le contenu ne soit masqué sous la barre de navigation */
 .home,
-.story,
 .container {
     scroll-margin-top: 20px;
     /* Hauteur de la barre de navigation */
@@ -236,6 +235,16 @@ nav {
 
 }
 
+.btn-black {
+    background-color: #181818;
+    color: #ffffff;
+    text-decoration: none;
+    font-size: 1.1rem;
+    padding: 15px;
+    border: none;
+    cursor: pointer;
+}
+
 .title-story {
     padding-top: 5px;
     font-size: 28px;
@@ -267,62 +276,43 @@ nav {
 }
 
 .news {
-    margin: 30px 0;
     display: flex;
     justify-content: center;
     gap: 40px;
 }
 
-.news-preview {
-    background: url(/assets/img/actus/actu_lest_republicain.jpg);
-    background-position: center;
-    background-size: cover;
-    width: 350px;
-    height: 230px;
-}
-
-.news-preview2 {
-    background: url(/assets/img/actus/preview220524.jpg);
-    background-position: center;
-    background-size: cover;
-    width: 330px;
-    height: 230px;
-}
-
-.news-preview3 {
-    background: url(/assets/img/actus/preview110724.jpg);
-    background-position: center;
-    background-size: cover;
-    width: 330px;
-    height: 230px;
-}
-
-.news-preview4 {
-    background: url(/assets/img/actus/france_bleu_logo.svg);
-    background-position: center;
-    background-size: cover;
-    width: 330px;
-    height: 230px;
-}
-
 .news-content {
-    width: 500px;
+    width: 600px;
     text-align: left;
 }
 
+.news-content a {
+    display: block;
+    text-decoration: none;
+    color: #ffffff;
+    padding: 15px;
+    background-color: #181818;
+    font-size: 1.2rem;
+    max-width: 220px;
+    text-align: center;
+}
+
 .card-title {
-    font-size: 16px;
+    font-size: 1.3rem;
+    padding-bottom: 20px;
 }
 
 .date {
+    margin-top: 30px;
     padding-top: 20px;
-    font-size: 14px;
+    font-size: 1.2rem;
     font-weight: normal;
     line-height: 20px;
 }
 
 .card-text {
-    font-size: 14px;
+    font-size: 1.2rem;
+    padding-bottom: 20px;
 }
 
 .card-text a {
@@ -376,6 +366,18 @@ nav {
     padding-bottom: 40px;
 }
 
+.home-page .news:nth-child(n+5) {
+    display: none;
+}
+
+.btn-load-more {
+    background-color: #000000;
+    color: #ffffff;
+    padding: 20px;
+    font-size: 1.2rem;
+    margin-bottom: 50px;
+}
+
 /* Styles pour la galerie */
 .gallery {
     width: 100%;
@@ -418,7 +420,7 @@ nav {
 .gallery-pictures {
     width: 100%;
     height: 100%;
-    object-fit: cover;
+    object-fit: contain;
     /* Remplir le conteneur tout en conservant le ratio d'aspect */
     display: none;
     /* Masquer toutes les images sauf celle visible */
@@ -653,6 +655,101 @@ nav {
     text-decoration: underline;
 }
 
+.login-container {
+    font-family: "Poppins", sans-serif;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: linear-gradient(180deg, rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.4) 100%), url('/assets/img/gallery/vitrine-la-belfortaine-5.jpeg') top/cover no-repeat fixed;
+}
+
+.login-form {
+    background: #ffffff;
+    padding: 50px 30px;
+    border: 1px solid #000000;
+    border-radius: 8px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    width: 100%;
+    max-width: 500px;
+    text-align: center;
+}
+
+.login-form h2 {
+    margin-bottom: 40px;
+    color: #343a40;
+    text-align: center;
+    font-size: 2rem;
+}
+
+.login-form .form-group {
+    margin-bottom: 40px;
+}
+
+.login-form label {
+    display: block;
+    margin-bottom: 8px;
+    color: #495057;
+    font-weight: 600;
+    font-size: 1.3rem;
+    text-align: left;
+    padding-left: 46px;
+}
+
+.login-form input[type="email"],
+.login-form input[type="password"] {
+    width: 80%;
+    padding: 10px 15px;
+    border: 1px solid #555656;
+    border-radius: 4px;
+    font-size: 1.3rem;
+}
+
+.login-form input[type="email"]:focus,
+.login-form input[type="password"]:focus {
+    outline: none;
+    border-color: #9e0627;
+    box-shadow: 0 0 4px rgba(0, 123, 255, 0.25);
+}
+
+.form-button {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 20px;
+}
+
+
+.login-form button {
+    padding: 20px 30px;
+    border: none;
+    border-radius: 4px;
+    background-color: #1d1d1d;
+    color: #ffffff;
+    font-size: 1.3rem;
+    cursor: pointer;
+    transition: background-color 0.25s ease;
+    margin: 0 auto; /* Cela va centrer le bouton horizontalement */
+}
+
+.login-form button:hover {
+    background-color: #9e0627;
+}
+
+.login-form .footer {
+    margin-top: 25px;
+    text-align: center;
+}
+
+.login-form .footer a {
+    color: #007bff;
+    text-decoration: none;
+}
+
+.login-form .footer a:hover {
+    text-decoration: underline;
+}
+
 .social-footer {
     margin-top: 10px;
     text-align: left;
@@ -688,6 +785,7 @@ nav {
 }
 
 .sidebar {
+    position: relative;
     width: 300px;
     background-color: #181818;
     color: #ffffff;
@@ -731,10 +829,30 @@ nav {
     background-color: #9e0627;
 }
 
+.sidebar-links a.active {
+    width: 100%;
+    background-color: #9e0627;
+    font-weight: bold;
+}
+
 .sidebar ul,
 .sidebar-links ul {
     margin-left: 0;
     padding-left: 0;
+}
+
+/* Lien Conditions générales */
+.sidebar-links li.bottom-link {
+    position: absolute;  
+    bottom: 20px;  
+    width: 100%; 
+    text-align: center; 
+}
+
+/* Centrer le texte dans le lien */
+.sidebar-links li.bottom-link a {
+    display: inline-block;
+    width: 100%;
 }
 
 /* Right Side */
@@ -768,6 +886,12 @@ nav {
     font-size: 1.5rem;
 }
 
+.right-side h5 {
+    font-weight: 600;
+    padding-top: 20px;
+    font-size: 1.2rem;
+}
+
 .right-side ul {
     list-style: none;
     padding-left: 0;
@@ -790,20 +914,23 @@ nav {
 }
 
 .right-side .title-news {
+    font-family: "Poppins", sans-serif;
     width: 100%;
     padding: 10px;
     margin-bottom: 20px;
     border: 1px solid #4b4b4b;
     border-radius: 5px;
+    font-size: 1rem;
 }
 
-.right-side label {
-    padding-right: 10px;
+.right-side .row-form label {
+    font-family: "Poppins", sans-serif;
     font-size: 1.2rem;
     margin-bottom: 0;
 }
 
 .right-side textarea {
+    font-family: "Poppins", sans-serif;
     width: 100%;
     height: 200px;
     padding: 10px;
@@ -816,11 +943,19 @@ nav {
 .right-side button {
     background-color: #000000;
     color: #ffffff;
-    padding: 18px;
+    padding: 15px;
     border: none;
-    font-size: 1rem;
+    font-size: 1.2rem;
     cursor: pointer;
-    border-radius: 12px;
+}
+
+.right-side select {
+    font-family: "Poppins", sans-serif;
+    font-size: 1.1rem;
+    padding: 10px;
+    margin-bottom: 20px;
+    border: 1px solid #4b4b4b;
+    border-radius: 5px;
 }
 
 .right-side button:hover {
@@ -849,24 +984,33 @@ nav {
 }
 
 .right-side .title-img {
+    width: 300px;
     padding: 10px;
     margin-bottom: 20px;
     border: 1px solid #4b4b4b;
     border-radius: 5px;
 }
 
-.right-side .news {
+.right-side input {
+    width: 300px;
+    padding: 10px;
+    margin-bottom: 20px;
+    border: 1px solid #4b4b4b;
+    border-radius: 5px;
+}
+
+
+.news {
     position: relative;
-    max-width: 1000px;
+    max-width: 1300px;
     height: auto;
-    ;
     display: flex;
     align-items: stretch;
     padding-top: 20px;
     padding-left: 20px;
     padding-right: 20px;
     padding-bottom: 30px;
-    border-bottom: 1px solid #ddd;
+    border-bottom: 1px solid #434242;
     margin-bottom: 20px;
     background-color: #ffffff;
     border-radius: 8px;
@@ -874,19 +1018,27 @@ nav {
     /* espacement régulier */
 }
 
-.right-side .news-image-container {
-    width: 300px;
+.news-image-container {
+    width: 400px; /* Fixe la largeur de l'image */
+    height: 300px; /* Fixe la hauteur de l'image */
+    overflow: hidden; /* Masque la partie qui dépasse si l'image est plus grande */
     display: flex;
-    flex-direction: column;
-    border-radius: 8px;
-    background-color: #f0f0f0;
+    justify-content: center; /* Centre l'image dans le conteneur */
+    align-items: center; /* Centre l'image verticalement */
+    background-color: #f0f0f0; /* Optionnel : ajouter un fond gris clair */
+    border-radius: 8px; /* Arrondi des coins */
 }
 
-.right-side .news-image-container img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    object-position: center;
+.news-image-container img {
+    width: 100%; /* L'image occupe toute la largeur du conteneur */
+    height: 100%; /* L'image occupe toute la hauteur du conteneur */
+    object-fit: cover; /* L'image s'ajuste pour couvrir tout le conteneur sans déformer son ratio */
+    object-position: center; /* L'image est centrée dans son conteneur */
+}
+
+audio {
+    width: 50%;
+    margin-top: 20px;
 }
 
 .right-side .news-content {
@@ -920,6 +1072,13 @@ nav {
     text-overflow: ellipsis;
 }
 
+.news-description a {
+    text-decoration: none;
+    color: #000000;
+    padding: 10px;
+    background-color: red;
+}
+
 .right-side .news-actions {
     margin-right: 30px;
     display: flex;
@@ -943,16 +1102,169 @@ nav {
     border-radius: 20px;
 }
 
-/* Alertes (bandeau d'information) */
-
-.alert {
-    position: relative;
-    width: 95%;
-    padding: 15px;
-    margin-bottom: 10px;
-    font-size: 1.2rem;
+.right-side .alert-date {
+    width: 100%;
+    display: flex;
+    gap: 20px;
+    align-items: center;
 }
 
+.right-side .alert-content {
+    font-family: "Poppins", sans-serif;
+    padding-top: 30px;
+}
+
+.right-side .alert-content input[textarea] {
+    font-family: "Poppins", sans-serif;
+    width: 100%;
+    height: 200px;
+    padding: 10px;
+    margin-top: 15px;
+    margin-bottom: 20px;
+    border: 1px solid #4b4b4b;
+    border-radius: 5px;
+    font-size: 2rem;
+}
+
+.right-side input[type="date"] {
+    /* Apparence générale */
+    background-color: #fff;
+    /* Couleur de fond */
+    border: 1px solid #4a4949;
+    /* Bordure fine et grise */
+    border-radius: 4px;
+    /* Coins arrondis */
+    padding: 10px;
+    /* Espacement interne */
+    font-size: 16px;
+    /* Taille de police */
+    color: #333;
+    /* Couleur du texte */
+
+    /* Retirer le style natif (selon le navigateur) */
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+
+    /* Largeur si nécessaire (vous pouvez l’ajuster) */
+    width: 160px;
+}
+
+.right-side .list-period {
+    display: flex;
+    align-items: center;
+    justify-content: start;
+    padding: 0.5rem 0;
+    gap: 30px;
+}
+
+.right-side .period-container {
+    display: flex;
+    align-items: center;
+    justify-content: start;
+    font-size: 1rem;
+}
+
+.right-side .period-title {
+    display: flex;
+    font-size: 1.2rem;
+    font-weight: bold;
+    margin-right: 20px;
+    align-items: center;
+    gap: 20px;
+}
+
+.right-side .gallery-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); /* Maintenir la mise en page responsive */
+    gap: 20px;
+    justify-items: center;
+    margin-top: 20px;
+}
+
+.right-side .gallery-card {
+    background-color: #fff;
+    border: 1px solid #a5a5a5;
+    border-radius: 8px;
+    box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 6px;
+    overflow: hidden;
+    width: 100%;
+    max-width: 350px; /* Fixe la largeur maximale des cartes */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    padding-bottom: 20px;;
+}
+
+/* Conteneur de l'image */
+.image-container {
+    width: 400px; /* Largeur fixe de l'image */
+    height: 300px; /* Hauteur fixe de l'image */
+    overflow: hidden;
+}
+
+/* L'image elle-même */
+.image-container img {
+    width: 100%; /* Occupe toute la largeur de son conteneur */
+    height: 100%; /* Occupe toute la hauteur de son conteneur */
+    object-fit: cover; /* Remplir le conteneur tout en conservant les proportions */
+}
+
+.btn-add {
+    margin-top: 30px;
+}
+
+/* Bouton de suppression */
+.delete-form {
+    margin-top: 20px;
+    display: flex;
+    justify-content: center;
+}
+
+.btn-delete {
+    display: flex;
+    gap: 10px;
+    padding: 12px 25px; /* Augmente la taille du bouton */
+    background-color: #9e0627;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.btn-delete:hover {
+    background-color: #d11435;
+}
+
+.alert {
+    opacity: 0;
+    visibility: hidden; /* Masqué par défaut */
+    transition: opacity 2s ease-in-out, visibility 0s linear 1s; /* Transition d'opacité et visibilité */
+    position: relative;
+    width: 100%;
+    padding: 15px;
+    margin-top: 10px;
+    margin-bottom: 20px;
+    font-size: 1.2rem;
+    background-color: #f8d7da;
+    color: #721c24;
+    border: 1px solid #f5c6cb;
+    border-radius: 5px;
+  }
+  
+.alert.visible {
+  opacity: 1;
+  visibility: visible;
+}
+  
+.alert.invisible {
+  opacity: 0;
+  visibility: hidden; 
+  transition: opacity 1s ease-in-out, visibility 0s linear 0s;
+}
+  
 .alert-success {
     background-color: #c5fad1;
     color: #155724;
@@ -973,12 +1285,14 @@ nav {
 
 .close-btn {
     position: absolute;
-    right: 0px;
-    top: 0%;
+    right: 0;
+    top: 0;
     transform: translateY(-50%);
     font-size: 100px;
     cursor: pointer;
     user-select: none;
+    z-index: 100; 
+    color: #000; 
 }
 
 
@@ -1012,7 +1326,6 @@ nav {
 .terms article {
     max-width: 80%;
     font-size: 1rem;
-    margin-bottom: 20px;
     border-bottom: 1px solid #ddd;
 }
 
@@ -1023,7 +1336,6 @@ nav {
 
 .terms p {
     font-size: 1.5rem;
-    margin-bottom: 15px;
 }
 
 .terms ul {
@@ -1041,12 +1353,88 @@ nav {
     /* ou transparent */
 }
 
+/* Modal des mentions légales */
+.legal-modal {
+    position: fixed;
+    z-index: 9999; /* Placer le modal au-dessus de tout */
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background: rgba(0, 0, 0, 0.9); /* Fond semi-transparent */
+    display: none; /* Cacher le modal par défaut */
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+}
+
+.legal-content {
+    background: rgb(36, 36, 36);
+    color: #fff;
+    padding: 30px;
+    max-width: 600px;
+    width: 90%;
+    max-height: 90vh;
+    overflow-y: auto;
+    position: relative;
+    border-radius: 10px;
+    font-family: 'Aleo', sans-serif;
+    line-height: 1.5;
+}
+
+.legal-content p {
+    margin-bottom: 12px; /* Espacement entre les paragraphes */
+}
+
+.legal-content h2 {
+    font-size: 24px;
+    margin-bottom: 30px; /* Espacement sous le titre */
+}
+
+.legal-content ul {
+    padding-left: 0;
+}
+
+.legal-content ul li {
+    list-style: none;
+}
+
+.legal-content a {
+    color: #fff;
+    text-decoration: underline;
+}
+
+.close-legal {
+    position: absolute;
+    top: 10px;
+    right: 15px;
+    background: none;
+    border: none;
+    font-size: 24px;
+    cursor: pointer;
+    color: #fff;
+}
+
+.btn-close-site {
+    display: block;
+    margin: 20px auto 0;
+    padding: 10px 20px;
+    background: #9e0627;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+
 /* Footer */
 
 .footer a {
     color: white;
     text-decoration: none;
     font-weight: bold;
+    font-size: 1.2rem;
 }
 
 .footer a:hover a:active a:visited {
@@ -1204,30 +1592,6 @@ nav {
         flex-direction: column;
     }
 
-    .news-preview {
-        display: block;
-        width: 100%;
-        margin-bottom: 20px;
-    }
-
-    .news-preview2 {
-        display: block;
-        width: 100%;
-        margin-bottom: 20px;
-    }
-
-    .news-preview3 {
-        display: block;
-        width: 100%;
-        margin-bottom: 20px;
-    }
-
-    .news-preview4 {
-        display: block;
-        width: 100%;
-        margin-bottom: 20px;
-    }
-
     .btn-center {
         margin: 0 auto
     }
@@ -1252,7 +1616,7 @@ nav {
 
     .labels {
         display: flex;
-        align-items: center;
+        align-items: left;
         justify-content: center;
         gap: 13px;
         padding-bottom: 40px;
@@ -1308,6 +1672,11 @@ nav {
         width: 100%;
     }
 
+    .card-title {
+        padding-top: 30px;
+        padding-bottom: 20px;
+    }
+
     .social-footer {
         margin-top: 10px;
         text-align: center;
@@ -1319,82 +1688,55 @@ nav {
 
     .gallery {
         width: 100%;
-        /* La galerie occupe toute la largeur de l'écran */
         max-width: 100%;
-        /* Pas de largeur maximale pour les appareils mobiles */
         position: relative;
-        /* Pour positionner les flèches absolument */
         overflow: hidden;
-        /* Pour masquer tout débordement */
         padding: 0;
-        /* Retirer les marges internes */
     }
 
     .gallery-container {
         position: relative;
-        /* Pour que les flèches se positionnent par rapport à ce conteneur */
     }
 
     .gallery-slides {
         display: flex;
-        /* Flexbox pour aligner les images en ligne */
         width: 100%;
-        /* Les images s'étendent sur toute la largeur du conteneur */
         height: 250px;
-        /* Hauteur constante pour les images sur mobile */
         overflow: hidden;
-        /* Pour éviter les débordements */
         transition: transform 0.5s ease-in-out;
-        /* Transition pour le défilement fluide */
         margin: 0;
-        /* Retirer les marges pour éviter les espaces non désirés */
     }
 
     .gallery-pictures {
         flex-shrink: 0;
-        /* Les images ne se réduisent pas */
         width: 100vw;
-        /* Chaque image occupe 100% de la largeur de la fenêtre */
         height: 100%;
-        /* Les images remplissent la hauteur du conteneur */
-        object-fit: cover;
-        /* Remplir le conteneur tout en conservant le ratio d'aspect */
+        object-fit: contain;
     }
 
     .arrow {
         position: absolute;
-        /* Positionner les flèches absolument par rapport au conteneur de la galerie */
         top: 50%;
-        /* Centrer verticalement */
         transform: translateY(-50%);
-        /* Ajuster le centrage vertical */
         background-color: rgba(255, 255, 255, 0.7);
-        /* Fond légèrement transparent */
         border: none;
         color: black;
         font-size: 1.5rem;
-        /* Taille des flèches */
         padding: 10px;
-        /* Espacement interne */
         cursor: pointer;
         z-index: 10;
-        /* Placer les flèches au-dessus des images */
         transition: background-color 0.3s ease;
-        /* Transition de couleur au survol */
     }
 
     .arrow:hover {
         background-color: rgba(255, 255, 255, 0.9);
-        /* Couleur de fond au survol */
     }
 
     .left-arrow {
         left: 0;
-        /* Positionner la flèche gauche à 0 pixels du bord gauche */
     }
 
     .right-arrow {
         right: 0;
-        /* Positionner la flèche droite à 0 pixels du bord droit */
     }
 }

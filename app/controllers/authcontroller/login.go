@@ -8,15 +8,15 @@ import (
 )
 
 func (ac *authController) Login(c *gin.Context) {
-    email := c.PostForm("email")
-    password := c.PostForm("password")
+	email := c.PostForm("email")
+	password := c.PostForm("password")
 
-    user, err := ac.serviceAuth.Authenticate(c.Request.Context(), email, password)
-    if err != nil {
-        c.Redirect(http.StatusSeeOther, "/login?error=Email ou mot de passe invalide " + err.Error())
-        return
-    }
+	user, err := ac.serviceAuth.Authenticate(c.Request.Context(), email, password)
+	if err != nil {
+		c.Redirect(http.StatusSeeOther, "/login?error=Email ou mot de passe invalide ")
+		return
+	}
 
-    session.SetUserSession(c, user.UUID.String())
+    session.SetUserSession(c, user)
     c.Redirect(http.StatusSeeOther, "/dashboard")
 }

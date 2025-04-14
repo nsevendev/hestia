@@ -1,3 +1,47 @@
+// Afficher masquer l'alerte
+
+window.addEventListener('DOMContentLoaded', () => {
+  const alert = document.querySelector('.alert');
+  if (!alert) return;
+
+  setTimeout(() => {
+    alert.classList.add('visible');
+    console.log("Alert element trouvé ?", alert);
+
+    setTimeout(() => {
+      alert.classList.add('invisible');
+      console.log("Alert disparaît", alert);
+    }, 5000); 
+  }, 1000); 
+})
+
+// Afficher les actualités 
+
+let currentNewsCount = 4; // Nombre d'actualités affichées par défaut
+const newsPerPage = 4; // Nombre d'actualités à afficher à chaque clic sur "Voir plus"
+
+// Initialiser l'affichage des 4 premières actualités
+document.addEventListener("DOMContentLoaded", function() {
+    showNews(currentNewsCount);
+});
+
+// Fonction pour afficher les actualités
+function showNews(count) {
+    const allNews = document.querySelectorAll('.news');
+    for (let i = 0; i < count; i++) {
+        if (allNews[i]) {
+            allNews[i].style.display = 'flex'; // Afficher l'actualité
+        }
+    }
+}
+
+// Écouteur d'événements pour le bouton "Voir plus d'actualités"
+document.getElementById('load-more').addEventListener('click', function() {
+    currentNewsCount += newsPerPage; // Incrémenter le nombre d'actualités affichées
+    showNews(currentNewsCount); // Afficher plus d'actualités
+});
+
+
 // Afficher / Masquer le logo dans la topbar selon la position du scroll (Hors rÃ©solution PC)
 
 const logo = document.querySelector('.logo')
@@ -105,46 +149,29 @@ function nextSlide() {
 // Afficher la première image au chargement initial
 showSlide(currentIndex);
 
-
 // FIN GALLERY //
 
-// Caroussel des avis client 
+// Mentions légales 
 
-document.addEventListener('DOMContentLoaded', function () {
-  const prev = document.querySelector('.carousel-control.prev');
-  const next = document.querySelector('.carousel-control.next');
-  const carousel = document.querySelector('.carousel');
-  let scrollPosition = 0;
-  const cardWidth = document.querySelector('.card-review').offsetWidth;
-  const visibleCards = 3;
+const legalLink = document.querySelector('footer a[href="#"]');
+const legalModal = document.getElementById('legal-modal');
 
-  prev.addEventListener('click', () => {
-    scrollPosition = Math.max(scrollPosition - cardWidth * visibleCards, 0);
-    carousel.style.transform = `translateX(-${scrollPosition}px)`;
-  });
+function openLegal() {
+  legalModal.style.display = 'block';
+}
 
-  next.addEventListener('click', () => {
-    const maxScroll = (carousel.children.length - visibleCards) * cardWidth;
-    scrollPosition = Math.min(scrollPosition + cardWidth * visibleCards, maxScroll);
-    carousel.style.transform = `translateX(-${scrollPosition}px)`;
-  });
+function closeLegal() {
+  legalModal.style.display = 'none';
+}
+
+legalLink.addEventListener('click', function(event) {
+  event.preventDefault();  
+  openLegal();
 });
 
-// Bandeau temporaire 
+document.querySelector('.close-legal').addEventListener('click', closeLegal);
 
-document.addEventListener("DOMContentLoaded", function () {
-  const startDate = new Date("2024-10-22T00:00:00+02:00");
-  const endDate = new Date("2024-11-02T19:00:00+02:00");
-  const now = new Date();
-  const infoBanner = document.querySelector(".information");
-  if (now >= startDate && now < endDate) {
-    infoBanner.style.display = "block";
-  } else {
-    infoBanner.style.display = "none";
-  }
-});
-
-/********************************* PARTIE ADMIN  ********************************/
+//********************************* PARTIE ADMIN  ********************************/
 
 function handleLinkTypeChange() {
   const container = document.getElementById("linkInputContainerNews");
@@ -186,17 +213,6 @@ function handleLinkTypeChange() {
     container.appendChild(input)
   }
 }
-
-document.addEventListener('DOMContentLoaded', function () {
-  const closeBtn = document.querySelector('.close-btn');
-
-  if (closeBtn) {
-    closeBtn.addEventListener('click', function () {
-      const alert = this.parentElement;
-      alert.style.display = 'none';
-    });
-  }
-});
 
 // au cas où il y aurait une valeur pré-sélectionnée à l'ouverture
 document.addEventListener("DOMContentLoaded", handleLinkTypeChange);

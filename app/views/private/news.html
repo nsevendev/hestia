@@ -6,6 +6,18 @@
 
 <h1>Gestion des actualités</h1>
 
+{{ if .Success }}
+<div class="alert alert-success">
+    {{ .Success }}
+</div>
+{{ end }}
+
+{{ if .Error }}
+<div class="alert alert-error">
+    {{ .Error }}
+</div>
+{{ end }}
+
 <div class="dashboard-block">
     <h3>{{ if .News }}Modifier l'actualité{{ else }}Créer une actualité{{ end }}</h3>
 
@@ -13,7 +25,7 @@
         enctype="multipart/form-data" class="form-post">
 
         <div class="row-form">
-            <label for="title">Titre :</label>
+            <label for="title">Titre : </label>
             <input type="text" name="title" value="{{ if .News }}{{ .News.Title }}{{ end }}" class="title-news"
                 required>
         </div>
@@ -26,12 +38,14 @@
 
         {{ if .News }}
         <p>Image actuelle</p>
-        <img src="{{ .News.MediaImage.Path }}" alt="Illustration" style="max-width:200px;">
+        <img src="{{ .News.MediaImage.Path }}" alt="Illustration" style="max-width:400px;">
         {{ end }}
 
+        <div>
         <label for="image">{{ if .News }}Modifier l'image{{ else }}Image d'illustration{{ end }} :</label>
-        <input type="file" id="image" name="image" accept="image/*">
-
+        <input type="file" id="image" class="btn-file" name="image" accept="image/*">
+    </div>
+    
         <br>
 
         <div>
@@ -64,15 +78,16 @@
             <option value="url">Lien externe</option>
         </select>
 
-        <!-- TODO : soucis de design, je pense que sa devrais etre un bouton à coté de l'autre je ne sais pas qi cela a été corrigé dans une autre branch -->
-        {{ if .News}}
-        <a href="/dashboard/news">Annuler</a>
-        {{ end }}
-
         <div id="linkInputContainerNews" style="margin-top: 10px;"></div>
 
-        <button type="submit">{{ if .News }}Modifier{{ else }}<i class="fa-solid fa-plus"></i> Ajouter l'actualité{{ end
+        <div style="display: flex; gap: 20px; align-items: center;">
+        <button type="submit">{{ if .News }}Confirmer la modification{{ else }}<i class="fa-solid fa-plus"></i> Ajouter l'actualité{{ end
             }}</button>
+                    <!-- TODO : soucis de design, je pense que sa devrais etre un bouton à coté de l'autre je ne sais pas qi cela a été corrigé dans une autre branch -->
+        {{ if .News}}
+        <a href="/dashboard/news" class="btn-black">Annuler</a>
+        {{ end }}
+    </div>
 
     </form>
 </div>
@@ -107,6 +122,7 @@
             <source src="{{ .MediaLink.Path }}" type="audio/mpeg">
             Votre navigateur ne supporte pas l'élément audio.
         </audio>
+        <br>
         {{ end }}
 
         {{ if eq .MediaLink.MediaType "pdf" }}
