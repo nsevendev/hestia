@@ -20,6 +20,9 @@ services:
       - .env
     depends_on:
       - hestia-db-prod
+    networks:
+      - hestia-net
+      - traefik-nseven
 
   hestia-db-prod:
     image: postgres:16
