@@ -15,6 +15,33 @@ window.addEventListener('DOMContentLoaded', () => {
   }, 1000); 
 })
 
+// Afficher les actualités 
+
+let currentNewsCount = 4; // Nombre d'actualités affichées par défaut
+const newsPerPage = 4; // Nombre d'actualités à afficher à chaque clic sur "Voir plus"
+
+// Initialiser l'affichage des 4 premières actualités
+document.addEventListener("DOMContentLoaded", function() {
+    showNews(currentNewsCount);
+});
+
+// Fonction pour afficher les actualités
+function showNews(count) {
+    const allNews = document.querySelectorAll('.news');
+    for (let i = 0; i < count; i++) {
+        if (allNews[i]) {
+            allNews[i].style.display = 'flex'; // Afficher l'actualité
+        }
+    }
+}
+
+// Écouteur d'événements pour le bouton "Voir plus d'actualités"
+document.getElementById('load-more').addEventListener('click', function() {
+    currentNewsCount += newsPerPage; // Incrémenter le nombre d'actualités affichées
+    showNews(currentNewsCount); // Afficher plus d'actualités
+});
+
+
 // Afficher / Masquer le logo dans la topbar selon la position du scroll (Hors rÃ©solution PC)
 
 const logo = document.querySelector('.logo')
@@ -124,7 +151,7 @@ showSlide(currentIndex);
 
 // FIN GALLERY //
 
-/********************************* PARTIE ADMIN  ********************************/
+//********************************* PARTIE ADMIN  ********************************/
 
 function handleLinkTypeChange() {
   const container = document.getElementById("linkInputContainerNews");
@@ -166,17 +193,6 @@ function handleLinkTypeChange() {
     container.appendChild(input)
   }
 }
-
-document.addEventListener('DOMContentLoaded', function () {
-  const closeBtn = document.querySelector('.close-btn');
-
-  if (closeBtn) {
-    closeBtn.addEventListener('click', function () {
-      const alert = this.parentElement;
-      alert.style.display = 'none';
-    });
-  }
-});
 
 // au cas où il y aurait une valeur pré-sélectionnée à l'ouverture
 document.addEventListener("DOMContentLoaded", handleLinkTypeChange);

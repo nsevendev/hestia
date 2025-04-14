@@ -96,10 +96,9 @@
         </div>
     </div>
 
-    <div class="container flex-center center" id="actualites">
+    <div class="container flex-center center" id="home-actualites">
         <h1 class="red center mx-2">Actualités</h1>
-        <h3 class="subtitle center thin">Retrouvez toute l'actualité de la boucherie sur notre site et nos réseaux
-            sociaux</h3>
+        <h3 class="subtitle center thin">Retrouvez toute l'actualité de la boucherie sur notre site et nos réseaux sociaux</h3>
         <div class="news-container">
             {{ if .ListNews }}
             {{ range .ListNews }}
@@ -108,8 +107,8 @@
                     <img src="{{ .MediaImage.Path }}" alt="Illustration">
                 </div>
                 <div class="news-content">
-                    <span class="date">{{ formatDate .PublishedAt "02/01/2006 15:03" }}</span>
                     <h5 class="card-title">{{ .Title }}</h5>
+                    <span class="date">{{ formatDate .PublishedAt "02/01/2006 15:03" }}</span>
                     <p class="card-text mx-2">{{ .Content }}</p>
                     {{ if .MediaLink }}
                     {{ if eq .MediaLink.MediaType "link" }}
@@ -132,6 +131,8 @@
             <div>Aucun article</div>
             {{ end }}
         </div>
+        <!-- Bouton Voir Plus -->
+        <button id="load-more" class="btn-load-more">Voir plus d'actualités</button>
     </div>
 
     <div class="container flex-center bg-dark white" id="boucherie-charcuterie">
