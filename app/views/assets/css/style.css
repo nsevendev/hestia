@@ -272,7 +272,7 @@ nav {
 }
 
 .news-content {
-    width: 660px;
+    width: 600px;
     text-align: left;
 }
 
@@ -1220,7 +1220,7 @@ audio {
 .alert {
     opacity: 0;
     visibility: hidden; /* Masqué par défaut */
-    transition: opacity 1s ease-in-out, visibility 0s linear 1s; /* Transition d'opacité et visibilité */
+    transition: opacity 2s ease-in-out, visibility 0s linear 1s; /* Transition d'opacité et visibilité */
     position: relative;
     width: 100%;
     padding: 15px;
