@@ -235,6 +235,16 @@ nav {
 
 }
 
+.btn-black {
+    background-color: #181818;
+    color: #ffffff;
+    text-decoration: none;
+    font-size: 1.1rem;
+    padding: 15px;
+    border: none;
+    cursor: pointer;
+}
+
 .title-story {
     padding-top: 5px;
     font-size: 28px;
@@ -277,11 +287,14 @@ nav {
 }
 
 .news-content a {
+    display: block;
     text-decoration: none;
     color: #ffffff;
     padding: 15px;
     background-color: #181818;
     font-size: 1.2rem;
+    max-width: 220px;
+    text-align: center;
 }
 
 .card-title {
@@ -936,6 +949,15 @@ nav {
     cursor: pointer;
 }
 
+.right-side select {
+    font-family: "Poppins", sans-serif;
+    font-size: 1.1rem;
+    padding: 10px;
+    margin-bottom: 20px;
+    border: 1px solid #4b4b4b;
+    border-radius: 5px;
+}
+
 .right-side button:hover {
     background-color: #9e0627;
     color: #ffffff;
@@ -969,7 +991,7 @@ nav {
     border-radius: 5px;
 }
 
-.right-side .title-input {
+.right-side input {
     width: 300px;
     padding: 10px;
     margin-bottom: 20px;
@@ -982,14 +1004,13 @@ nav {
     position: relative;
     max-width: 1300px;
     height: auto;
-    ;
     display: flex;
     align-items: stretch;
     padding-top: 20px;
     padding-left: 20px;
     padding-right: 20px;
     padding-bottom: 30px;
-    border-bottom: 1px solid #ddd;
+    border-bottom: 1px solid #434242;
     margin-bottom: 20px;
     background-color: #ffffff;
     border-radius: 8px;
