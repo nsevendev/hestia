@@ -115,27 +115,6 @@ navLinks.forEach(link => {
   });
 });
 
-// Fonction pour afficher le modal des mentions légales
-function openLegal() {
-  document.getElementById("legal-modal").style.display = "flex";
-}
-
-// Fonction pour fermer le modal des mentions légales
-function closeLegal() {
-  document.getElementById("legal-modal").style.display = "none";
-}
-
-// Ajouter un événement pour ouvrir le modal lorsqu'un bouton est cliqué
-document.getElementById("open-legal-btn").addEventListener("click", function (event) {
-  event.preventDefault();
-  openLegal();
-});
-
-// Ajouter un événement pour fermer le modal lorsqu'on clique sur le bouton de fermeture
-document.getElementById("close-legal-btn").addEventListener("click", function () {
-  closeLegal();
-});
-
 // GALLERY //
 
 let currentIndex = 0; // Index de l'image actuellement affichée
@@ -171,6 +150,26 @@ function nextSlide() {
 showSlide(currentIndex);
 
 // FIN GALLERY //
+
+// Mentions légales 
+
+const legalLink = document.querySelector('footer a[href="#"]');
+const legalModal = document.getElementById('legal-modal');
+
+function openLegal() {
+  legalModal.style.display = 'block';
+}
+
+function closeLegal() {
+  legalModal.style.display = 'none';
+}
+
+legalLink.addEventListener('click', function(event) {
+  event.preventDefault();  
+  openLegal();
+});
+
+document.querySelector('.close-legal').addEventListener('click', closeLegal);
 
 //********************************* PARTIE ADMIN  ********************************/
 
