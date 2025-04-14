@@ -1353,12 +1353,88 @@ audio {
     /* ou transparent */
 }
 
+/* Modal des mentions légales */
+.legal-modal {
+    position: fixed;
+    z-index: 9999; /* Placer le modal au-dessus de tout */
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background: rgba(0, 0, 0, 0.9); /* Fond semi-transparent */
+    display: none; /* Cacher le modal par défaut */
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+}
+
+.legal-content {
+    background: rgb(36, 36, 36);
+    color: #fff;
+    padding: 30px;
+    max-width: 600px;
+    width: 90%;
+    max-height: 90vh;
+    overflow-y: auto;
+    position: relative;
+    border-radius: 10px;
+    font-family: 'Aleo', sans-serif;
+    line-height: 1.5;
+}
+
+.legal-content p {
+    margin-bottom: 12px; /* Espacement entre les paragraphes */
+}
+
+.legal-content h2 {
+    font-size: 24px;
+    margin-bottom: 30px; /* Espacement sous le titre */
+}
+
+.legal-content ul {
+    padding-left: 0;
+}
+
+.legal-content ul li {
+    list-style: none;
+}
+
+.legal-content a {
+    color: #fff;
+    text-decoration: underline;
+}
+
+.close-legal {
+    position: absolute;
+    top: 10px;
+    right: 15px;
+    background: none;
+    border: none;
+    font-size: 24px;
+    cursor: pointer;
+    color: #fff;
+}
+
+.btn-close-site {
+    display: block;
+    margin: 20px auto 0;
+    padding: 10px 20px;
+    background: #9e0627;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+
 /* Footer */
 
 .footer a {
     color: white;
     text-decoration: none;
     font-weight: bold;
+    font-size: 1.2rem;
 }
 
 .footer a:hover a:active a:visited {

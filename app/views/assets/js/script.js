@@ -115,6 +115,27 @@ navLinks.forEach(link => {
   });
 });
 
+// Fonction pour afficher le modal des mentions légales
+function openLegal() {
+  document.getElementById("legal-modal").style.display = "flex";
+}
+
+// Fonction pour fermer le modal des mentions légales
+function closeLegal() {
+  document.getElementById("legal-modal").style.display = "none";
+}
+
+// Ajouter un événement pour ouvrir le modal lorsqu'un bouton est cliqué
+document.getElementById("open-legal-btn").addEventListener("click", function (event) {
+  event.preventDefault();
+  openLegal();
+});
+
+// Ajouter un événement pour fermer le modal lorsqu'on clique sur le bouton de fermeture
+document.getElementById("close-legal-btn").addEventListener("click", function () {
+  closeLegal();
+});
+
 // GALLERY //
 
 let currentIndex = 0; // Index de l'image actuellement affichée
