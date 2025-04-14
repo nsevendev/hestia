@@ -188,7 +188,6 @@ nav {
 
 /* Ajoutez scroll-margin-top pour chaque section pour éviter que le contenu ne soit masqué sous la barre de navigation */
 .home,
-.story,
 .container {
     scroll-margin-top: 20px;
     /* Hauteur de la barre de navigation */
@@ -236,6 +235,16 @@ nav {
 
 }
 
+.btn-black {
+    background-color: #181818;
+    color: #ffffff;
+    text-decoration: none;
+    font-size: 1.1rem;
+    padding: 15px;
+    border: none;
+    cursor: pointer;
+}
+
 .title-story {
     padding-top: 5px;
     font-size: 28px;
@@ -267,62 +276,43 @@ nav {
 }
 
 .news {
-    margin: 30px 0;
     display: flex;
     justify-content: center;
     gap: 40px;
 }
 
-.news-preview {
-    background: url(/assets/img/actus/actu_lest_republicain.jpg);
-    background-position: center;
-    background-size: cover;
-    width: 350px;
-    height: 230px;
-}
-
-.news-preview2 {
-    background: url(/assets/img/actus/preview220524.jpg);
-    background-position: center;
-    background-size: cover;
-    width: 330px;
-    height: 230px;
-}
-
-.news-preview3 {
-    background: url(/assets/img/actus/preview110724.jpg);
-    background-position: center;
-    background-size: cover;
-    width: 330px;
-    height: 230px;
-}
-
-.news-preview4 {
-    background: url(/assets/img/actus/france_bleu_logo.svg);
-    background-position: center;
-    background-size: cover;
-    width: 330px;
-    height: 230px;
-}
-
 .news-content {
-    width: 500px;
+    width: 600px;
     text-align: left;
 }
 
+.news-content a {
+    display: block;
+    text-decoration: none;
+    color: #ffffff;
+    padding: 15px;
+    background-color: #181818;
+    font-size: 1.2rem;
+    max-width: 220px;
+    text-align: center;
+}
+
 .card-title {
-    font-size: 16px;
+    font-size: 1.3rem;
+    padding-bottom: 20px;
 }
 
 .date {
+    margin-top: 30px;
     padding-top: 20px;
-    font-size: 14px;
+    font-size: 1.2rem;
     font-weight: normal;
     line-height: 20px;
 }
 
 .card-text {
-    font-size: 14px;
+    font-size: 1.2rem;
+    padding-bottom: 20px;
 }
 
 .card-text a {
@@ -374,6 +364,18 @@ nav {
     justify-content: center;
     gap: 13px;
     padding-bottom: 40px;
+}
+
+.home-page .news:nth-child(n+5) {
+    display: none;
+}
+
+.btn-load-more {
+    background-color: #000000;
+    color: #ffffff;
+    padding: 20px;
+    font-size: 1.2rem;
+    margin-bottom: 50px;
 }
 
 /* Styles pour la galerie */
@@ -947,6 +949,15 @@ nav {
     cursor: pointer;
 }
 
+.right-side select {
+    font-family: "Poppins", sans-serif;
+    font-size: 1.1rem;
+    padding: 10px;
+    margin-bottom: 20px;
+    border: 1px solid #4b4b4b;
+    border-radius: 5px;
+}
+
 .right-side button:hover {
     background-color: #9e0627;
     color: #ffffff;
@@ -980,7 +991,7 @@ nav {
     border-radius: 5px;
 }
 
-.right-side .title-input {
+.right-side input {
     width: 300px;
     padding: 10px;
     margin-bottom: 20px;
@@ -993,14 +1004,13 @@ nav {
     position: relative;
     max-width: 1300px;
     height: auto;
-    ;
     display: flex;
     align-items: stretch;
     padding-top: 20px;
     padding-left: 20px;
     padding-right: 20px;
     padding-bottom: 30px;
-    border-bottom: 1px solid #ddd;
+    border-bottom: 1px solid #434242;
     margin-bottom: 20px;
     background-color: #ffffff;
     border-radius: 8px;
@@ -1009,8 +1019,8 @@ nav {
 }
 
 .news-image-container {
-    width: 500px; /* Fixe la largeur de l'image */
-    height: 400px; /* Fixe la hauteur de l'image */
+    width: 400px; /* Fixe la largeur de l'image */
+    height: 300px; /* Fixe la hauteur de l'image */
     overflow: hidden; /* Masque la partie qui dépasse si l'image est plus grande */
     display: flex;
     justify-content: center; /* Centre l'image dans le conteneur */
@@ -1024,6 +1034,11 @@ nav {
     height: 100%; /* L'image occupe toute la hauteur du conteneur */
     object-fit: cover; /* L'image s'ajuste pour couvrir tout le conteneur sans déformer son ratio */
     object-position: center; /* L'image est centrée dans son conteneur */
+}
+
+audio {
+    width: 50%;
+    margin-top: 20px;
 }
 
 .right-side .news-content {
@@ -1223,17 +1238,33 @@ nav {
     background-color: #d11435;
 }
 
-
-
 .alert {
+    opacity: 0;
+    visibility: hidden; /* Masqué par défaut */
+    transition: opacity 2s ease-in-out, visibility 0s linear 1s; /* Transition d'opacité et visibilité */
     position: relative;
     width: 100%;
     padding: 15px;
     margin-top: 10px;
     margin-bottom: 20px;
     font-size: 1.2rem;
+    background-color: #f8d7da;
+    color: #721c24;
+    border: 1px solid #f5c6cb;
+    border-radius: 5px;
+  }
+  
+.alert.visible {
+  opacity: 1;
+  visibility: visible;
 }
-
+  
+.alert.invisible {
+  opacity: 0;
+  visibility: hidden; 
+  transition: opacity 1s ease-in-out, visibility 0s linear 0s;
+}
+  
 .alert-success {
     background-color: #c5fad1;
     color: #155724;
@@ -1254,12 +1285,14 @@ nav {
 
 .close-btn {
     position: absolute;
-    right: 0px;
-    top: 0%;
+    right: 0;
+    top: 0;
     transform: translateY(-50%);
     font-size: 100px;
     cursor: pointer;
     user-select: none;
+    z-index: 100; 
+    color: #000; 
 }
 
 
@@ -1320,12 +1353,88 @@ nav {
     /* ou transparent */
 }
 
+/* Modal des mentions légales */
+.legal-modal {
+    position: fixed;
+    z-index: 9999; /* Placer le modal au-dessus de tout */
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background: rgba(0, 0, 0, 0.9); /* Fond semi-transparent */
+    display: none; /* Cacher le modal par défaut */
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+}
+
+.legal-content {
+    background: rgb(36, 36, 36);
+    color: #fff;
+    padding: 30px;
+    max-width: 600px;
+    width: 90%;
+    max-height: 90vh;
+    overflow-y: auto;
+    position: relative;
+    border-radius: 10px;
+    font-family: 'Aleo', sans-serif;
+    line-height: 1.5;
+}
+
+.legal-content p {
+    margin-bottom: 12px; /* Espacement entre les paragraphes */
+}
+
+.legal-content h2 {
+    font-size: 24px;
+    margin-bottom: 30px; /* Espacement sous le titre */
+}
+
+.legal-content ul {
+    padding-left: 0;
+}
+
+.legal-content ul li {
+    list-style: none;
+}
+
+.legal-content a {
+    color: #fff;
+    text-decoration: underline;
+}
+
+.close-legal {
+    position: absolute;
+    top: 10px;
+    right: 15px;
+    background: none;
+    border: none;
+    font-size: 24px;
+    cursor: pointer;
+    color: #fff;
+}
+
+.btn-close-site {
+    display: block;
+    margin: 20px auto 0;
+    padding: 10px 20px;
+    background: #9e0627;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+
 /* Footer */
 
 .footer a {
     color: white;
     text-decoration: none;
     font-weight: bold;
+    font-size: 1.2rem;
 }
 
 .footer a:hover a:active a:visited {
@@ -1483,30 +1592,6 @@ nav {
         flex-direction: column;
     }
 
-    .news-preview {
-        display: block;
-        width: 100%;
-        margin-bottom: 20px;
-    }
-
-    .news-preview2 {
-        display: block;
-        width: 100%;
-        margin-bottom: 20px;
-    }
-
-    .news-preview3 {
-        display: block;
-        width: 100%;
-        margin-bottom: 20px;
-    }
-
-    .news-preview4 {
-        display: block;
-        width: 100%;
-        margin-bottom: 20px;
-    }
-
     .btn-center {
         margin: 0 auto
     }
@@ -1587,6 +1672,11 @@ nav {
         width: 100%;
     }
 
+    .card-title {
+        padding-top: 30px;
+        padding-bottom: 20px;
+    }
+
     .social-footer {
         margin-top: 10px;
         text-align: center;
@@ -1598,82 +1688,55 @@ nav {
 
     .gallery {
         width: 100%;
-        /* La galerie occupe toute la largeur de l'écran */
         max-width: 100%;
-        /* Pas de largeur maximale pour les appareils mobiles */
         position: relative;
-        /* Pour positionner les flèches absolument */
         overflow: hidden;
-        /* Pour masquer tout débordement */
         padding: 0;
-        /* Retirer les marges internes */
     }
 
     .gallery-container {
         position: relative;
-        /* Pour que les flèches se positionnent par rapport à ce conteneur */
     }
 
     .gallery-slides {
         display: flex;
-        /* Flexbox pour aligner les images en ligne */
         width: 100%;
-        /* Les images s'étendent sur toute la largeur du conteneur */
         height: 250px;
-        /* Hauteur constante pour les images sur mobile */
         overflow: hidden;
-        /* Pour éviter les débordements */
         transition: transform 0.5s ease-in-out;
-        /* Transition pour le défilement fluide */
         margin: 0;
-        /* Retirer les marges pour éviter les espaces non désirés */
     }
 
     .gallery-pictures {
         flex-shrink: 0;
-        /* Les images ne se réduisent pas */
         width: 100vw;
-        /* Chaque image occupe 100% de la largeur de la fenêtre */
         height: 100%;
-        /* Les images remplissent la hauteur du conteneur */
-        object-fit: cover;
-        /* Remplir le conteneur tout en conservant le ratio d'aspect */
+        object-fit: contain;
     }
 
     .arrow {
         position: absolute;
-        /* Positionner les flèches absolument par rapport au conteneur de la galerie */
         top: 50%;
-        /* Centrer verticalement */
         transform: translateY(-50%);
-        /* Ajuster le centrage vertical */
         background-color: rgba(255, 255, 255, 0.7);
-        /* Fond légèrement transparent */
         border: none;
         color: black;
         font-size: 1.5rem;
-        /* Taille des flèches */
         padding: 10px;
-        /* Espacement interne */
         cursor: pointer;
         z-index: 10;
-        /* Placer les flèches au-dessus des images */
         transition: background-color 0.3s ease;
-        /* Transition de couleur au survol */
     }
 
     .arrow:hover {
         background-color: rgba(255, 255, 255, 0.9);
-        /* Couleur de fond au survol */
     }
 
     .left-arrow {
         left: 0;
-        /* Positionner la flèche gauche à 0 pixels du bord gauche */
     }
 
     .right-arrow {
         right: 0;
-        /* Positionner la flèche droite à 0 pixels du bord droit */
     }
 }
