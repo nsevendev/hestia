@@ -111,8 +111,8 @@ showSlide(currentIndex);
 // Caroussel des avis client 
 
 document.addEventListener('DOMContentLoaded', function () {
-  const prev = document.querySelector('.carousel-control.prev');
-  const next = document.querySelector('.carousel-control.next');
+  const prev = document.querySelector('.arrow .left-arrow');
+  const next = document.querySelector('.arrow .right-arrow');
   const carousel = document.querySelector('.carousel');
   let scrollPosition = 0;
   const cardWidth = document.querySelector('.card-review').offsetWidth;
@@ -128,20 +128,6 @@ document.addEventListener('DOMContentLoaded', function () {
     scrollPosition = Math.min(scrollPosition + cardWidth * visibleCards, maxScroll);
     carousel.style.transform = `translateX(-${scrollPosition}px)`;
   });
-});
-
-// Bandeau temporaire 
-
-document.addEventListener("DOMContentLoaded", function () {
-  const startDate = new Date("2024-10-22T00:00:00+02:00");
-  const endDate = new Date("2024-11-02T19:00:00+02:00");
-  const now = new Date();
-  const infoBanner = document.querySelector(".information");
-  if (now >= startDate && now < endDate) {
-    infoBanner.style.display = "block";
-  } else {
-    infoBanner.style.display = "none";
-  }
 });
 
 /********************************* PARTIE ADMIN  ********************************/

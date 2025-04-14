@@ -14,11 +14,11 @@ import (
 type responseAuth struct {
 	Title   string
 	Content string
-	Error string
+	Error   string
 }
 
 type authController struct {
-	res *responseAuth
+	res         *responseAuth
 	serviceAuth auth.AuthService
 }
 
@@ -34,7 +34,7 @@ type HomeController interface {
 
 func InitHomeController(c *depinject.Container) HomeController {
 	res := &responseAuth{
-		Title:  "Login user",
+		Title:   "La Belfortaine - Connexion",
 		Content: "login",
 	}
 

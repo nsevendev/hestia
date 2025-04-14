@@ -1,7 +1,7 @@
 services:
   hestia-go-prod:
     build:
-      target: prod
+      target: dev
       context: .
       dockerfile: Dockerfile
     image: ${NSC_NAME_CONTAINER_APP}:latest
@@ -15,13 +15,7 @@ services:
       - "traefik.http.routers.hestia-go-prod.tls.certresolver=le"
       - "traefik.http.services.hestia-go-prod.loadbalancer.server.port=${PORT}"
     volumes:
-      - ./.env:/app/.env
-      - ./migrations:/app/migrations
-      - ./runtime:/app/runtime
-      - ./app/views:/app/app/views
-    networks:
-      - hestia-net
-      - traefik-nseven
+      - .:/app
     env_file:
       - .env
     depends_on:

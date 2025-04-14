@@ -14,13 +14,13 @@ func (gc *galleryController) DeleteImageById(c *gin.Context) {
 	if err := gc.galleryService.DeleteImageById(c.Request.Context(), uuid); err != nil {
 		c.Redirect(
 			http.StatusSeeOther,
-			"/dashboard/gallery?statusCode=" + strconv.Itoa(http.StatusBadRequest) + "&error=" + url.QueryEscape("Erreur lors de la suppression de l'image, de la gallery" + err.Error()),
+			"/dashboard/gallery?statusCode="+strconv.Itoa(http.StatusBadRequest)+"&error="+url.QueryEscape("Erreur lors de la suppression de l'image, de la gallery"+err.Error()),
 		)
 		return
 	}
 
 	c.Redirect(
 		http.StatusSeeOther,
-		"/dashboard/gallery?statusCode=" + strconv.Itoa(http.StatusOK) + "&success=" + url.QueryEscape("Image de la gallery supprimée avec succès"),
+		"/dashboard/gallery?statusCode="+strconv.Itoa(http.StatusOK)+"&success="+url.QueryEscape("Image de la galerie supprimée avec succès"),
 	)
 }

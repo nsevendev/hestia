@@ -7,21 +7,13 @@
 
 <h1>Tableau de bord</h1>
 
-<div class="alert alert-success">
-    <span>Vos informations ont correctement été mises à jour.</span>
-</div>
-
 <div class="group-infos">
-    <div class="card-infos">
+    <div>
         <h3>Vos informations</h3>
         <ul>
             <li>Votre nom : {{ .UserCurrent.UserName }}</li>
             <li>Votre adresse mail : {{ .UserCurrent.Email }}</li>
         </ul>
-
-        <button>
-            Modifier les informations
-        </button>
     </div>
 </div>
 {{ end }}

@@ -418,7 +418,7 @@ nav {
 .gallery-pictures {
     width: 100%;
     height: 100%;
-    object-fit: cover;
+    object-fit: contain;
     /* Remplir le conteneur tout en conservant le ratio d'aspect */
     display: none;
     /* Masquer toutes les images sauf celle visible */
@@ -653,6 +653,101 @@ nav {
     text-decoration: underline;
 }
 
+.login-container {
+    font-family: "Poppins", sans-serif;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: linear-gradient(180deg, rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.4) 100%), url('/assets/img/gallery/vitrine-la-belfortaine-5.jpeg') top/cover no-repeat fixed;
+}
+
+.login-form {
+    background: #ffffff;
+    padding: 50px 30px;
+    border: 1px solid #000000;
+    border-radius: 8px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    width: 100%;
+    max-width: 500px;
+    text-align: center;
+}
+
+.login-form h2 {
+    margin-bottom: 40px;
+    color: #343a40;
+    text-align: center;
+    font-size: 2rem;
+}
+
+.login-form .form-group {
+    margin-bottom: 40px;
+}
+
+.login-form label {
+    display: block;
+    margin-bottom: 8px;
+    color: #495057;
+    font-weight: 600;
+    font-size: 1.3rem;
+    text-align: left;
+    padding-left: 46px;
+}
+
+.login-form input[type="email"],
+.login-form input[type="password"] {
+    width: 80%;
+    padding: 10px 15px;
+    border: 1px solid #555656;
+    border-radius: 4px;
+    font-size: 1.3rem;
+}
+
+.login-form input[type="email"]:focus,
+.login-form input[type="password"]:focus {
+    outline: none;
+    border-color: #9e0627;
+    box-shadow: 0 0 4px rgba(0, 123, 255, 0.25);
+}
+
+.form-button {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 20px;
+}
+
+
+.login-form button {
+    padding: 20px 30px;
+    border: none;
+    border-radius: 4px;
+    background-color: #1d1d1d;
+    color: #ffffff;
+    font-size: 1.3rem;
+    cursor: pointer;
+    transition: background-color 0.25s ease;
+    margin: 0 auto; /* Cela va centrer le bouton horizontalement */
+}
+
+.login-form button:hover {
+    background-color: #9e0627;
+}
+
+.login-form .footer {
+    margin-top: 25px;
+    text-align: center;
+}
+
+.login-form .footer a {
+    color: #007bff;
+    text-decoration: none;
+}
+
+.login-form .footer a:hover {
+    text-decoration: underline;
+}
+
 .social-footer {
     margin-top: 10px;
     text-align: left;
@@ -688,6 +783,7 @@ nav {
 }
 
 .sidebar {
+    position: relative;
     width: 300px;
     background-color: #181818;
     color: #ffffff;
@@ -731,10 +827,30 @@ nav {
     background-color: #9e0627;
 }
 
+.sidebar-links a.active {
+    width: 100%;
+    background-color: #9e0627;
+    font-weight: bold;
+}
+
 .sidebar ul,
 .sidebar-links ul {
     margin-left: 0;
     padding-left: 0;
+}
+
+/* Lien Conditions générales */
+.sidebar-links li.bottom-link {
+    position: absolute;  
+    bottom: 20px;  
+    width: 100%; 
+    text-align: center; 
+}
+
+/* Centrer le texte dans le lien */
+.sidebar-links li.bottom-link a {
+    display: inline-block;
+    width: 100%;
 }
 
 /* Right Side */
@@ -768,6 +884,12 @@ nav {
     font-size: 1.5rem;
 }
 
+.right-side h5 {
+    font-weight: 600;
+    padding-top: 20px;
+    font-size: 1.2rem;
+}
+
 .right-side ul {
     list-style: none;
     padding-left: 0;
@@ -790,20 +912,23 @@ nav {
 }
 
 .right-side .title-news {
+    font-family: "Poppins", sans-serif;
     width: 100%;
     padding: 10px;
     margin-bottom: 20px;
     border: 1px solid #4b4b4b;
     border-radius: 5px;
+    font-size: 1rem;
 }
 
-.right-side label {
-    padding-right: 10px;
+.right-side .row-form label {
+    font-family: "Poppins", sans-serif;
     font-size: 1.2rem;
     margin-bottom: 0;
 }
 
 .right-side textarea {
+    font-family: "Poppins", sans-serif;
     width: 100%;
     height: 200px;
     padding: 10px;
@@ -816,11 +941,10 @@ nav {
 .right-side button {
     background-color: #000000;
     color: #ffffff;
-    padding: 18px;
+    padding: 15px;
     border: none;
-    font-size: 1rem;
+    font-size: 1.2rem;
     cursor: pointer;
-    border-radius: 12px;
 }
 
 .right-side button:hover {
@@ -849,15 +973,25 @@ nav {
 }
 
 .right-side .title-img {
+    width: 300px;
     padding: 10px;
     margin-bottom: 20px;
     border: 1px solid #4b4b4b;
     border-radius: 5px;
 }
 
-.right-side .news {
+.right-side .title-input {
+    width: 300px;
+    padding: 10px;
+    margin-bottom: 20px;
+    border: 1px solid #4b4b4b;
+    border-radius: 5px;
+}
+
+
+.news {
     position: relative;
-    max-width: 1000px;
+    max-width: 1300px;
     height: auto;
     ;
     display: flex;
@@ -874,19 +1008,22 @@ nav {
     /* espacement régulier */
 }
 
-.right-side .news-image-container {
-    width: 300px;
+.news-image-container {
+    width: 500px; /* Fixe la largeur de l'image */
+    height: 400px; /* Fixe la hauteur de l'image */
+    overflow: hidden; /* Masque la partie qui dépasse si l'image est plus grande */
     display: flex;
-    flex-direction: column;
-    border-radius: 8px;
-    background-color: #f0f0f0;
+    justify-content: center; /* Centre l'image dans le conteneur */
+    align-items: center; /* Centre l'image verticalement */
+    background-color: #f0f0f0; /* Optionnel : ajouter un fond gris clair */
+    border-radius: 8px; /* Arrondi des coins */
 }
 
-.right-side .news-image-container img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    object-position: center;
+.news-image-container img {
+    width: 100%; /* L'image occupe toute la largeur du conteneur */
+    height: 100%; /* L'image occupe toute la hauteur du conteneur */
+    object-fit: cover; /* L'image s'ajuste pour couvrir tout le conteneur sans déformer son ratio */
+    object-position: center; /* L'image est centrée dans son conteneur */
 }
 
 .right-side .news-content {
@@ -920,6 +1057,13 @@ nav {
     text-overflow: ellipsis;
 }
 
+.news-description a {
+    text-decoration: none;
+    color: #000000;
+    padding: 10px;
+    background-color: red;
+}
+
 .right-side .news-actions {
     margin-right: 30px;
     display: flex;
@@ -943,13 +1087,150 @@ nav {
     border-radius: 20px;
 }
 
-/* Alertes (bandeau d'information) */
+.right-side .alert-date {
+    width: 100%;
+    display: flex;
+    gap: 20px;
+    align-items: center;
+}
+
+.right-side .alert-content {
+    font-family: "Poppins", sans-serif;
+    padding-top: 30px;
+}
+
+.right-side .alert-content input[textarea] {
+    font-family: "Poppins", sans-serif;
+    width: 100%;
+    height: 200px;
+    padding: 10px;
+    margin-top: 15px;
+    margin-bottom: 20px;
+    border: 1px solid #4b4b4b;
+    border-radius: 5px;
+    font-size: 2rem;
+}
+
+.right-side input[type="date"] {
+    /* Apparence générale */
+    background-color: #fff;
+    /* Couleur de fond */
+    border: 1px solid #4a4949;
+    /* Bordure fine et grise */
+    border-radius: 4px;
+    /* Coins arrondis */
+    padding: 10px;
+    /* Espacement interne */
+    font-size: 16px;
+    /* Taille de police */
+    color: #333;
+    /* Couleur du texte */
+
+    /* Retirer le style natif (selon le navigateur) */
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+
+    /* Largeur si nécessaire (vous pouvez l’ajuster) */
+    width: 160px;
+}
+
+.right-side .list-period {
+    display: flex;
+    align-items: center;
+    justify-content: start;
+    padding: 0.5rem 0;
+    gap: 30px;
+}
+
+.right-side .period-container {
+    display: flex;
+    align-items: center;
+    justify-content: start;
+    font-size: 1rem;
+}
+
+.right-side .period-title {
+    display: flex;
+    font-size: 1.2rem;
+    font-weight: bold;
+    margin-right: 20px;
+    align-items: center;
+    gap: 20px;
+}
+
+.right-side .gallery-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); /* Maintenir la mise en page responsive */
+    gap: 20px;
+    justify-items: center;
+    margin-top: 20px;
+}
+
+.right-side .gallery-card {
+    background-color: #fff;
+    border: 1px solid #a5a5a5;
+    border-radius: 8px;
+    box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 6px;
+    overflow: hidden;
+    width: 100%;
+    max-width: 350px; /* Fixe la largeur maximale des cartes */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    padding-bottom: 20px;;
+}
+
+/* Conteneur de l'image */
+.image-container {
+    width: 400px; /* Largeur fixe de l'image */
+    height: 300px; /* Hauteur fixe de l'image */
+    overflow: hidden;
+}
+
+/* L'image elle-même */
+.image-container img {
+    width: 100%; /* Occupe toute la largeur de son conteneur */
+    height: 100%; /* Occupe toute la hauteur de son conteneur */
+    object-fit: cover; /* Remplir le conteneur tout en conservant les proportions */
+}
+
+.btn-add {
+    margin-top: 30px;
+}
+
+/* Bouton de suppression */
+.delete-form {
+    margin-top: 20px;
+    display: flex;
+    justify-content: center;
+}
+
+.btn-delete {
+    display: flex;
+    gap: 10px;
+    padding: 12px 25px; /* Augmente la taille du bouton */
+    background-color: #9e0627;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.btn-delete:hover {
+    background-color: #d11435;
+}
+
+
 
 .alert {
     position: relative;
-    width: 95%;
+    width: 100%;
     padding: 15px;
-    margin-bottom: 10px;
+    margin-top: 10px;
+    margin-bottom: 20px;
     font-size: 1.2rem;
 }
 
@@ -1012,7 +1293,6 @@ nav {
 .terms article {
     max-width: 80%;
     font-size: 1rem;
-    margin-bottom: 20px;
     border-bottom: 1px solid #ddd;
 }
 
@@ -1023,7 +1303,6 @@ nav {
 
 .terms p {
     font-size: 1.5rem;
-    margin-bottom: 15px;
 }
 
 .terms ul {
@@ -1252,7 +1531,7 @@ nav {
 
     .labels {
         display: flex;
-        align-items: center;
+        align-items: left;
         justify-content: center;
         gap: 13px;
         padding-bottom: 40px;
