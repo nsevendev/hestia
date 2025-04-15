@@ -8,7 +8,7 @@
 
 html {
     scroll-behavior: smooth;
-
+    overflow-x: hidden;
 }
 
 h1 {
@@ -190,7 +190,6 @@ nav {
 .home,
 .container {
     scroll-margin-top: 20px;
-    /* Hauteur de la barre de navigation */
 }
 
 /* Titres */
@@ -1739,4 +1738,39 @@ audio {
     .right-arrow {
         right: 0;
     }
+}
+
+@media screen and (max-width: 1000px) {
+
+    .home-page {
+        width: 100%;
+    }
+
+    .container,
+    .news,
+    .gallery,
+    .image-container,
+    .gallery-slides {
+  max-width: 100%;
+  overflow-x: hidden;
+}
+
+.news {
+    width: 100%;
+    margin: 0;
+    padding-left: 0;
+    flex-direction: column;
+    align-items: center;
+}
+
+.card-text {
+    font-size: 1.2rem;
+    padding-bottom: 20px;
+}
+
+audio {
+    width: 100%;
+    margin-top: 20px;
+
+}
 }
