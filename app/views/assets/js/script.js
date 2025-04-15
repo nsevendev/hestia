@@ -157,7 +157,7 @@ const legalLink = document.querySelector('footer a[href="#"]');
 const legalModal = document.getElementById('legal-modal');
 
 function openLegal() {
-  legalModal.style.display = 'block';
+  legalModal.style.display = 'flex';
 }
 
 function closeLegal() {

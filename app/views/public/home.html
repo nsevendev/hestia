@@ -108,7 +108,6 @@
                 </div>
                 <div class="news-content">
                     <h5 class="card-title">{{ .Title }}</h5>
-                    <span class="date">{{ formatDate .PublishedAt "02/01/2006 15:03" }}</span>
                     <p class="card-text mx-2">{{ .Content }}</p>
                     {{ if .MediaLink }}
                     {{ if eq .MediaLink.MediaType "link" }}
@@ -124,6 +123,7 @@
                     <a href="{{ .MediaLink.Path }}" target="_blank">Version numérique</a>
                     {{ end }}
                     {{ end }}
+                    <span class="date">Publié le {{ formatDate .PublishedAt "02/01/2006 15:03" }}</span>
                 </div>
             </div>
             {{ end }}
@@ -455,14 +455,14 @@
                 <img src="/assets/img/logo.svg" alt="Logo de la boucherie charcuterie La Belfortaine">
             </div>
             <div class="middle-contact">
-                <h5>Notre adresse</h5>
+                <h3 class="mx-2">Notre adresse</h3>
                 <div class="email">
                     <ul>
                         <li>53, Avenue Jean Jaurès<br>90000 Belfort</li>
                         <li><a href="https://maps.app.goo.gl/aWPYSUFc8wQm1RyY9" target="_blank">Voir le plan</a></li>
                     </ul>
                 </div>
-                <h5 class="mx-2">Horaires d'ouverture</h5>
+                <h3 class="mx-2">Horaires d'ouverture</h3>
                 <div class="social-footer">
                     <ul>
                         <li><strong>Du mardi au vendredi</strong></li>
@@ -475,21 +475,21 @@
 
             <div class="rightside-contact">
 
-                <h5>Téléphone</h5>
+                <h3 class="mb-2">Téléphone</h3>
                 <div class="email">
                     <ul>
                         <li><a href="tel:0384990853">03 84 99 08 53</a></li>
                     </ul>
                 </div>
 
-                <h5 class="mx-2">Adresse mail</h5>
+                <h3 class="mx-2">Adresse mail</h3>
                 <div class="email">
                     <ul>
                         <li><a href="mailto:boucherielabelfortaine@gmail.com">boucherielabelfortaine@gmail.com</a></li>
                     </ul>
                 </div>
 
-                <h5 class="mx-2">Réseaux sociaux</h5>
+                <h3 class="mx-2">Réseaux sociaux</h2>
                 <div class="social-footer">
                     <a href="https://www.facebook.com/profile.php?id=61557030044286" target="_blank" class="link-social"><i
                             class="fa-brands fa-facebook" style="color: #ffffff;"></i></a>
