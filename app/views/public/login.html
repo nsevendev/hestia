@@ -10,7 +10,6 @@
         {{ if .Error }}
         <div class="alert alert-error">{{ .Error }}</div>
         {{ end }}
-
         <div class="form-group">
             <label for="email">Email :</label>
             <input type="email" id="email" name="email" placeholder="Votre email" required>
@@ -22,6 +21,8 @@
         <div class="form-button">
         <button type="submit">Se connecter</button>
     </div>
+    <div>
+        <a href="{{ hostTraefik }}">Retour sur le site</a></div>
     </form>
 </div>
 {{ end }}

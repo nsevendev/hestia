@@ -13,10 +13,10 @@ func (ac *authController) Login(c *gin.Context) {
 
 	user, err := ac.serviceAuth.Authenticate(c.Request.Context(), email, password)
 	if err != nil {
-		c.Redirect(http.StatusSeeOther, "/login?error=Email ou mot de passe invalide ")
+		c.Redirect(http.StatusSeeOther, "/login?error=Email ou mot de passe non valide")
 		return
 	}
 
-    session.SetUserSession(c, user)
-    c.Redirect(http.StatusSeeOther, "/dashboard")
+	session.SetUserSession(c, user)
+	c.Redirect(http.StatusSeeOther, "/dashboard")
 }

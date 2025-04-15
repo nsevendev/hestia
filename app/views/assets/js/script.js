@@ -1,20 +1,3 @@
-// Afficher masquer l'alerte
-
-window.addEventListener('DOMContentLoaded', () => {
-  const alert = document.querySelector('.alert');
-  if (!alert) return;
-
-  setTimeout(() => {
-    alert.classList.add('visible');
-    console.log("Alert element trouvé ?", alert);
-
-    setTimeout(() => {
-      alert.classList.add('invisible');
-      console.log("Alert disparaît", alert);
-    }, 5000); 
-  }, 1000); 
-})
-
 // Afficher les actualités 
 
 let currentNewsCount = 4; // Nombre d'actualités affichées par défaut
