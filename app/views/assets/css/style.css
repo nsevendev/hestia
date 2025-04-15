@@ -134,7 +134,7 @@ h1 {
 nav {
     position: fixed;
     width: 100%;
-    padding: 15px 30px;
+    padding: 20px 30px;
     display: flex;
     align-items: center;
     justify-content: space-between;
@@ -163,6 +163,7 @@ nav {
 .nav-link {
     color: #989898;
     text-decoration: none;
+    font-size: 1.3rem;
 }
 
 .nav-link.active {
@@ -173,6 +174,8 @@ nav {
 .social {
     display: flex;
     gap: 10px;
+    text-decoration: none;
+    font-size: 1.5rem;
 }
 
 .nav-burger {
