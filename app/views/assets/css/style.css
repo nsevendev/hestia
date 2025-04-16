@@ -106,8 +106,8 @@ h1 {
 
 .sound-toggle {
     position: absolute;
-    bottom: 20px;
-    right: 20px;
+    top: 90px;
+    right: 12px;
     background: rgba(0, 0, 0, 0.5);
     border: none;
     font-size: 24px;
@@ -205,11 +205,14 @@ nav {
     display: flex;
     gap: 25px;
     list-style: none;
-}
+    height: 100%; 
+    margin: 0;
+    padding: 0;
+  }
 
-.navbar ul li {
-    display: inline;
-}
+  .navbar ul li {
+    height: 100%; /* ✅ clé : chaque <li> prend toute la hauteur */
+  }
 
 .nav-link {
     font-family: "Aleo", serif;
@@ -218,10 +221,23 @@ nav {
     font-size: 1.3rem;
 }
 
-.nav-link.active {
-    color: #ffffff;
+.navbar ul li a.nav-link.active {
+    background-color: #c00c2f;
     font-weight: bold;
-}
+    color: #ffffff;
+  }
+
+  .navbar ul li a.nav-link {
+    display: flex;            /* ✅ pour vertical align center */
+    align-items: center;
+    height: 100%;             /* ✅ prend toute la hauteur de la navbar */
+    padding: 0 15px;          /* ajustable */
+    font-family: "Aleo", serif;
+    color: #ffffff;
+    text-decoration: none;
+    font-size: 1.3rem;
+    transition: background-color 0.3s ease;
+  }
 
 .social {
     display: flex;
@@ -301,6 +317,7 @@ nav {
 }
 
 .btn-black {
+    white-space: nowrap; /* Empêche le texte de se diviser sur plusieurs lignes */
     background-color: #181818;
     color: #ffffff;
     text-decoration: none;
@@ -1084,7 +1101,7 @@ nav {
     padding-left: 20px;
     padding-right: 20px;
     padding-bottom: 30px;
-    border-top: 2px solid #ababab;
+    border-top: 1px solid #aeadad;
     background-color: #ffffff;
     border-radius: 8px;
     gap: 20px;
@@ -1288,6 +1305,7 @@ audio {
 }
 
 .btn-add {
+    white-space: nowrap;
     margin-top: 30px;
 }
 
@@ -1478,6 +1496,7 @@ audio {
 }
 
 .btn-close-site {
+    white-space: nowrap;
     display: block;
     margin: 20px auto 0;
     padding: 10px 20px;
@@ -1577,7 +1596,7 @@ audio {
 
     .show-navbar {
         font-family: "Aleo", sans-serif;
-        background-color: rgba(0, 0, 0, 0.7);
+        background-color: rgba(0, 0, 0, 0.5);
         position: absolute;
         left: 0;
         padding-left: 20px;
@@ -1828,23 +1847,29 @@ audio {
     margin: 0;
     padding-left: 0;
     flex-direction: column;
-    align-items: center;
-    border-top: 3px solid #ababab;
+    align-items: start;
+    border-top: 1px solid #ababab;
 }
 
 .news-content {
     width: 100%;
+    padding-left: 20px;
     display: flex;
     flex-direction: column;
     align-items: center;
 }
 
+.news-content a {
+    margin-top: 20px;
+    margin-bottom: 0;
+}
+
 .card-title {
-    font-size: 1.7rem;
+    font-size: 1.3rem;
 }
 
 .card-text {
-    width: 98%;
+    width: 100%;
     font-size: 1.4rem;
     padding-bottom: 5px;
 }
@@ -1853,7 +1878,7 @@ audio {
     font-size: 1.2rem;
     padding: 5px 0;
     margin: 0;
-    text-align: center;
+    text-align: left;
     width: 100%;
 }
 

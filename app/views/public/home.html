@@ -116,7 +116,7 @@
                 <div class="news-content">
                     <h5 class="card-title">{{ .Title }}</h5>
                     <span class="date">Publié le {{ formatDate .PublishedAt "02/01/2006 15:03" }}</span>
-                    <p class="card-text mx-2">{{ .Content }}</p>
+                    <p class="card-text">{{ .Content }}</p>
                     {{ if .MediaLink }}
                     {{ if eq .MediaLink.MediaType "link" }}
                     <a href="{{ .MediaLink.Path }}" target="_blank">Voir le lien</a>
