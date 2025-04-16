@@ -118,8 +118,6 @@ h1 {
     z-index: 2; /* au-dessus de la vidéo */
 }
 
-
-
 /* Graisse & Couleurs  */
 
 .thin {
@@ -203,7 +201,7 @@ nav {
 
 .navbar ul {
     display: flex;
-    gap: 25px;
+    gap: 40px;
     list-style: none;
     height: 100%; 
     margin: 0;
@@ -222,8 +220,7 @@ nav {
 }
 
 .navbar ul li a.nav-link.active {
-    background-color: #c00c2f;
-    font-weight: bold;
+    font-weight: 800;
     color: #ffffff;
   }
 
@@ -231,7 +228,6 @@ nav {
     display: flex;            /* ✅ pour vertical align center */
     align-items: center;
     height: 100%;             /* ✅ prend toute la hauteur de la navbar */
-    padding: 0 15px;          /* ajustable */
     font-family: "Aleo", serif;
     color: #ffffff;
     text-decoration: none;
@@ -241,7 +237,7 @@ nav {
 
 .social {
     display: flex;
-    gap: 10px;
+    gap: 15px;
     text-decoration: none;
     font-size: 1.5rem;
 }
@@ -276,6 +272,8 @@ nav {
     width: 90%;
     font-weight: 400;
     font-size: 1.4rem;
+    padding-top: 20px;
+    padding-bottom: 30px;
 }
 
 /* Accueil du site */
@@ -299,7 +297,7 @@ nav {
     bottom: 100px; /* ajuste selon le logo dans la vidéo */
     left: 50%;
     transform: translateX(-50%);
-    background-color: rgba(0, 0, 0, 0.6); /* noir avec 70% d’opacité */
+    background-color: rgba(0, 0, 0, 0.7); /* noir avec 70% d’opacité */
     border: 1px solid #666666;
     color: white;
     padding: 30px 32px;
@@ -328,8 +326,19 @@ nav {
 }
 
 .title-story {
-    padding-top: 5px;
+    padding-top: 40px;
     font-size: 28px;
+}
+
+.title-actus {
+    padding-top: 80px;
+    font-size: 28px;
+}
+
+.title-butcher {
+    padding-top: 80px;
+    text-align: left;
+    padding-bottom: 20px;
 }
 
 .story {
@@ -1530,7 +1539,7 @@ audio {
     }
 
     .navbar ul {
-        gap: 10px;
+        gap: 5px;
     }
 
     .news-content {
@@ -1539,7 +1548,7 @@ audio {
 
     .navbar ul li a {
         display: inline-block;
-        font-size: 14px;
+        font-size: 0.8rem;
     }
 
     .news-container {
@@ -1596,11 +1605,12 @@ audio {
 
     .show-navbar {
         font-family: "Aleo", sans-serif;
-        background-color: rgba(0, 0, 0, 0.5);
+        background-color: rgba(0, 0, 0, 0.7);
         position: absolute;
         left: 0;
         padding-left: 20px;
-        margin-top: 300px;
+        margin-top: 424px;
+        padding-top: 5px;
         width: 100%;
         display: block;
         animation: all;
@@ -1608,8 +1618,8 @@ audio {
     }
 
     .show-navbar ul li a {
-        font-size: 18px;
-        line-height: 20px;
+        font-size: 1rem;
+        line-height: 2.5rem;
         margin-bottom: 18px;
     }
 
@@ -1619,8 +1629,8 @@ audio {
     }
 
     .show-navbar ul {
+        margin: 20px 0;
         margin-left: 0;
-        padding: 20px 0;
         display: flex;
         flex-direction: column;
     }
@@ -1840,6 +1850,35 @@ audio {
     .gallery-slides {
   max-width: 100%;
   overflow-x: hidden;
+}
+
+.title-story {
+    padding-top: 20px;
+    text-align: left;
+}
+
+.title-actus {
+    padding-top: 100px;
+    text-align: left;
+    padding-bottom: 20px;
+}
+
+.title-butcher {
+    padding-top: 100px;
+    text-align: left;
+    padding-bottom: 20px;
+}
+
+.title-thanks {
+    padding-top: 100px;
+    text-align: left;
+    padding-bottom: 20px;
+}
+
+.title-contact {
+    padding-top: 100px;
+    text-align: left;
+    padding-bottom: 20px;
 }
 
 .news {
