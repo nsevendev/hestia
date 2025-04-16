@@ -36,30 +36,37 @@
     </nav>
 </header>
 <div class="container-home">
-    <div class="home" id="accueil">
-        <picture>
-            <img src="../assets/img/logo_la_belfortaine.svg" class="logo-header"
-                alt="Logo de la boucherie charcuterie La Belfortaine">
-        </picture>
-        <div class="horaires">
-            <!--<div class="information">Fermeture exceptionnelle le 1er et 2 novembre 2024</div>-->
-            {{ if .PeriodClosed }}
-            <div class="information-fermeture">
-                Fermeture exceptionnelle <br>
-                <!-- {{ .PeriodClosed.Title }} -->
-                du {{ formatDate .PeriodClosed.StartDate
-                "02/01/2006" }} au {{ formatDate .PeriodClosed.EndDate "02/01/2006" }} inclus
+    <div class="hero" id="accueil">
+        <video autoplay muted loop playsinline class="hero-video">
+            <source src="../assets/mp4/preview-la-belfortaine.mp4" type="video/mp4">
+            Votre navigateur ne supporte pas la vidéo HTML5.
+        </video>
+
+        <button class="sound-toggle" onclick="toggleSound()">🔊</button>
+        <a href="#notre-histoire" class="btn-discover">Découvrez la boucherie</a>
+    
+        <div class="hero-content">
+            <picture>
+                <img src="../assets/img/logo_la_belfortaine.svg" class="logo-header" alt="Logo de la boucherie">
+            </picture>
+            <div class="horaires">
+                {{ if .PeriodClosed }}
+                <div class="information-fermeture">
+                    Fermeture exceptionnelle <br>
+                    du {{ formatDate .PeriodClosed.StartDate "02/01/2006" }} au {{ formatDate .PeriodClosed.EndDate "02/01/2006" }} inclus
+                </div>
+                {{ end }}
+
+                <!-- <h2 class="mx-2">Nos horaires d'ouverture</h2>
+                <ul>
+                    <li class="bold">Du mardi au vendredi</li>
+                    <li>De 8h00 à 12h15 / 15h00 à 19h00</li>
+                    <li class="mt-1 bold">Tous les samedis</li>
+                    <li>De 8h00 à 12h15</li>
+                </ul> -->
+
             </div>
-            {{ end }}
-            <h2 class="mx-2">Nos horaires d'ouverture</h2>
-            <ul>
-                <li class="bold">Du mardi au vendredi</li>
-                <li>De 8h00 à 12h15 / 15h00 à 19h00</li>
-                <li class="mt-1 bold">Tous les samedis</li>
-                <li>De 8h00 à 12h15</li>
-            </ul>
         </div>
-        <a href="#notre-histoire" class="btn-red">Découvrez la boucherie</a>
     </div>
 
     <div class="story bg-light" id="notre-histoire">

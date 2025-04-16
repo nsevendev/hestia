@@ -1,4 +1,5 @@
 @import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Aleo:ital,wght@0,100..900;1,100..900&display=swap');
 /* Elements du DOM */
 
 * {
@@ -72,6 +73,52 @@ h1 {
     line-height: 24px;
 }
 
+/* Section Home */
+
+.hero {
+    position: relative;
+    height: 100vh;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    color: white;
+}
+
+.hero-video {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    z-index: 1;
+}
+
+.hero-content {
+    position: relative;
+    z-index: 2;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.sound-toggle {
+    position: absolute;
+    bottom: 20px;
+    right: 20px;
+    background: rgba(0, 0, 0, 0.5);
+    border: none;
+    font-size: 24px;
+    color: white;
+    padding: 10px;
+    cursor: pointer;
+    border-radius: 50%;
+    z-index: 2; /* au-dessus de la vidéo */
+}
+
+
 
 /* Graisse & Couleurs  */
 
@@ -132,18 +179,22 @@ h1 {
 /* Menu principal */
 
 nav {
+    background-color: rgba(0, 0, 0, 0.6); /* transparent initialement */
+    transition: background-color 0.4s ease;
     position: fixed;
     width: 100%;
     padding: 20px 30px;
     display: flex;
     align-items: center;
     justify-content: space-between;
-    background-color: #000000;
+    transition: background-color 0.4s ease;
     color: #ffffff;
     z-index: 100;
 }
 
 .logo a {
+    font-family: "Aleo", serif;
+    font-size: 1.3rem;
     color: #ffffff;
     text-decoration: none;
     font-weight: 800;
@@ -152,7 +203,7 @@ nav {
 
 .navbar ul {
     display: flex;
-    gap: 15px;
+    gap: 25px;
     list-style: none;
 }
 
@@ -161,7 +212,8 @@ nav {
 }
 
 .nav-link {
-    color: #989898;
+    font-family: "Aleo", serif;
+    color: #ffffff;
     text-decoration: none;
     font-size: 1.3rem;
 }
@@ -226,22 +278,26 @@ nav {
     width: 500px;
 }
 
-.home .btn-red {
-    background-color: #9e0627;
-    color: #ffffff;
-    text-decoration: none;
+.btn-discover {
+    position: absolute;
+    bottom: 100px; /* ajuste selon le logo dans la vidéo */
+    left: 50%;
+    transform: translateX(-50%);
+    background-color: rgba(0, 0, 0, 0.6); /* noir avec 70% d’opacité */
+    border: 1px solid #666666;
+    color: white;
+    padding: 30px 32px;
     font-size: 18px;
-    padding: 16px;
     font-weight: bold;
+    border-radius: 5px;
+    z-index: 3;
+    text-decoration: none;
+    transition: background-color 0.3s ease;
+    white-space: nowrap; /* Empêche le texte de se diviser sur plusieurs lignes */  
 }
 
-.btn-red {
-    background-color: #9e0627;
-    color: #ffffff;
-    text-decoration: none;
-    font-size: 14px;
-    padding: 15px;
-
+.btn-discover:hover {
+    background-color: #c00c2f;
 }
 
 .btn-black {
@@ -1487,17 +1543,11 @@ audio {
 @media screen and (max-width: 810px) {
 
     nav {
-        background-color: #000000;
         padding: 20px 20px;
     }
 
     .information {
         font-size: 16px;
-    }
-
-    .logo a {
-        font-size: 18px;
-        color: #000000;
     }
 
     .scrolled a {
@@ -1526,7 +1576,8 @@ audio {
     }
 
     .show-navbar {
-        background-color: #000000;
+        font-family: "Aleo", sans-serif;
+        background-color: rgba(0, 0, 0, 0.7);
         position: absolute;
         left: 0;
         padding-left: 20px;

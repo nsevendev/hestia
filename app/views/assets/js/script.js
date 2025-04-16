@@ -18,6 +18,15 @@ function showNews(count) {
     }
 }
 
+// Bouton pour activer l'audio 
+
+function toggleSound() {
+  const video = document.querySelector('.hero-video');
+  video.muted = !video.muted;
+  const btn = document.querySelector('.sound-toggle');
+  btn.textContent = video.muted ? '🔇' : '🔊';
+}
+
 // Écouteur d'événements pour le bouton "Voir plus d'actualités"
 document.getElementById('load-more').addEventListener('click', function() {
     currentNewsCount += newsPerPage; // Incrémenter le nombre d'actualités affichées
@@ -27,15 +36,18 @@ document.getElementById('load-more').addEventListener('click', function() {
 
 // Afficher / Masquer le logo dans la topbar selon la position du scroll (Hors rÃ©solution PC)
 
-const logo = document.querySelector('.logo')
+const nav = document.querySelector('nav');
 
 window.addEventListener('scroll', () => {
-  if (window.scrollY > 100) {
-    logo.classList.add('scrolled')
-  } else {
-    logo.classList.remove('scrolled')
-  }
-})
+  const nav = document.querySelector('nav');
+  const scrollY = window.scrollY;
+  const maxScroll = 300; // Jusqu'à 300px, l'opacité va de 0.5 à 1
+
+  let opacity = 0.5 + (scrollY / maxScroll) * 0.5;
+  if (opacity > 1) opacity = 1;
+
+  nav.style.backgroundColor = `rgba(0, 0, 0, ${opacity})`;
+});
 
 window.addEventListener('DOMContentLoaded', () => {
   const navLinks = document.querySelectorAll('.nav-link');
