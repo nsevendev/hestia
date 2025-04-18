@@ -16,6 +16,19 @@
                 <li><a href="#boucherie-charcuterie" class="nav-link">Boucherie & Charcuterie</a></li>
                 <li><a href="#remerciements" class="nav-link">Remerciements</a></li>
                 <li><a href="#nous-contacter" class="nav-link">Contactez-nous</a></li>
+                <li>
+                    <div class="social-footer">
+                        <a href="https://www.facebook.com/profile.php?id=61557030044286" target="_blank" class="link-social"><i
+                                class="fa-brands fa-facebook" style="color: #ffffff;"></i></a>
+                        <a href="https://www.instagram.com/labelfortaineboucherie" target="_blank" class="link-social"><i
+                                class="fa-brands fa-instagram" style="color: #ffffff; margin-left: 10px;"></i></a>
+                        <a href="https://www.tiktok.com/@aure698?_t=ZN-8vUq1RT3aOU&_r=1" target="_blank" class="link-social"><i
+                                class="fa-brands fa-tiktok" style="color: #ffffff; margin-left: 10px;"></i></a>
+                        <a href="https://www.snapchat.com/add/boucherielabelf?share_id=qgR0EG6ZhAA&locale=fr-FR"
+                        target="_blank" class="link-social"><i class="fa-brands fa-snapchat"
+                                style="color: #ffffff; margin-left: 10px;"></i></a>
+                    </div>
+                </li>
             </ul>
         </div>
 
@@ -42,20 +55,18 @@
             Votre navigateur ne supporte pas la vidéo HTML5.
         </video>
 
+        {{ if .PeriodClosed }}
+        <div class="information-fermeture">
+            Fermeture exceptionnelle
+            du {{ formatDate .PeriodClosed.StartDate "02/01/2006" }} au {{ formatDate .PeriodClosed.EndDate "02/01/2006" }} inclus
+        </div>
+        {{ end }}
+
         <button class="sound-toggle" onclick="toggleSound()">🔊</button>
         <a href="#notre-histoire" class="btn-discover">Découvrez la boucherie</a>
     
         <div class="hero-content">
-            <picture>
-                <img src="../assets/img/logo_la_belfortaine.svg" class="logo-header" alt="Logo de la boucherie">
-            </picture>
             <div class="horaires">
-                {{ if .PeriodClosed }}
-                <div class="information-fermeture">
-                    Fermeture exceptionnelle <br>
-                    du {{ formatDate .PeriodClosed.StartDate "02/01/2006" }} au {{ formatDate .PeriodClosed.EndDate "02/01/2006" }} inclus
-                </div>
-                {{ end }}
 
                 <!-- <h2 class="mx-2">Nos horaires d'ouverture</h2>
                 <ul>

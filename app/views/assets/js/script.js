@@ -110,6 +110,15 @@ navLinks.forEach(link => {
   });
 });
 
+// Ajouter un gestionnaire d'événement de clic à chaque lien social
+const socialLinks = document.querySelectorAll('.navbar .social-footer a');
+
+socialLinks.forEach(link => {
+  link.addEventListener('click', function () {
+    closeNavbar();
+  });
+});
+
 // GALLERY //
 
 let currentIndex = 0; // Index de l'image actuellement affichée

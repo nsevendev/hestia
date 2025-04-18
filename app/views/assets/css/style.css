@@ -25,14 +25,17 @@ h1 {
 }
 
 .information-fermeture {
+    position: absolute;
+    top: 68px;
     width: 100%;
     text-align: center;
-    margin-top: 20px;
     background-color: #88021f;
     color: #fff;
-    padding: 16px;
-    font-size: 20px;
+    padding: 15px;
+    font-size: 1.2rem;
     font-weight: bold;
+    line-height: 1.6rem;
+    z-index: 50;
 }
 
 .information {
@@ -106,7 +109,7 @@ h1 {
 
 .sound-toggle {
     position: absolute;
-    top: 90px;
+    top: 130px;
     right: 12px;
     background: rgba(0, 0, 0, 0.5);
     border: none;
@@ -114,7 +117,7 @@ h1 {
     color: white;
     padding: 10px;
     cursor: pointer;
-    border-radius: 50%;
+    border-radius: 100%;
     z-index: 2; /* au-dessus de la vidéo */
 }
 
@@ -184,6 +187,7 @@ nav {
     padding: 20px 30px;
     display: flex;
     align-items: center;
+    justify-content: center;
     justify-content: space-between;
     transition: background-color 0.4s ease;
     color: #ffffff;
@@ -203,9 +207,10 @@ nav {
     display: flex;
     gap: 40px;
     list-style: none;
+    justify-content: center;
+    align-items: center;
     height: 100%; 
     margin: 0;
-    padding: 0;
   }
 
   .navbar ul li {
@@ -233,6 +238,10 @@ nav {
     text-decoration: none;
     font-size: 1.3rem;
     transition: background-color 0.3s ease;
+  }
+
+  nav .social {
+    display: none;
   }
 
 .social {
@@ -294,16 +303,15 @@ nav {
 
 .btn-discover {
     position: absolute;
-    bottom: 100px; /* ajuste selon le logo dans la vidéo */
+    bottom: 180px; /* ajuste selon le logo dans la vidéo */
     left: 50%;
     transform: translateX(-50%);
     background-color: rgba(0, 0, 0, 0.7); /* noir avec 70% d’opacité */
-    border: 1px solid #666666;
+    border: 1px solid #181818;
     color: white;
     padding: 30px 32px;
-    font-size: 18px;
+    font-size: 1.3rem;
     font-weight: bold;
-    border-radius: 5px;
     z-index: 3;
     text-decoration: none;
     transition: background-color 0.3s ease;
@@ -1380,7 +1388,7 @@ audio {
     font-size: 100px;
     cursor: pointer;
     user-select: none;
-    z-index: 100; 
+    z-index: 900; 
     color: #000; 
 }
 
@@ -1532,23 +1540,18 @@ audio {
 }
 
 /* On screens that are 1000px or less, set the background color to olive */
-@media screen and (max-width: 1000px) {
+@media screen and (max-width: 1400px) {
 
     .social {
         display: none;
     }
 
     .navbar ul {
-        gap: 5px;
+        gap: 17px;
     }
 
     .news-content {
         width: 400px;
-    }
-
-    .navbar ul li a {
-        display: inline-block;
-        font-size: 0.8rem;
     }
 
     .news-container {
@@ -1568,11 +1571,7 @@ audio {
 }
 
 /* On screens that are 600px or less, set the background color to olive */
-@media screen and (max-width: 810px) {
-
-    nav {
-        padding: 20px 20px;
-    }
+@media screen and (max-width: 1200px) {
 
     .information {
         font-size: 16px;
@@ -1609,12 +1608,24 @@ audio {
         position: absolute;
         left: 0;
         padding-left: 20px;
-        margin-top: 424px;
+        margin-top: 568px;
         padding-top: 5px;
+        padding-bottom: 20px;
         width: 100%;
         display: block;
         animation: all;
         transition: transform 0.3s ease-in-out;
+        text-align: left;
+    }
+
+    .show-navbar .social-footer {
+        text-align: left;
+        display: flex;
+        gap: 10px;
+    }
+
+    .show-navbar .social-footer a {
+        font-size: 1.5rem;
     }
 
     .show-navbar ul li a {
@@ -1631,8 +1642,11 @@ audio {
     .show-navbar ul {
         margin: 20px 0;
         margin-left: 0;
+        padding-left: 12px;
         display: flex;
         flex-direction: column;
+        z-index: 1000;
+        align-items: start;
     }
 
     @keyframes slideIn {
@@ -1852,6 +1866,15 @@ audio {
   overflow-x: hidden;
 }
 
+.information-fermeture {
+    top: 68px;
+    padding: 10px;
+    font-size: 1.1rem;
+}
+
+.btn-discover {
+    font-size: 1.2rem;
+}
 .title-story {
     padding-top: 20px;
     text-align: left;
