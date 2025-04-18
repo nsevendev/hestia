@@ -23,9 +23,22 @@ function showNews(count) {
 function toggleSound() {
   const video = document.querySelector('.hero-video');
   video.muted = !video.muted;
+
   const btn = document.querySelector('.sound-toggle');
-  btn.textContent = video.muted ? '🔇' : '🔊';
+  const icon = btn.querySelector('i');
+
+  if (video.muted) {
+    icon.classList.remove('fa-volume-up', 'fa-volume-high', 'fa-volume');
+    icon.classList.add('fa-volume-xmark'); // Icône muet
+  } else {
+    icon.classList.remove('fa-volume-xmark');
+    icon.classList.add('fa-volume-up'); // Icône son activé
+  }
 }
+
+// ATTACHER l'événement clic ici :
+document.querySelector('.sound-toggle').addEventListener('click', toggleSound);
+
 
 // Écouteur d'événements pour le bouton "Voir plus d'actualités"
 document.getElementById('load-more').addEventListener('click', function() {
