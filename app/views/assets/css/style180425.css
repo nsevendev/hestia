@@ -1999,8 +1999,10 @@ audio {
 .right-side textarea.form-content {
     font-family: "Poppins", sans-serif;
     width: 95%;
+    height: 330px;
     gap:0;
     margin-left: 15px;
+    padding: 7px;
 }
 
 .right-side .alert-content {
