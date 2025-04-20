@@ -1884,6 +1884,7 @@ audio {
 }
 
 .right-side {
+    background: #fff;
     width: 80%;
     padding-left: 20px;
 }
@@ -1898,6 +1899,7 @@ audio {
     font-size: 1.5rem;
     padding-top: 30px;
     padding-bottom: 0;
+    text-align: left;
 }
 
 .right-side .form-post {
@@ -1906,9 +1908,16 @@ audio {
     padding-bottom: 20px;
 }
 
+.right-side .form-content {
+    width: 90%;
+    display: flex;
+    flex-direction: column;
+    padding-top: 30px;
+}
+
 .right-side .title-news {
     font-family: "Poppins", sans-serif;
-    width: 100%;
+    width: 95%;
     padding: 10px;
     margin-bottom: 20px;
     border: 1px solid #4b4b4b;
@@ -1934,7 +1943,7 @@ audio {
 
 .right-side textarea.form-content {
     font-family: "Poppins", sans-serif;
-    width: 100%;
+    width: 95%;
     gap:0;
 }
 
@@ -1943,6 +1952,21 @@ audio {
     flex-direction: column;
     justify-content: start;
     align-items: start;
+}
+
+.right-side .news-title {
+    padding-top: 20px;
+    padding-bottom: 20px;
+}
+
+.right-side .news-actions {
+    padding-top: 20px;
+}
+
+.right-side .news-content {
+    width: 95%;
+    padding-left: 0;
+    padding-right: 0;
 }
 
 .sidebar {
@@ -1994,7 +2018,7 @@ audio {
 
 .show-sidebar ul li a {
     font-size: 1rem;
-    line-height: 2.5rem;
+    line-height: 1.5rem;
     margin-bottom: 18px;
 }
 
@@ -2004,13 +2028,16 @@ audio {
 }
 
 .show-sidebar ul {
-    margin: 20px 0;
     margin-left: 0;
-    padding-left: 12px;
     display: flex;
     flex-direction: column;
     z-index: 1000;
     align-items: start;
+}
+
+.show-sidebar ul li {
+    width: 100%;;
+    padding-bottom: 0;
 }
 
 /* Animation d'apparition */
