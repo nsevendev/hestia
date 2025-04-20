@@ -1,8 +1,15 @@
 {{ define "sidebar" }}
 <div class="sidebar">
-    <a href="{{ hostTraefik }}/dashboard" class="logo">
-        <span>La Belfortaine</span>
-    </a>
+
+    <div class="sidebar-header">
+        <a href="{{ hostTraefik }}/dashboard" class="logo">
+            <span>La Belfortaine</span>
+        </a>
+        <div class="dashboard-nav-close">
+            <a href="#" id="dashboard-nav-close"><i class="fa-solid fa-times" style="color: #ffffff;"></i></a>
+        </div>
+    </div>
+
     <ul class="sidebar-links">
         <li>
             <a href="/dashboard" class="{{- if eq .Content "dashboard" -}}active{{- end -}}">

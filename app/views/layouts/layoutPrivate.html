@@ -5,7 +5,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="shortcut icon" href="http://www.labelfortaine.fr/img/favicon.ico" type="image/x-icon">
+    <link rel="shortcut icon" href="https://www.labelfortaine.com/assets/img/favicon.ico" type="image/x-icon">
     <link rel="stylesheet" href="/assets/css/style180425.css">
     <link href="https://fonts.googleapis.com/css2?family=Aleo:ital,wght@0,100..900;1,100..900&display=swap"
         rel="stylesheet">
@@ -27,7 +27,7 @@
     <meta property="og:description"
         content="Avec presque 20 ans de métier et une formation plus qu’aboutie je sais aujourd'hui pouvoir apporter : La qualité, la satisfaction client et la proximité. J'ai énormément appris ces dernières années, la clientèle me connaît, j'ai à cœur d'apporter ce dont mes clients ont besoin. Aujourd'hui je souhaite que Belfort retrouve ce lieu convivial et de la bonne viande de charcuterie traditionnelle. Je propose de la viande de qualité, un service dédié et un investissement total pour celles et ceux qui souhaitent venir dans notre boutique. La viande provient de nos agriculteurs français et est certifiée dans le but de soutenir leurs activités. Nous avons eu beaucoup de soutien lors de la création de la société et je remercie tout le monde, désormais mon travail est de vous démontrer que vous avez eu raison. Merci à toutes et à tous, à bientôt à La Belfortaine !">
     <meta property="og:url" content="https://www.labelfortaine.fr">
-    <meta property="og:image" id="og-image" content="http://www.labelfortaine.fr/img/vignette2.png">
+    <meta property="og:image" id="og-image" content="http://www.labelfortaine.fr/assets/img/vignette2.png">
     <meta property="og:type" content="website">
 
     <!-- Twitter Card Meta Tags -->
@@ -35,7 +35,7 @@
     <meta name="twitter:title" content="La Belfortaine - Boucherie & Charcuterie traditionnelle">
     <meta name="twitter:description"
         content="Avec presque 20 ans de métier et une formation plus qu’aboutie je sais aujourd'hui pouvoir apporter : La qualité, la satisfaction client et la proximité. J'ai énormément appris ces dernières années, la clientèle me connaît, j'ai à cœur d'apporter ce dont mes clients ont besoin. Aujourd'hui je souhaite que Belfort retrouve ce lieu convivial et de la bonne viande de charcuterie traditionnelle. Je propose de la viande de qualité, un service dédié et un investissement total pour celles et ceux qui souhaitent venir dans notre boutique. La viande provient de nos agriculteurs français et est certifiée dans le but de soutenir leurs activités. Nous avons eu beaucoup de soutien lors de la création de la société et je remercie tout le monde, désormais mon travail est de vous démontrer que vous avez eu raison. Merci à toutes et à tous, à bientôt à La Belfortaine !">
-    <meta name="twitter:image" id="twitter-image" content="http://www.labelfortaine.fr/img/vignette2.png">
+    <meta name="twitter:image" id="twitter-image" content="http://www.labelfortaine.fr/assets/img/vignette2.png">
 
     <link rel="canonical" href="https://www.labelfortaine.fr">
 
@@ -49,13 +49,17 @@
         gtag('config', 'G-D74403FKBX');
     </script>
 
-<script src="/assets/js/script.js"></script>
+<script src="/assets/js/dashboard.js" refer></script>
 
     <title>{{ .Title }}</title>
 </head>
 
 <body>
     <div class="container-dashboard">
+        <!-- Burger pour la sidebar (mobile) -->
+        <a href="#" id="dashboard-nav-open" class="dashboard-nav-burger">
+        <i class="fa-solid fa-bars" style="color: #000000; font-size: 25px; "></i>
+        </a>
         {{ template "sidebar" . }}
         <div class="right-side">
             <main>
