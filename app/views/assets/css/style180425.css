@@ -1,5 +1,9 @@
 @import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Aleo:ital,wght@0,100..900;1,100..900&display=swap');
+
+:root { --dash-header-h: 58px; }
+
+
 /* Elements du DOM */
 
 * {
@@ -283,7 +287,7 @@ nav {
 .dashboard-nav-burger {
     display: none;
     position: absolute;
-    top: 30px;
+    top: 15px;
     right: 30px;
 }
 
@@ -1230,10 +1234,20 @@ audio {
 
 .right-side .group-infos {
     display: flex;
-    flex-direction: row;
-    gap: 40px;
+    flex-direction: column;
+    gap: 1px;
     flex-wrap: wrap;
 }
+
+.right-side .social {
+    display: flex;
+}
+
+/* 2)  Les vraies couleurs officielles des marques */
+.social i.fa-facebook  { color:#1877F2; font-size: 2rem; }   /* Facebook Blue */
+.social i.fa-instagram { color:#E4405F; font-size: 2rem; }   /* Instagram Pink‑Red (gradient simplifié) */
+.social i.fa-tiktok    { color:#000000; font-size: 2rem; }   /* TikTok utilise noir ou blanc en aplat */
+.social i.fa-snapchat  { color:#FFFC00; font-size: 2rem; }   /* Snapchat Yellow */
 
 .right-side .card-infos {
     width: 95%;
@@ -1876,44 +1890,76 @@ audio {
 
 /* Alertes version mobile */
 
+.container-dashboard {
+    width: 100%;
+}
 .alert {
-    width: 92%;
+    display: inline-block;
+    width: 100%;
     font-size: 1rem;
-    text-align: center;
+    text-align: left;
     margin-bottom: 0;
+    margin-top: 0;
 }
 
 .right-side {
     background: #fff;
-    width: 80%;
-    padding-left: 20px;
+    width: 100%;
+    margin-left: 0;
+    padding-left: 0;
+    padding-top: var(--dash-header-h);   /* libère la place du h1 fixé */
 }
 
 .right-side h1 {
-    font-size: 1.6rem;
-    padding-top: 22px;
+    position: fixed;
+    top: 0;
+    width: 100%;
+    margin-left: 0;
+    font-size: 1.2rem;
+    padding-top: 15px;
+    padding-bottom: 15px;
+    padding-left: 15px;
     text-align: left;
+    background: #000000;
+    color: #ffffff;
+    z-index: 900;
 }
 
 .right-side h3 {
     font-size: 1.5rem;
-    padding-top: 30px;
+    padding-top: 20px;
+    padding-left: 15px;
     padding-bottom: 0;
     text-align: left;
 }
 
+.right-side ul {
+    padding-left: 15px;
+}
+
 .right-side .form-post {
-    width: 100%;
+    width: 98%;
     padding-top: 20px;
     padding-bottom: 20px;
 }
 
 .right-side .form-content {
     width: 90%;
+    height: auto;
     display: flex;
     flex-direction: column;
+    font-size: 1rem;
     padding-top: 30px;
+    padding-bottom: 0;
+    margin-bottom: 0;
 }
+
+.right-side .btn-file, .btn-add {
+    width: 70%;
+    align-self: center;
+    margin-top: 30px;
+}
+
 
 .right-side .title-news {
     font-family: "Poppins", sans-serif;
@@ -1941,10 +1987,34 @@ audio {
     text-align: left;
 }
 
+.right-side label {
+    padding-left: 15px;
+}
+
+.right-side input {
+    margin-left: 15px;
+    margin-bottom: 0;
+}
+
 .right-side textarea.form-content {
     font-family: "Poppins", sans-serif;
     width: 95%;
     gap:0;
+    margin-left: 15px;
+}
+
+.right-side .alert-content {
+    margin-bottom: 30px;
+}
+
+.right-side .alert-content input {
+    margin-top: 20px;
+    width: 90%;
+}
+
+.alert-date {
+    display: flex;
+    flex-direction: column;
 }
 
 .right-side .alert-date {
@@ -1993,6 +2063,7 @@ audio {
 
 .dashboard-nav-burger {
     display: block;
+    z-index: 1000;
 }
 
 .sidebar.show-sidebar {
@@ -2050,10 +2121,6 @@ audio {
     }
   }
 
-
-.alert {
-    font-size: 1rem;
-  }
 
     h1, .title-story {
         font-size: 1.8rem;
@@ -2114,7 +2181,7 @@ audio {
 .news {
     width: 100%;
     margin: 0;
-    padding-left: 0;
+    padding-left: 15px;
     flex-direction: column;
     align-items: start;
     border-top: 1px solid #ababab;
@@ -2131,6 +2198,11 @@ audio {
 .news-content a {
     margin-top: 20px;
     margin-bottom: 0;
+}
+
+h3.news-title {
+    padding-left: 0;
+    margin-left: 0;
 }
 
 .card-title {

@@ -5,8 +5,8 @@ import (
 )
 
 type responseDashboard struct {
-	Title   string
-	Content string
+	Title       string
+	Content     string
 	UserCurrent struct {
 		UserName string
 		Email    string

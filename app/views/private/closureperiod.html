@@ -38,13 +38,13 @@
             <label for="endDate">Date de fin :</label>
             <input type="date" id="endDate" name="endDate" required>
         </div>
-        <button type="submit"><i class="fa-solid fa-plus"></i> Ajouter l'alerte</button>
+        <button type="submit" class="btn-add"><i class="fa-solid fa-plus"></i> Ajouter l'alerte</button>
     </div>
 </form>
 
 <hr>
 
-<h3>Liste de periodes de fermetures exceptionnelles</h3>
+<h3>Liste de periodes de fermetures</h3>
 
 {{ if .ListPeriod }}
 {{ range .ListPeriod }}
